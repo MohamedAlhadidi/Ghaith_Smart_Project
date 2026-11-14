@@ -1,56 +1,60 @@
-# RESUME — آخر تحديث 2026-11-14 (الدورة 1 + تحقق الرياضيات)
+# RESUME — آخر تحديث 2026-11-14 (الدورة 2: تغطية رياضيات ف1 بعمق)
 
 ## Current objective
-شريحة عمودية أولى من المنهج إلى اللعب: رياضيات ف1، الوحدة 1أ، الدرس 1 «لوحة المائة» (ص4)، مع جرد كامل للكتب وقائمة مهام ذرية.
+تغطية دروس كتاب طالب الرياضيات للفصل الأول (40 درسًا) بألعاب مولّدة حتميًا ومرتبطة بصفحات الكتاب، ثم الاعتماد البشري.
 
 ## Last verified commit
 انظر `git log -1` على الفرع `claude/dazzling-feynman-3x2f6x`. كل الاختبارات أدناه نُفذت على شجرة العمل قبل هذا الالتزام.
 
-## Task status and evidence
-| المهمة | الحالة | الدليل |
-|---|---|---|
-| PM-001 فحص البيئة | done | node 22.23.4، python 3.13، Claude Code 2.1.325؛ لا dotnet؛ Docker لا يعمل؛ لا bwrap/socat |
-| PM-002 تفكيك المهام | done | `tasks/queue.json` فيه 147 مهمة؛ `queue_tool validate` بلا مشاكل |
-| RUN-FIX-PREFLIGHT | done | الفحص المسبق كان يفشل مع CLI الحقيقي؛ أُصلح مع 4 اختبارات |
-| REL-FIX-SEMESTER-WAIVER | done | 4 اختبارات؛ الإعفاء من زوج مادة/فصل لا يقبله إلا baseline معتمد |
-| CUR-INV-DOWNLOAD | done | 27/27 ملفًا، وبصمات SHA-256 كلها مطابقة (`fetch_books --verify`) |
-| CUR-MATH-S1-STU-TOC-EXTRACT | done | 40 درسًا (1أ:14، 1ب:4، 1ج:9، 2أ:13)، والفرق بين صفحة PDF والرقم المطبوع +11 متحقق منه |
-| CUR-MATH-S1-U1A-L01-EXTRACT | done | `content/games/math/s1/MATH-S1-U1A-L01.json` (مسودة، غير معتمدة) |
-| TEC-GAMECORE | done | vitest 29/29، tsc نظيف |
-| TEC-WEB-SCAFFOLD | done | vitest 13/13، vite build ناجح |
-| GME-…-L01-{FRAGMENT,LOCATE,PATH}-IMPLEMENT/TEST | done | e2e 42/42 على تابلت/هاتف/حاسوب (`reports/e2e/smoke-report.json`) |
-| GME-…-L01-*-APPROVE | pending | تحتاج إنسانًا؛ لم تحدث أي مراجعة بشرية |
+## ما أُنجز في هذه الدورة
+- **قراءة الكتاب:** قُرئت صفحات الدروس الأربعين (ص4–43) من صورها مباشرة، وكُتب ملف المنهج `content/curriculum/math/s1/lessons.json`. فيه لكل درس:
+  - الأهداف (مسودة) ومفردات الدرس.
+  - مهام الكتاب كما وردت والمهارات.
+  - ملاحظات التفسير وألعاب بحدود مأخوذة من الصفحة.
+- **الآليات:** 61 آلية منفذة، منها:
+  - 4 آليات مرجعية وآلية تكوين الأشكال من المثلثات، بيد المدير.
+  - 28 آلية للأعداد والعمليات، بيد المنفذ (أ).
+  - 25 آلية للضرب والقسمة والهندسة والقياس والنقود، بيد المنفذ (ب).
+  - 3 آليات للوحة المائة من الدورة 1.
+- **المراجعة المستقلة لعمل المنفذين:** أعاد المدير تشغيل كل الاختبارات وراجع الكود والصور. أُصلح اتجاه قرص الميزان ليطابق ص28، وأُضيفت آلية لوحدة الأشكال لتبلغ 6 آليات.
+- **الواجهة:** فيها الآن:
+  - متصفح للوحدات والدروس يعرض المصدر والأهداف والمفردات.
+  - مثال محلول لكل درس، ومشغّل عام بتلميحات ومحاولتين، يعرض خطوات الحل بعد الخطأ الثاني.
+  - مهمة ختامية لكل وحدة: أسئلة من فضاء بذور منفصل تتجنب ما تدرّب عليه الطفل، بلا تلميحات، ومحاولة واحدة.
+  - مراجعة متباعدة يومية (1، 3، 7، 14، 30 يومًا).
+  - شاشة مراجعة لولي الأمر: بوابة للكبار، ثم عينات الأسئلة مع إجاباتها، ثم الاعتماد أو طلب التعديل مع اسم المراجع، ثم تصدير القرارات.
 
 ## أنواع الاختبار (لا خلط بينها)
-- **runner + structure tests:** 47/47 (`python3 -m unittest discover -s tests`)، منها 9 لروابط المنهج: الدرس والصفحة والبصمة.
-- **application tests:** game-core 31/31 (أُضيف قطر +٩ من الكتاب كُشف عند التحقق)، web 13/13، browser e2e 42/42. نسخة مستنسخة نظيفة من GitHub نجحت في كل هذه الاختبارات.
-- **curriculum review:** لم تحدث. كل المحتوى في حالة `extracted` أو `draft_needs_human_review`.
-- **child usability test:** لم يحدث.
-
-## Commands actually executed + exit codes
-| الأمر | رمز الخروج | النتيجة |
+| النوع | الأمر | النتيجة |
 |---|---|---|
-| `python3 scripts/fetch_books.py --jobs 4` | 0 | 27/27 downloaded |
-| `python3 scripts/fetch_books.py --verify` | 0 | 27/27 match |
-| `python3 -m unittest discover -s tests` | 0 | 38 tests OK |
-| `npm test` (workspaces) | 0 | 29 + 13 passed |
-| `npm run typecheck` | 0 | بلا أخطاء |
-| `npm run build --workspace @ghaith/web` | 0 | JS بحجم ~251 kB |
-| `node src/web/e2e/smoke.mjs` | 0 | 42/42 checks |
-| `python3 scripts/queue_tool.py validate` | 0 | 147 tasks, 0 problems |
-| `python3 scripts/check_release.py --root .` | 1 | متوقع: لا يوجد manifest، والمشروع غير مكتمل |
+| runner + structure | `python3 -m unittest discover -s tests` | كلها ناجحة (تشمل روابط المنهج، وقائمة المهام، وإصلاحات المشغّل) |
+| application: core | `cd src/games/core && npx vitest run` | 343/343 (1000 بذرة × 3 مستويات لكل إعداد في المنهج، و94 لعبة في اختبار المنهج) |
+| application: web | `cd src/web && npx vitest run` | 23/23 |
+| type check | `npx tsc --noEmit` في النواة والواجهة | 0 أخطاء |
+| browser: كل الألعاب | `cd src/web && npm run build && node e2e/all-games.mjs` | 94/94: 91 لعبة، كل منها أُجيب عنها مرتين عبر أدوات الإدخال الحقيقية، ثم المثال المحلول ومهمة الوحدة وشاشة المراجعة |
+| browser: أجهزة | `node e2e/smoke.mjs` | 48/48 على تابلت وهاتف وحاسوب |
+| curriculum review | — | **لم تحدث** |
+| child usability | — | **لم يحدث** |
 
-## Changed files (هذه الدورة)
-`scripts/pm_runner.py`، `scripts/check_release.py`، `scripts/fetch_books.py`، `scripts/queue_tool.py`، `docs/BOOK_SOURCES.json`، `docs/BOOK_INVENTORY.csv`، `docs/CURRICULUM_MATRIX.csv`، `tasks/queue.json`، `content/games/math/s1/MATH-S1-U1A-L01.json`، `src/games/core/**`، `src/web/**`، `tests/test_v4_fixes.py`، `tests/test_queue_tool.py`، `reports/e2e/**`، ونقل `.claude/settings.json` إلى `config/claude-settings.local-runner.json`.
+## مقاييس التغطية (من `reports/math_s1_coverage.json`)
+- **الألعاب:** 40 درسًا لها ألعاب، و94 لعبة.
+- **activity_rounds_count:** 282، وهو عدد الألعاب مضروبًا في المستويات.
+- **distinct_mechanics:** 61. وعلى مستوى الوحدات: 1أ=24، 1ب=6، 1ج=15، 2أ=26.
+- **objective_coverage_percent:** 100% (كل مهارة لها لعبة واحدة على الأقل).
+- **الدروس المعتمدة بشريًا:** 0.
+- **نقص صريح عن السياسة:** 38 درسًا أقل من 10–14 جولة. منها درس واحد بـ3 جولات (أوجه المكعب)، و26 درسًا بـ6 جولات، و11 درسًا بـ9 جولات. المهمة المفتوحة: `MAT-S1-DENSITY`.
 
 ## Blockers and required human action
-1. **تأكيد الطبعة (25 كتابًا):** يطابق ولي الأمر غلاف الكتاب وصفحتين منه مع الكتاب الورقي. كتب الفصل الثاني وكتاب نشاط الرياضيات ف1 أُنشئت بين 2020 و2025، فقد تكون طبعات سابقة.
-2. **تقنية المعلومات بلا مصدر في الفصلين:** ملف الفصل الأول صفحة Word بيضاء، والفصل الثاني غير مدرج في الموقع. المطلوب الكتاب من المدرسة أو تأكيد أنه لا يوجد كتاب.
-3. **مراجعة قائمة دروس رياضيات ف1 (40 درسًا):** تحققتُ آليًا وبصريًا من أن عناوين الصفحات الأربعين تطابق المصفوفة، وحُسم البند ص9 (النشاط 3.2). الصفحتان 28 و42 لا تحملان رقم نشاط في الكتاب نفسه. يبقى الاعتماد البشري مطلوبًا.
-4. **مراجعة أهداف الدرس L01 وألعابه الثلاث.**
-5. **تأكيد حقوق الاستخدام الشخصي للكتب.**
+1. **مراجعة المحتوى:** افتح الإعدادات ثم «مراجعة المحتوى واعتماده». راجع كل درس مقابل كتاب غيث، ثم صدّر الملف `ghaith-content-review.json` وأرسله ليُطبَّق.
+2. **تأكيد طبعات الكتب:** كتابا رياضيات الفصل الثاني وكتاب النشاط للفصل الأول أُنشئت ملفاتها قبل 2026.
+3. **تقنية المعلومات:** لا يوجد لها كتاب فعلي.
+4. **حقوق الاستخدام الشخصي.**
 
 ## Next ready task + first command
-- **التالي (P0، الإنجليزية):** `CUR-ENG-S1-CB-TOC-EXTRACT`. أول أمر: `pdftoppm -r 50 -png sources/books/ENG-S1-CB.pdf <scratch>/eng_cb/p`، ثم قراءة صفحة المحتويات.
-- بالتوازي في الرياضيات: `CUR-MATH-S1-U1A-L02-EXTRACT` ثم `GME-MATH-S1-U1A-L02-IMPLEMENT`، و`UI-REVIEW-SCREEN` لتسهيل المراجعة البشرية.
-- الكتب ليست في Git. على جهاز جديد يجب تشغيل `python3 scripts/fetch_books.py` أولًا، ثم `--verify`.
+- **الإنجليزية (P0):** `CUR-ENG-S1-CB-TOC-EXTRACT`. أول أمر: `pdftoppm -r 50 -png sources/books/ENG-S1-CB.pdf <scratch>/eng_cb/p`.
+- **الرياضيات:**
+  - `UI-REVIEW-SCREEN-APPLY`: أداة تطبيق قرارات المراجعة.
+  - `MAT-S1-DENSITY`: رفع كثافة الجولات أو اعتماد استثناءات.
+  - `MAT-S1-REMEDIATION`: العلاج من المهارة السابقة.
+  - `CUR-MATH-S1-ACT-MAP`: ربط كتاب النشاط بالدروس.
+- **قبل التشغيل على جهاز جديد:** شغّل `python3 scripts/fetch_books.py` ثم `npm install`. الكتب ليست في Git.

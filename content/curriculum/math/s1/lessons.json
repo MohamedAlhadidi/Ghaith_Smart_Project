@@ -367,7 +367,7 @@
     },
     {
      "game_id": "GME-MATH-S1-L04-COUNT",
-     "title": "عُدّ ثم اختر الكيس",
+     "title": "عُدّ ما في الكيس",
      "skill_id": "SK-RANGE",
      "mechanic": "count-objects",
      "config": {
@@ -1175,9 +1175,20 @@
       "عُدّ أضلاع كل شكل.",
       "قد يكون هناك أكثر من شكل صحيح."
      ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L15-COMPOSE",
+     "title": "كم مثلثًا؟",
+     "skill_id": "SK-POLY",
+     "mechanic": "triangles-compose",
+     "config": {},
+     "hint_levels": [
+      "المس كل مثلث صغير وأنت تعدّ.",
+      "عُدّ مثلثات الوسط أولًا ثم الأطراف."
+     ]
     }
    ],
-   "interpretation_notes": "Star-making with physical triangles is a hands-on task; the app practises side counting and shape recognition only.",
+   "interpretation_notes": "Star-making with physical triangles is hands-on; the app practises counting the small triangles that compose the book's shapes (rhombus, trapezoid, big triangle, hexagon, star) and counting sides.",
    "content_review_status": "draft_needs_human_review",
    "approval_actor": null
   },
@@ -2102,7 +2113,7 @@
      ]
     }
    ],
-   "interpretation_notes": "",
+   "interpretation_notes": "The book's cards (10, 30, 80, 100, 7, 5, 2) also make 3-digit numbers such as 107 or 137; the app currently builds 2-digit numbers (11-99) and orders numbers up to 107. 3-digit composition is a known gap for review.",
    "content_review_status": "draft_needs_human_review",
    "approval_actor": null
   },
@@ -2646,7 +2657,7 @@
      ]
     }
    ],
-   "interpretation_notes": "",
+   "interpretation_notes": "Rows are aligned at the right edge like p.39 (RTL); the child compares the part of the longer row beyond the shorter one.",
    "content_review_status": "draft_needs_human_review",
    "approval_actor": null
   },

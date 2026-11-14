@@ -8,6 +8,7 @@ import { loadAttempts, masteryStatus, newId, summariseBySkill } from "./lib/prog
 import { dueForReview } from "./lib/review";
 import { GameRunner } from "./games/GameRunner";
 import { QuizPlayer, WorkedExample, type PlanSlot } from "./quiz/QuizPlayer";
+import { ReviewScreen } from "./screens/ReviewScreen";
 
 type Screen =
   | { name: "home" }
@@ -18,7 +19,8 @@ type Screen =
   | { name: "mission"; unitId: string; plan: PlanSlot[] }
   | { name: "review"; plan: PlanSlot[] }
   | { name: "done"; back: Screen; again?: Screen; firstTryCorrect: number; total: number; title: string }
-  | { name: "progress" };
+  | { name: "progress" }
+  | { name: "content-review" };
 
 const MASTERY_LABEL = { not_started: "لم يبدأ", practising: "يتدرّب", secure_draft: "ثابت (مبدئيًا)" } as const;
 const ROUND = 5;
@@ -80,6 +82,7 @@ export default function App() {
           onUnit={(unitId) => setScreen({ name: "unit", unitId })}
           onProgress={() => setScreen({ name: "progress" })}
           onReview={(plan) => setScreen({ name: "review", plan })}
+          onContentReview={() => setScreen({ name: "content-review" })}
         />
       )}
 
@@ -161,6 +164,7 @@ export default function App() {
       )}
 
       {screen.name === "progress" && <ProgressView onBack={() => setScreen({ name: "home" })} />}
+      {screen.name === "content-review" && <ReviewScreen onBack={() => setScreen({ name: "home" })} />}
     </main>
   );
 }
@@ -171,6 +175,7 @@ function Home(props: {
   onUnit: (unitId: string) => void;
   onProgress: () => void;
   onReview: (plan: PlanSlot[]) => void;
+  onContentReview: () => void;
 }) {
   const due = dueForReview(loadAttempts(), Date.now());
   const reviewPlan: PlanSlot[] = due.flatMap((d) => {
@@ -227,6 +232,9 @@ function Home(props: {
           </select>
         </label>
         <p className="mt-2 text-sm text-slate-500">لا يوجد مؤقت للأسئلة، ووقت الإجابة لا يؤثر في التقييم. تظهر للطفل لعبة قصيرة واحدة في كل مرة.</p>
+        <button type="button" data-testid="open-content-review" onClick={props.onContentReview} className="mt-3 rounded-xl bg-slate-800 px-4 py-2 font-bold text-white">
+          🧾 مراجعة المحتوى واعتماده
+        </button>
       </details>
     </section>
   );
@@ -253,7 +261,7 @@ function UnitView({ unitId, onBack, onLesson, onMission }: { unitId: string; onB
             <button type="button" data-lesson={l.lesson_id} onClick={() => onLesson(l.lesson_id)} className="flex w-full items-center gap-3 rounded-2xl bg-white p-4 text-start shadow active:scale-95">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-100 font-bold">{toArabicDigits(i + 1)}</span>
               <span>
-                <span className="block text-lg font-bold">{l.lesson_name}</span>
+                <span className="block text-lg font-bold">{toArabicDigits(l.lesson_name)}</span>
                 <span className="text-sm text-slate-500">
                   ص {toArabicDigits(l.source.source_printed_page)} · {toArabicDigits(l.games.length)} ألعاب
                 </span>
@@ -274,7 +282,7 @@ function LessonView({ lesson, onBack, onPlay, onExample }: { lesson: CatalogLess
   return (
     <section className="mx-auto flex max-w-3xl flex-col gap-4 px-4 py-6" data-testid="lesson" data-lesson={lesson.lesson_id}>
       <header className="flex items-center justify-between">
-        <h2 className="text-2xl font-extrabold text-sky-900">{lesson.lesson_name}</h2>
+        <h2 className="text-2xl font-extrabold text-sky-900">{toArabicDigits(lesson.lesson_name)}</h2>
         <button type="button" onClick={onBack} className="rounded-xl bg-white px-4 py-2 font-bold shadow">
           → رجوع
         </button>

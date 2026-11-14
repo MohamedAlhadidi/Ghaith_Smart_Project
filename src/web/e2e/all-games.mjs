@@ -140,6 +140,21 @@ try {
   const done = (await page.getByTestId("round-done").count()) === 1;
   results.push({ lesson: "MATH-S1-U1B", game: "unit-mission", pass: done && missionKinds.length > 0 && missionKinds.every((k) => k === "correct"), items: missionKinds });
   await page.screenshot({ path: `${outDir}/all-games-mission-done.png` });
+
+  // Parent content-review screen: adult gate, sample items with answers, decision needs a reviewer name.
+  await page.goto(`${BASE}`);
+  await page.locator("summary").click();
+  await page.getByTestId("open-content-review").click();
+  const gateText = await page.getByTestId("parent-gate").locator("p").innerText();
+  const [ga, gb] = gateText.match(/[٠-٩]+/g).map((t) => Number(t.replace(/[٠-٩]/g, (d) => String(AR.indexOf(d)))));
+  await page.getByLabel("الناتج").fill(String(ga * gb));
+  await page.getByRole("button", { name: "دخول" }).click();
+  await page.locator('[data-review-lesson="MATH-S1-U1A-L05"]').click();
+  const samples = await page.getByTestId("lesson-review").locator("article article").count();
+  await page.getByTestId("decision-_lesson").getByRole("button", { name: /معتمد/ }).click();
+  const blocked = (await page.getByTestId("decision-_lesson").innerText()).includes("اسم المراجع");
+  await page.screenshot({ path: `${outDir}/review-screen.png`, fullPage: false });
+  results.push({ lesson: "MATH-S1-U1A-L05", game: "content-review", pass: samples >= 6 && blocked, items: [`${samples} samples`, blocked ? "decision blocked without reviewer name" : "NOT blocked"] });
   await browser.close();
 } catch (e) {
   fatal = String(e);

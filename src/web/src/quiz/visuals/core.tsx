@@ -99,7 +99,41 @@ function Triangle({ visual, reveal, solution }: VisualProps<{ type: "triangle"; 
   );
 }
 
+type Tri = readonly [number, number, "u" | "d"];
+const H = Math.sqrt(3) / 2;
+const pt = (a: number, b: number): [number, number] => [a + b / 2, -b * H];
+const triPoints = ([a, b, k]: Tri) => (k === "u" ? [pt(a, b), pt(a + 1, b), pt(a, b + 1)] : [pt(a + 1, b), pt(a, b + 1), pt(a + 1, b + 1)]);
+const COLORS = ["#f43f5e", "#0ea5e9", "#facc15", "#22c55e", "#a855f7", "#f97316"];
+
+/** Shape built from small lattice triangles (L15 «الأشكال»). Numbers appear only on reveal. */
+function TriangleCompose({ visual, reveal }: VisualProps<{ type: "triangleCompose"; tris: Tri[]; rotation: number }>) {
+  const polys = visual.tris.map(triPoints);
+  const xs = polys.flat().map((p) => p[0]);
+  const ys = polys.flat().map((p) => p[1]);
+  const cx = (Math.min(...xs) + Math.max(...xs)) / 2;
+  const cy = (Math.min(...ys) + Math.max(...ys)) / 2;
+  // Fit the farthest vertex from the centre, so any rotation stays inside the frame.
+  const span = Math.max(...polys.flat().map(([x, y]) => Math.hypot(x - cx, y - cy))) + 0.2;
+  return (
+    <svg viewBox={`${-span} ${-span} ${2 * span} ${2 * span}`} className="h-72 w-72" role="img" aria-label="شكل مكوّن من مثلثات صغيرة">
+      <g transform={`rotate(${visual.rotation}) translate(${-cx} ${-cy})`}>
+        {polys.map((p, i) => (
+          <g key={i}>
+            <polygon points={p.map(([x, y]) => `${x},${y}`).join(" ")} fill={COLORS[i % COLORS.length]} stroke="#0f172a" strokeWidth={0.04} strokeLinejoin="round" />
+            {reveal && (
+              <text x={(p[0]![0] + p[1]![0] + p[2]![0]) / 3} y={(p[0]![1] + p[1]![1] + p[2]![1]) / 3 + 0.1} textAnchor="middle" fontSize={0.3} fontWeight={800} fill="#fff" transform={`rotate(${-visual.rotation} ${(p[0]![0] + p[1]![0] + p[2]![0]) / 3} ${(p[0]![1] + p[1]![1] + p[2]![1]) / 3})`}>
+                {toArabicDigits(i + 1)}
+              </text>
+            )}
+          </g>
+        ))}
+      </g>
+    </svg>
+  );
+}
+
 export const CORE_VISUALS: Record<string, VisualRenderer> = {
+  triangleCompose: TriangleCompose,
   none: () => null,
   tenframes: TenFrames,
   clock: Clock,

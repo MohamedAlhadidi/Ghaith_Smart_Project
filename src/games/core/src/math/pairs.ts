@@ -112,7 +112,7 @@ export const complement: QuizMechanic<ComplementConfig, ComplementParams> = {
   },
   explain(item) {
     const { target, known } = item.params;
-    return [`نبحث عن العدد الذي نضيفه إلى ${known} لنحصل على ${target}.`, `${target} - ${known} = ${target - known}`, `إذن ${known} + ${target - known} = ${target}`];
+    return [`نبحث عن العدد الذي نضيفه إلى ${known} لنحصل على ${target}.`, `${target} − ${known} = ${target - known}`, `إذن ${known} + ${target - known} = ${target}`];
   },
   checkIntegrity(item) {
     const { target, known } = item.params;
@@ -193,7 +193,7 @@ export const pairPick: QuizMechanic<PairPickConfig, PairPickParams> = {
   },
   explain(item) {
     const [i, j] = (this.solution(item) as string[]).map((id) => item.params.values[Number(id.slice(1))]!);
-    return [`نختار بطاقة ونبحث عن شريكتها: ${item.params.target} - ${i} = ${j}.`, `${i} + ${j} = ${item.params.target}`];
+    return [`نختار بطاقة ونبحث عن شريكتها: ${item.params.target} − ${i} = ${j}.`, `${i} + ${j} = ${item.params.target}`];
   },
   checkIntegrity(item) {
     const p = item.input.type === "multi" ? optionProblems(item.input.options) : ["expects multi input"];
@@ -277,7 +277,7 @@ export const factTriangle: QuizMechanic<FactTriangleConfig, FactTriangleParams> 
     const { total, a, b, missing } = item.params;
     if (missing === "total") return [`الجزءان ${a} و${b}.`, `${a} + ${b} = ${total}`];
     const known = missing === "a" ? b : a;
-    return [`المجموع ${total} والجزء المعروف ${known}.`, `${total} - ${known} = ${total - known}`];
+    return [`المجموع ${total} والجزء المعروف ${known}.`, `${total} − ${known} = ${total - known}`];
   },
   checkIntegrity(item) {
     const { total, a, b } = item.params;
@@ -290,10 +290,10 @@ export interface FactFamilyParams {
   a: number;
   b: number;
   /** Each option: x op y = z, evaluated by the validator. */
-  equations: Array<{ id: string; x: number; op: "+" | "-"; y: number; z: number }>;
+  equations: Array<{ id: string; x: number; op: "+" | "−"; y: number; z: number }>;
 }
 
-function equationTrue(e: { x: number; op: "+" | "-"; y: number; z: number }): boolean {
+function equationTrue(e: { x: number; op: "+" | "−"; y: number; z: number }): boolean {
   return e.op === "+" ? e.x + e.y === e.z : e.x - e.y === e.z;
 }
 
@@ -313,13 +313,13 @@ export const factFamily: QuizMechanic<FactTriangleConfig, FactFamilyParams> = {
       const trueEqs = [
         { x: a, op: "+" as const, y: b, z: t },
         { x: b, op: "+" as const, y: a, z: t },
-        { x: t, op: "-" as const, y: a, z: b },
-        { x: t, op: "-" as const, y: b, z: a },
+        { x: t, op: "−" as const, y: a, z: b },
+        { x: t, op: "−" as const, y: b, z: a },
       ];
       // Plausible false statements: subtraction started from the part, or a wrong total.
       const falseEqs = [
         { x: t, op: "+" as const, y: a, z: b },
-        { x: Math.max(a, b), op: "-" as const, y: Math.min(a, b), z: t },
+        { x: Math.max(a, b), op: "−" as const, y: Math.min(a, b), z: t },
         { x: a, op: "+" as const, y: b, z: t + (config.family === "tens100" ? 10 : 1) },
       ].filter((e) => !equationTrue(e));
       const nFalse = byLevel(difficulty, [1, 2, 2] as const);
@@ -347,7 +347,7 @@ export const factFamily: QuizMechanic<FactTriangleConfig, FactFamilyParams> = {
   },
   explain(item) {
     const { total: t, a, b } = item.params;
-    return [`${a} + ${b} = ${t}`, `${b} + ${a} = ${t}`, `${t} - ${a} = ${b}`, `${t} - ${b} = ${a}`];
+    return [`${a} + ${b} = ${t}`, `${b} + ${a} = ${t}`, `${t} − ${a} = ${b}`, `${t} − ${b} = ${a}`];
   },
   checkIntegrity(item) {
     const p = item.input.type === "multi" ? optionProblems(item.input.options) : ["expects multi input"];
