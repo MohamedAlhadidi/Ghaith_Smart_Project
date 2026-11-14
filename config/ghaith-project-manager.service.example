@@ -1,0 +1,23 @@
+# Template only. Replace __PROJECT_PATH__ with an absolute directory path before installation.
+[Unit]
+Description=Ghaith Learning World autonomous project manager
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=1800
+StartLimitBurst=3
+
+[Service]
+Type=simple
+WorkingDirectory=__PROJECT_PATH__
+ExecStart=/usr/bin/python3 __PROJECT_PATH__/scripts/pm_runner.py --project __PROJECT_PATH__
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Restart=on-failure
+RestartPreventExitStatus=2 3 4 5 6
+RestartSec=120
+TimeoutStopSec=25
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
+
+# Exit codes for quota/permission/no-progress failure are deliberate and MUST NOT be auto-restarted.

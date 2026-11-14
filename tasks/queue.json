@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "project": "Ghaith Learning World",
+  "status": "not_started",
+  "notes": "These are milestones, NOT atomic implementation tasks. PM-002 must break them into testable subtasks before curriculum/software implementation. Keep each Epic pending until its subtasks pass.",
+  "tasks": [
+    {
+      "id": "PM-001",
+      "priority": "P0",
+      "title": "فحص البيئة والمستودع والكتب المتاحة والتبعيات",
+      "depends_on": [],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "PM-002",
+      "priority": "P0",
+      "title": "تحويل كل Epic إلى مهام ذرية ذات تبعيات ومعايير قبول وأوامر اختبار وأدلة؛ دون اختلاق بيانات المناهج",
+      "depends_on": [
+        "PM-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": [],
+      "acceptance_criteria": [
+        "atomic tasks created per available book/unit/lesson/skill",
+        "no lost requirements",
+        "dependency graph valid",
+        "evidence fields populated"
+      ]
+    },
+    {
+      "id": "CUR-001",
+      "priority": "P0",
+      "title": "حصر جميع الكتب الرسمية للمواد السبع في الفصلين وتوثيق الطبعات",
+      "depends_on": [
+        "PM-002"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "TEC-001",
+      "priority": "P0",
+      "title": "المعمارية الأساسية وقاعدة البيانات ونواة React وASP.NET",
+      "depends_on": [
+        "PM-002"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "CUR-002",
+      "priority": "P0",
+      "title": "استخراج الدروس والمهارات ومصفوفة المنهج والتحقق من المصدر",
+      "depends_on": [
+        "CUR-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "GME-001",
+      "priority": "P1",
+      "title": "تطوير محرك الألعاب العامة واستوديو الألعاب ونظام التتبع",
+      "depends_on": [
+        "TEC-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "BOOK-001",
+      "priority": "P1",
+      "title": "إنشاء محرك الكتاب الأصلي والتفاعل مع الصفحات",
+      "depends_on": [
+        "TEC-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "MAT-001",
+      "priority": "P1",
+      "title": "إكمال جميع دروس وألعاب الرياضيات للفصلين مع التدريبات المكثفة",
+      "depends_on": [
+        "CUR-002",
+        "GME-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "ENG-001",
+      "priority": "P1",
+      "title": "إكمال الإنجليزية Class Book/Activity/Phonics والألعاب المكثفة",
+      "depends_on": [
+        "CUR-002",
+        "GME-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "ARB-001",
+      "priority": "P2",
+      "title": "إكمال دروس وألعاب العربية ومهارات الوعي الصوتي",
+      "depends_on": [
+        "CUR-002",
+        "GME-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "SCI-001",
+      "priority": "P2",
+      "title": "إكمال دروس العلوم والمحاكاة الموثقة",
+      "depends_on": [
+        "CUR-002",
+        "GME-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "ISL-001",
+      "priority": "P2",
+      "title": "إكمال التربية الإسلامية وأنشطتها المعتمدة",
+      "depends_on": [
+        "CUR-002",
+        "GME-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "CIT-001",
+      "priority": "P2",
+      "title": "إكمال الهوية والمواطنة",
+      "depends_on": [
+        "CUR-002",
+        "GME-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "ICT-001",
+      "priority": "P2",
+      "title": "إكمال تقنية المعلومات",
+      "depends_on": [
+        "CUR-002",
+        "GME-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "STU-001",
+      "priority": "P1",
+      "title": "تطوير حساب الطفل/ولي الأمر والتعلم التكيفي والتقارير",
+      "depends_on": [
+        "TEC-001",
+        "GME-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "E2E-001",
+      "priority": "P0",
+      "title": "اختبارات شاملة والتحقق من تغطية الكتب والأسئلة والإجابات",
+      "depends_on": [
+        "MAT-001",
+        "ENG-001",
+        "ARB-001",
+        "SCI-001",
+        "ISL-001",
+        "CIT-001",
+        "ICT-001",
+        "BOOK-001",
+        "STU-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "REL-001",
+      "priority": "P0",
+      "title": "النشر والأمن والنسخ الاحتياطي واختبار القبول النهائي",
+      "depends_on": [
+        "E2E-001"
+      ],
+      "status": "pending",
+      "evidence": [],
+      "blockers": []
+    }
+  ]
+}

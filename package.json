@@ -1,0 +1,17 @@
+{
+  "name": "ghaith-learning-world",
+  "private": true,
+  "description": "عالم غيث التعليمي — الصف الثاني، سلطنة عُمان",
+  "workspaces": [
+    "src/games/core",
+    "src/web"
+  ],
+  "scripts": {
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "max_turns_per_cycle": 28,
+  "max_budget_usd_per_cycle": 2.0,
+  "cycle_timeout_minutes": 55,
+  "idle_seconds_between_cycles": 15,
+  "retry_delay_seconds": 90,
+  "max_consecutive_failures": 5,
+  "max_no_progress_cycles": 3,
+  "max_cycles_per_calendar_day": 8,
+  "pause_poll_seconds": 60,
+  "tools": "Read,Edit,Write,Glob,Grep,Bash,Agent",
+  "require_sandbox": true,
+  "min_claude_version": "2.1.314",
+  "max_estimated_usd_per_day": 12.0
+}
