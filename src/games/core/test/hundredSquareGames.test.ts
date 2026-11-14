@@ -45,7 +45,11 @@ describe("book shapes (MATH-S1-STU p.4) are reproduced exactly", () => {
     ell: [39, [39, 49, 48, 47, 57]],
     cup: [74, [74, 84, 85, 86, 76]],
     diag3: [41, [41, 52, 63]],
+    diag3r: [19, [19, 28, 37]],
   };
+  it("every shape in the generator is backed by a book fixture", () => {
+    for (const id of Object.keys(SHAPES)) if (id !== "col3") expect(fromBook[id], id).toBeDefined();
+  });
   for (const [shapeId, [anchor, expected]] of Object.entries(fromBook)) {
     it(shapeId, () => {
       const a = positionOf(anchor);

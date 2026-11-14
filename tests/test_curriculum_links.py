@@ -1,0 +1,97 @@
+"""Cross-checks between lesson content, the curriculum matrix and the book inventory.
+
+These are structural checks on the lineage chain (book SHA-256 -> page -> lesson ->
+game). They do not prove pedagogical correctness and never replace human review.
+"""
+from pathlib import Path
+import csv
+import json
+import unittest
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def read_csv(rel):
+    with (ROOT / rel).open(encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+INVENTORY = {r["book_id"]: r for r in read_csv("docs/BOOK_INVENTORY.csv")}
+MATRIX = read_csv("docs/CURRICULUM_MATRIX.csv")
+LESSONS = {r["lesson_id"]: r for r in MATRIX}
+CONTENT = sorted((ROOT / "content" / "games").rglob("*.json"))
+
+
+class MatrixTests(unittest.TestCase):
+    def test_lesson_ids_unique(self):
+        self.assertEqual(len(LESSONS), len(MATRIX))
+
+    def test_every_lesson_points_to_an_inventoried_book(self):
+        for r in MATRIX:
+            self.assertIn(r["book_id"], INVENTORY, r["lesson_id"])
+            self.assertEqual(r["source_file"], INVENTORY[r["book_id"]]["local_file"], r["lesson_id"])
+
+    def test_pdf_page_within_book_and_offset_consistent(self):
+        offsets = {}
+        for r in MATRIX:
+            pages = int(INVENTORY[r["book_id"]]["pdf_pages"])
+            pdf, printed = int(r["source_pdf_page"]), int(r["source_page"])
+            self.assertTrue(1 <= pdf <= pages, r["lesson_id"])
+            offsets.setdefault(r["book_id"], set()).add(pdf - printed)
+        for book, found in offsets.items():
+            self.assertEqual(len(found), 1, f"{book}: inconsistent printed->PDF offsets {found}")
+
+    def test_units_are_contiguous_page_ranges(self):
+        by_book = {}
+        for r in MATRIX:
+            by_book.setdefault(r["book_id"], []).append(r)
+        for book, rows in by_book.items():
+            rows.sort(key=lambda r: int(r["source_page"]))
+            seen, prev = set(), None
+            for r in rows:
+                if r["unit_id"] != prev:
+                    self.assertNotIn(r["unit_id"], seen, f"{book}: unit {r['unit_id']} split into two ranges")
+                    seen.add(r["unit_id"])
+                    prev = r["unit_id"]
+
+    def test_math_s1_student_book_lesson_count(self):
+        # 40 TOC entries (printed p4-p43), verified against page titles on 2026-11-14.
+        rows = [r for r in MATRIX if r["book_id"] == "MATH-S1-STU"]
+        self.assertEqual(len(rows), 40)
+        self.assertEqual(sorted(int(r["source_page"]) for r in rows), list(range(4, 44)))
+
+    def test_nothing_marked_verified_or_approved_without_review(self):
+        for r in MATRIX:
+            self.assertEqual(r["approved"], "false", r["lesson_id"])  # no human review has happened yet
+
+
+class ContentLinkTests(unittest.TestCase):
+    def test_content_files_exist(self):
+        self.assertTrue(CONTENT)
+
+    def test_content_matches_matrix_and_inventory(self):
+        for path in CONTENT:
+            doc = json.loads(path.read_text(encoding="utf-8"))
+            lid = doc["lesson_id"]
+            self.assertIn(lid, LESSONS, path.name)
+            row, src = LESSONS[lid], doc["source"]
+            book = INVENTORY[src["source_book_id"]]
+            self.assertEqual(src["source_book_id"], row["book_id"], path.name)
+            self.assertEqual(src["source_sha256"], book["sha256"], f"{path.name}: SHA-256 differs from inventory")
+            self.assertEqual(str(src["source_printed_page"]), row["source_page"], path.name)
+            self.assertEqual(str(src["source_pdf_page"]), row["source_pdf_page"], path.name)
+            self.assertEqual(doc["unit_id"], row["unit_id"], path.name)
+
+    def test_games_reference_declared_objectives_and_are_not_self_approved(self):
+        for path in CONTENT:
+            doc = json.loads(path.read_text(encoding="utf-8"))
+            objectives = {o["objective_id"]: o["skill_id"] for o in doc["objectives"]}
+            for g in doc["games"]:
+                self.assertIn(g["objective_id"], objectives, g["game_id"])
+                self.assertEqual(objectives[g["objective_id"]], g["skill_id"], g["game_id"])
+                if g["content_review_status"] == "approved":
+                    self.assertTrue(g.get("approval_actor"), f"{g['game_id']}: approved without a human approval_actor")
+
+
+if __name__ == "__main__":
+    unittest.main()

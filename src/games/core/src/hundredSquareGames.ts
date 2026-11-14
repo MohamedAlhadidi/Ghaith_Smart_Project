@@ -59,6 +59,7 @@ export const SHAPES: Record<string, { offsets: readonly Offset[]; difficulty: Di
   ell: { offsets: [[0, 0], [1, 0], [1, 1], [1, 2], [2, 2]], difficulty: 2, source: "p4 yellow shape ٣٩ ٤٩ ٤٨ ٤٧ ٥٧" },
   cup: { offsets: [[0, 0], [1, 0], [1, -1], [1, -2], [0, -2]], difficulty: 2, source: "p4 green shape ٧٤ ٧٦ ٨٤ ٨٥ ٨٦" },
   diag3: { offsets: [[0, 0], [1, -1], [2, -2]], difficulty: 3, source: "p4 blue squares ٤١ ٥٢ ٦٣ (+١١)" },
+  diag3r: { offsets: [[0, 0], [1, 1], [2, 2]], difficulty: 3, source: "p4 blue squares ١٩ ٢٨ ٣٧ (+٩)" },
 };
 
 export interface FragmentCell {

@@ -1134,11 +1134,13 @@
       "evidence": [
         "TOC read from rendered PDF p13-14; unit/core-activity read from footers of PDF p15-54",
         "offset +11 verified: printed 4 = PDF 15, printed 43 = PDF 54",
-        "40 lessons: U1A 14, U1B 4, U1C 9, U2A 13; 3 entries medium confidence (p9, p28, p42)"
+        "verification 2026-11-14: page title band of all 40 lesson pages compared with matrix -> 40/40 match; unit colour bands match U1A/U1B/U1C/U2A ranges",
+        "p9 re-read at 220 dpi -> core activity 3.2; p28 and p42 print no activity number (book footer typo: unit label without number)",
+        "tests/test_curriculum_links.py 9/9 PASS"
       ],
       "attempt_count": 1,
       "blocker_type": "",
-      "updated_at": "2026-11-14T10:00:00+04:00"
+      "updated_at": "2026-11-14T12:00:00+04:00"
     },
     {
       "id": "CUR-MATH-S1-STU-TOC-REVIEW",
@@ -1158,8 +1160,8 @@
       "owner": "human:parent",
       "status": "needs_review",
       "acceptance_criteria": [
-        "reviewer confirms lesson list matches the child's book",
-        "p9/p28/p42 core-activity numbers checked"
+        "reviewer confirms the 40-lesson list matches the child's book",
+        "reviewer notes that p28/p42 have no printed activity number"
       ],
       "artifacts": [
         "docs/CURRICULUM_MATRIX.csv"
@@ -1168,7 +1170,7 @@
       "evidence": [],
       "attempt_count": 0,
       "blocker_type": "human_review",
-      "updated_at": "2026-11-14T10:00:00+04:00",
+      "updated_at": "2026-11-14T12:00:00+04:00",
       "human_review_required": true,
       "approval_actor": null
     },
@@ -3744,12 +3746,12 @@
         "npm run typecheck --workspace @ghaith/game-core"
       ],
       "evidence": [
-        "vitest 29/29 PASS",
+        "vitest 31/31 PASS",
         "tsc --noEmit exit 0"
       ],
       "attempt_count": 1,
       "blocker_type": "",
-      "updated_at": "2026-11-14T10:00:00+04:00"
+      "updated_at": "2026-11-14T12:00:00+04:00"
     },
     {
       "id": "TEC-WEB-SCAFFOLD",
@@ -4009,12 +4011,12 @@
         "npm run build --workspace @ghaith/web && npm run e2e --workspace @ghaith/web"
       ],
       "evidence": [
-        "game-core vitest 29/29 PASS",
+        "game-core vitest 31/31 PASS (adds book fixture for the +9 diagonal ١٩ ٢٨ ٣٧ found during verification)",
         "e2e 42/42 checks PASS (reports/e2e/smoke-report.json)"
       ],
       "attempt_count": 1,
       "blocker_type": "",
-      "updated_at": "2026-11-14T10:00:00+04:00"
+      "updated_at": "2026-11-14T12:00:00+04:00"
     },
     {
       "id": "GME-MATH-S1-U1A-L01-FRAGMENT-APPROVE",
