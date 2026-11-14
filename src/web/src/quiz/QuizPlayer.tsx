@@ -137,7 +137,9 @@ export function QuizPlayer({ title, mode, plan, sessionId, initialState, avoid, 
         <button type="button" onClick={onExit} className="rounded-xl bg-white px-4 py-2 text-lg font-bold shadow">
           → رجوع
         </button>
-        <h2 className="text-center text-xl font-extrabold text-sky-900">{plan.length > 1 && mode !== "practice" ? title : slot.game.title}</h2>
+        <h2 className="text-center text-xl font-extrabold text-sky-900" dir={item.lang === "en" && !(plan.length > 1 && mode !== "practice") ? "ltr" : undefined}>
+          {plan.length > 1 && mode !== "practice" ? title : slot.game.title}
+        </h2>
         <span className="rounded-xl bg-white px-3 py-2 text-lg font-bold shadow" aria-label="رقم السؤال">
           {toArabicDigits(index + 1)} / {toArabicDigits(plan.length)}
         </span>
@@ -252,7 +254,9 @@ export function WorkedExample({ game, onClose }: { game: CatalogGame; onClose: (
         <button type="button" onClick={onClose} className="rounded-xl bg-white px-4 py-2 text-lg font-bold shadow">
           → رجوع
         </button>
-        <h2 className="text-xl font-extrabold text-sky-900">مثال محلول: {game.title}</h2>
+        <h2 className="text-xl font-extrabold text-sky-900">
+          مثال محلول: <span dir={item.lang === "en" ? "ltr" : undefined}>{game.title}</span>
+        </h2>
         <span />
       </header>
       <p className="text-center text-2xl font-bold" dir={item.lang === "en" ? "ltr" : undefined}>{item.lang === "en" ? item.prompt : toArabicDigits(item.prompt)}</p>

@@ -3631,8 +3631,7 @@
        "head",
        "leg",
        "arm",
-       "hand",
-       "eye"
+       "hand"
       ]
      },
      "hint_levels": [

@@ -132,7 +132,7 @@ export function OrderAnswer({ items, locked, reveal, solution, onSubmit, lang }:
   return (
     <div className="flex w-full flex-col items-center gap-3">
       <div dir={lang === "en" ? "ltr" : undefined} lang={lang === "en" ? "en" : undefined} className="flex min-h-16 w-full max-w-xl flex-wrap items-center justify-center gap-2 rounded-2xl bg-white/70 p-2" aria-label="الترتيب">
-        {shown.length === 0 && <span className="text-slate-400">المس الأعداد بالترتيب</span>}
+        {shown.length === 0 && <span className="text-slate-400">المس البطاقات بالترتيب</span>}
         {shown.map((id, i) => (
           <span key={id} className={`rounded-xl px-3 py-2 text-2xl font-extrabold ${reveal ? "bg-emerald-200" : "bg-sky-200"}`}>
             {label(id)}

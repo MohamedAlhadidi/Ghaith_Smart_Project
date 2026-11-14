@@ -48,6 +48,9 @@ const VISUAL_DRIVERS = {
     for (const id of solution) await page.locator(`[data-card-id="${id}"]`).click();
     await confirmIfPresent(page);
   },
+  async "command-picture"(page, solution) {
+    await page.locator(`[data-option="${solution}"]`).click();
+  },
   async "match-pairs"(page, solution) {
     for (const [wi, pi] of solution) {
       await page.locator(`[data-match-word="${wi}"]`).click();

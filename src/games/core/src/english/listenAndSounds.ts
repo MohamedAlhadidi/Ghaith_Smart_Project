@@ -6,6 +6,7 @@
 import type { ErrorType } from "../types";
 import { byLevel, exactlyOneCorrect, makeItem, ok, optionProblems, sample, wrong, type QuizMechanic } from "../quiz";
 import { drawDistinct, entry, optId, optIndex, wordProblems } from "./common";
+import { drawPictured, picturesClash } from "./C_common";
 
 export interface ListenTouchParams {
   word: string;
@@ -18,12 +19,15 @@ export const listenTouch: QuizMechanic<{ words: string[] }, ListenTouchParams> =
   mechanicId: "listen-touch",
   difficulties: [1, 2, 3],
   validateConfig(c) {
-    return wordProblems(c.words, { picture: true, min: 4 });
+    // Three pictured words are enough (some Sounds and Spelling lessons have only three).
+    return wordProblems(c.words, { picture: true, min: 3 });
   },
   generate(seed, difficulty, config) {
     return sample(seed, (rng) => {
-      const n = byLevel(difficulty, [3, 4, 4] as const);
-      const options = drawDistinct(rng, config.words, n);
+      const n = Math.min(byLevel(difficulty, [3, 4, 4] as const), config.words.length);
+      // Never offer two words with the same or confusable pictures (e.g. fingers / touch).
+      const options = drawPictured(rng, config.words, n);
+      if (!options) return null;
       const word = options[Math.floor(rng() * options.length)]!;
       return makeItem(this, seed, difficulty, {
         params: { word, options },
@@ -51,6 +55,7 @@ export const listenTouch: QuizMechanic<{ words: string[] }, ListenTouchParams> =
   checkIntegrity(item) {
     const p = item.input.type === "choice" ? optionProblems(item.input.options) : ["expects choice input"];
     if (new Set(item.params.options).size !== item.params.options.length) p.push("duplicate words");
+    if (picturesClash(item.params.options)) p.push("confusable pictures offered together");
     return [...p, ...exactlyOneCorrect(this as QuizMechanic<never, ListenTouchParams>, item)];
   },
 };
