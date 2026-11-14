@@ -8,14 +8,21 @@
   "notes": [
     "Website listing only. It does not prove edition/year; edition must be confirmed against the physical book by a human (G0).",
     "The site lists ICT for semester 1 only; ICT semester 2 is recorded as missing_source until confirmed.",
-    "Parent guides are supporting references, not child materials."
+    "Parent guides are supporting references, not child materials.",
+    "Semester-2 PDFs (and MATH-S1-ACT) were created 2020-2025 and may be earlier editions; 2026/2027 S2 editions may not be published yet."
   ],
   "missing_sources": [
     {
       "subject": "ict",
+      "semester": 1,
+      "status": "missing_source",
+      "note": "MOE page links a blank 1-page placeholder PDF (ICT-S1, sha256 in inventory), checked 2026-11-14"
+    },
+    {
+      "subject": "ict",
       "semester": 2,
       "status": "missing_source",
-      "note": "Not listed on MOE grade 2 page on 2026-11-14"
+      "note": "Not listed on MOE grade 2 page, checked 2026-11-14"
     }
   ],
   "books": [

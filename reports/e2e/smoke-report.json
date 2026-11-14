@@ -1,0 +1,218 @@
+{
+  "at": "2026-11-14T09:25:35.165Z",
+  "passed": 42,
+  "total": 42,
+  "failed": false,
+  "results": [
+    {
+      "name": "tablet: page is RTL Arabic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: lesson shows its book source",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: unreviewed content is labelled as draft",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: no horizontal scroll on home",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: fragment item answered correctly via number pad",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: number 1 is in the top-right corner (RTL like the book)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: locate 57 with arrow keys + Enter",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: wrong choice gives gentle retry",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: hint shown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: correct on second try (offline)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: 4 attempts saved locally while offline",
+      "pass": true,
+      "detail": "found 4"
+    },
+    {
+      "name": "tablet: attempts carry seed, generator and error types",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: progress survives reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: no console/page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: page is RTL Arabic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: lesson shows its book source",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: unreviewed content is labelled as draft",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: no horizontal scroll on home",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: fragment item answered correctly via number pad",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: number 1 is in the top-right corner (RTL like the book)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: locate 57 with arrow keys + Enter",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: wrong choice gives gentle retry",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: hint shown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: correct on second try (offline)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: 4 attempts saved locally while offline",
+      "pass": true,
+      "detail": "found 4"
+    },
+    {
+      "name": "phone: attempts carry seed, generator and error types",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: progress survives reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: no console/page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: page is RTL Arabic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: lesson shows its book source",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: unreviewed content is labelled as draft",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: no horizontal scroll on home",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: fragment item answered correctly via number pad",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: number 1 is in the top-right corner (RTL like the book)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: locate 57 with arrow keys + Enter",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: wrong choice gives gentle retry",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: hint shown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: correct on second try (offline)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: 4 attempts saved locally while offline",
+      "pass": true,
+      "detail": "found 4"
+    },
+    {
+      "name": "desktop: attempts carry seed, generator and error types",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: progress survives reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: no console/page errors",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

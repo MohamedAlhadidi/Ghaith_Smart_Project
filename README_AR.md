@@ -52,3 +52,13 @@ python3 scripts/check_release.py --root .
 اختبارات Python المحلية تختبر المشغّل وشروطه فقط. لا تثبت إطلاقًا صحة محتوى الصف الثاني، أو عمل تطبيق React/.NET، أو اتصال SQL Server، أو جودة التعلم عند الطفل، أو فعالية الخدمة على جهازك.
 
 تقرير المراجعة المطول: `reviews/V3_TO_V4_DEEP_AUDIT_AR.md`.
+
+## تشغيل التطبيق (الشريحة الأولى)
+```bash
+npm install
+python3 scripts/fetch_books.py          # تنزيل كتب الوزارة محليًا (لا تُرفع إلى Git)
+npm test && npm run typecheck           # اختبارات النواة والواجهة
+npm run dev --workspace @ghaith/web     # ثم افتح http://127.0.0.1:5173
+npm run build --workspace @ghaith/web && npm run e2e --workspace @ghaith/web   # اختبار المتصفح
+python3 scripts/queue_tool.py summary   # حالة المهام الذرية
+```

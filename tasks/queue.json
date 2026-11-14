@@ -1,215 +1,4761 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "project": "Ghaith Learning World",
-  "status": "not_started",
-  "notes": "These are milestones, NOT atomic implementation tasks. PM-002 must break them into testable subtasks before curriculum/software implementation. Keep each Epic pending until its subtasks pass.",
-  "tasks": [
+  "status": "in_progress",
+  "notes": "Atomic tasks (contract V4 §6). Epics are listed separately and are complete only when all their tasks are done. Tasks with human_review_required wait for a real person; agents never sign them.",
+  "epics": [
     {
       "id": "PM-001",
-      "priority": "P0",
-      "title": "فحص البيئة والمستودع والكتب المتاحة والتبعيات",
-      "depends_on": [],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "فحص البيئة والمستودع والكتب المتاحة والتبعيات"
     },
     {
       "id": "PM-002",
-      "priority": "P0",
-      "title": "تحويل كل Epic إلى مهام ذرية ذات تبعيات ومعايير قبول وأوامر اختبار وأدلة؛ دون اختلاق بيانات المناهج",
-      "depends_on": [
-        "PM-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": [],
-      "acceptance_criteria": [
-        "atomic tasks created per available book/unit/lesson/skill",
-        "no lost requirements",
-        "dependency graph valid",
-        "evidence fields populated"
-      ]
+      "title": "تحويل كل Epic إلى مهام ذرية ذات تبعيات ومعايير قبول وأدلة"
     },
     {
       "id": "CUR-001",
-      "priority": "P0",
-      "title": "حصر جميع الكتب الرسمية للمواد السبع في الفصلين وتوثيق الطبعات",
-      "depends_on": [
-        "PM-002"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
-    },
-    {
-      "id": "TEC-001",
-      "priority": "P0",
-      "title": "المعمارية الأساسية وقاعدة البيانات ونواة React وASP.NET",
-      "depends_on": [
-        "PM-002"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "حصر جميع الكتب الرسمية للمواد السبع في الفصلين وتوثيق الطبعات"
     },
     {
       "id": "CUR-002",
-      "priority": "P0",
-      "title": "استخراج الدروس والمهارات ومصفوفة المنهج والتحقق من المصدر",
-      "depends_on": [
-        "CUR-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "استخراج الدروس والمهارات ومصفوفة المنهج والتحقق من المصدر"
+    },
+    {
+      "id": "TEC-001",
+      "title": "المعمارية الأساسية وقاعدة البيانات ونواة React وASP.NET"
     },
     {
       "id": "GME-001",
-      "priority": "P1",
-      "title": "تطوير محرك الألعاب العامة واستوديو الألعاب ونظام التتبع",
-      "depends_on": [
-        "TEC-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "محرك الألعاب العام واستوديو الألعاب ونظام التتبع"
     },
     {
       "id": "BOOK-001",
-      "priority": "P1",
-      "title": "إنشاء محرك الكتاب الأصلي والتفاعل مع الصفحات",
-      "depends_on": [
-        "TEC-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "محرك الكتاب الأصلي والتفاعل مع الصفحات"
     },
     {
       "id": "MAT-001",
-      "priority": "P1",
-      "title": "إكمال جميع دروس وألعاب الرياضيات للفصلين مع التدريبات المكثفة",
-      "depends_on": [
-        "CUR-002",
-        "GME-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "دروس وألعاب الرياضيات للفصلين"
     },
     {
       "id": "ENG-001",
-      "priority": "P1",
-      "title": "إكمال الإنجليزية Class Book/Activity/Phonics والألعاب المكثفة",
-      "depends_on": [
-        "CUR-002",
-        "GME-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "الإنجليزية Class Book/Activity/Sounds and Spelling والألعاب"
     },
     {
       "id": "ARB-001",
-      "priority": "P2",
-      "title": "إكمال دروس وألعاب العربية ومهارات الوعي الصوتي",
-      "depends_on": [
-        "CUR-002",
-        "GME-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "العربية «أحب لغتي» ومهارات الوعي الصوتي"
     },
     {
       "id": "SCI-001",
-      "priority": "P2",
-      "title": "إكمال دروس العلوم والمحاكاة الموثقة",
-      "depends_on": [
-        "CUR-002",
-        "GME-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "العلوم"
     },
     {
       "id": "ISL-001",
-      "priority": "P2",
-      "title": "إكمال التربية الإسلامية وأنشطتها المعتمدة",
-      "depends_on": [
-        "CUR-002",
-        "GME-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "التربية الإسلامية «ديني حياتي»"
     },
     {
       "id": "CIT-001",
-      "priority": "P2",
-      "title": "إكمال الهوية والمواطنة",
-      "depends_on": [
-        "CUR-002",
-        "GME-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "الهوية والمواطنة"
     },
     {
       "id": "ICT-001",
-      "priority": "P2",
-      "title": "إكمال تقنية المعلومات",
-      "depends_on": [
-        "CUR-002",
-        "GME-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "تقنية المعلومات"
     },
     {
       "id": "STU-001",
-      "priority": "P1",
-      "title": "تطوير حساب الطفل/ولي الأمر والتعلم التكيفي والتقارير",
-      "depends_on": [
-        "TEC-001",
-        "GME-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "حساب الطفل/ولي الأمر والتعلم التكيفي والتقارير"
     },
     {
       "id": "E2E-001",
-      "priority": "P0",
-      "title": "اختبارات شاملة والتحقق من تغطية الكتب والأسئلة والإجابات",
-      "depends_on": [
-        "MAT-001",
-        "ENG-001",
-        "ARB-001",
-        "SCI-001",
-        "ISL-001",
-        "CIT-001",
-        "ICT-001",
-        "BOOK-001",
-        "STU-001"
-      ],
-      "status": "pending",
-      "evidence": [],
-      "blockers": []
+      "title": "اختبارات شاملة والتحقق من التغطية"
     },
     {
       "id": "REL-001",
+      "title": "النشر والأمن والنسخ الاحتياطي والقبول النهائي"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "PM-001",
+      "epic_id": "PM-001",
+      "phase": "setup",
       "priority": "P0",
-      "title": "النشر والأمن والنسخ الاحتياطي واختبار القبول النهائي",
-      "depends_on": [
-        "E2E-001"
+      "subject": "platform",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "فحص البيئة والمستودع والكتب والتبعيات",
+      "depends_on": [],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "repo state checked",
+        "toolchain inventory recorded",
+        "MOE source reachable",
+        "runner tests executed"
       ],
-      "status": "pending",
+      "artifacts": [
+        "docs/RESUME.md"
+      ],
+      "test_commands": [
+        "python3 -m unittest discover -s tests -v"
+      ],
+      "evidence": [
+        "2026-11-14: repo empty at start; node 22.23.4, python 3.13, Claude Code 2.1.325; no dotnet SDK; docker daemon unavailable; bwrap/socat absent",
+        "MOE page https://home.moe.gov.om/ar/manaheg/22 reachable (HTTP 200), 27 PDFs discovered",
+        "package tests 16/16 PASS before changes"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "PM-002",
+      "epic_id": "PM-002",
+      "phase": "setup",
+      "priority": "P0",
+      "subject": "platform",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تفكيك Epics إلى مهام ذرية لنطاق رياضيات ف1 والجرد والشريحة الأولى",
+      "depends_on": [
+        "PM-001"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "atomic tasks with required fields",
+        "dependency graph valid (no cycles/unknown deps)",
+        "human-review tasks flagged"
+      ],
+      "artifacts": [
+        "tasks/queue.json",
+        "scripts/queue_tool.py"
+      ],
+      "test_commands": [
+        "python3 scripts/queue_tool.py validate"
+      ],
+      "evidence": [
+        "queue_tool validate exit 0 (see docs/RESUME.md)"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "notes": "Further decomposition happens per book via *-TOC-EXTRACT tasks; each produces lesson-level tasks."
+    },
+    {
+      "id": "RUN-FIX-PREFLIGHT",
+      "epic_id": "PM-001",
+      "phase": "setup",
+      "priority": "P0",
+      "subject": "platform",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "إصلاح فحص أعلام CLI في pm_runner (--append-system-prompt[-file])",
+      "depends_on": [
+        "PM-001"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "preflight passes against real 2.1.325 help format",
+        "prefix of longer flag not accepted"
+      ],
+      "artifacts": [
+        "scripts/pm_runner.py",
+        "tests/test_v4_fixes.py"
+      ],
+      "test_commands": [
+        "python3 -m unittest tests.test_v4_fixes -v"
+      ],
+      "evidence": [
+        "before fix: preflight_cli on real CLI -> 'required flags unsupported: --append-system-prompt-file'",
+        "after fix: 4 PreflightFlagTests PASS"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "REL-FIX-SEMESTER-WAIVER",
+      "epic_id": "REL-001",
+      "phase": "setup",
+      "priority": "P0",
+      "subject": "platform",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "بوابة الإصدار: إعفاء زوج مادة/فصل فقط عبر baseline معتمد مع سبب",
+      "depends_on": [
+        "PM-001"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "unapproved waiver ignored",
+        "waiver without reason rejected",
+        "approved waiver clears pair"
+      ],
+      "artifacts": [
+        "scripts/check_release.py",
+        "tests/test_v4_fixes.py"
+      ],
+      "test_commands": [
+        "python3 -m unittest tests.test_v4_fixes -v"
+      ],
+      "evidence": [
+        "4 SemesterWaiverTests PASS"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-INV-DOWNLOAD",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "all",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تنزيل جميع ملفات الصف الثاني وحساب SHA-256 وعدد الصفحات",
+      "depends_on": [
+        "PM-001"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "27/27 listed PDFs downloaded",
+        "SHA-256 + pages recorded",
+        "PDFs not committed to git"
+      ],
+      "artifacts": [
+        "docs/BOOK_SOURCES.json",
+        "docs/BOOK_INVENTORY.csv",
+        "scripts/fetch_books.py"
+      ],
+      "test_commands": [
+        "python3 scripts/fetch_books.py --verify"
+      ],
+      "evidence": [
+        "fetch_books: 27/27 downloaded, 0 failed",
+        "fetch_books --verify: 27/27 match SHA-256",
+        "sources/books/ is git-ignored"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-INV-ISL-S1-P1-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "islamic",
+      "semester": "1",
+      "book_id": "ISL-S1-P1",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ISL-S1-P1 هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
       "evidence": [],
-      "blockers": []
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-INV-ISL-S1-P2-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "islamic",
+      "semester": "1",
+      "book_id": "ISL-S1-P2",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ISL-S1-P2 هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-INV-ISL-S2-P1-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "islamic",
+      "semester": "2",
+      "book_id": "ISL-S2-P1",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ISL-S2-P1 هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2022: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-ISL-S2-P2-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "islamic",
+      "semester": "2",
+      "book_id": "ISL-S2-P2",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ISL-S2-P2 هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2022: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-ARB-S1-P1-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "arabic",
+      "semester": "1",
+      "book_id": "ARB-S1-P1",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ARB-S1-P1 هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-INV-ARB-S1-P2-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "arabic",
+      "semester": "1",
+      "book_id": "ARB-S1-P2",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ARB-S1-P2 هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-INV-ARB-S2-P1-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "arabic",
+      "semester": "2",
+      "book_id": "ARB-S2-P1",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ARB-S2-P1 هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2022: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-ARB-S2-P2-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "arabic",
+      "semester": "2",
+      "book_id": "ARB-S2-P2",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ARB-S2-P2 هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2021: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-ENG-S1-CB-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "english",
+      "semester": "1",
+      "book_id": "ENG-S1-CB",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ENG-S1-CB هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-INV-ENG-S1-AB-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "english",
+      "semester": "1",
+      "book_id": "ENG-S1-AB",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ENG-S1-AB هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-INV-ENG-S1-SS-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "english",
+      "semester": "1",
+      "book_id": "ENG-S1-SS",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ENG-S1-SS هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-INV-ENG-S2-CB-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "english",
+      "semester": "2",
+      "book_id": "ENG-S2-CB",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ENG-S2-CB هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2024: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-ENG-S2-AB-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "english",
+      "semester": "2",
+      "book_id": "ENG-S2-AB",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ENG-S2-AB هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2024: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-ENG-S2-SS-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "english",
+      "semester": "2",
+      "book_id": "ENG-S2-SS",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل ENG-S2-SS هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2024: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-MATH-S1-ACT-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-ACT",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل MATH-S1-ACT هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2024: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-MATH-S1-STU-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل MATH-S1-STU هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-INV-MATH-S2-ACT-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "2",
+      "book_id": "MATH-S2-ACT",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل MATH-S2-ACT هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2021: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-MATH-S2-STU-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "2",
+      "book_id": "MATH-S2-STU",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل MATH-S2-STU هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2021: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-SCI-S1-ACT-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "science",
+      "semester": "1",
+      "book_id": "SCI-S1-ACT",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل SCI-S1-ACT هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-INV-SCI-S1-STU-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "science",
+      "semester": "1",
+      "book_id": "SCI-S1-STU",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل SCI-S1-STU هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-INV-SCI-S2-ACT-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "science",
+      "semester": "2",
+      "book_id": "SCI-S2-ACT",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل SCI-S2-ACT هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2020: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-SCI-S2-STU-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "science",
+      "semester": "2",
+      "book_id": "SCI-S2-STU",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل SCI-S2-STU هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2021: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-CIT-S1-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "citizenship",
+      "semester": "1",
+      "book_id": "CIT-S1",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل CIT-S1 هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-INV-CIT-S2-EDITION-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "citizenship",
+      "semester": "2",
+      "book_id": "CIT-S2",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد بشري: هل CIT-S2 هي طبعة 2026/2027 التي يدرسها غيث؟ (مطابقة صفحات مع الكتاب الورقي)",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "parent compares cover/edition page and 2 lesson pages with the physical book",
+        "decision recorded with name/date in docs/BOOK_INVENTORY.csv edition_verified"
+      ],
+      "artifacts": [
+        "docs/BOOK_INVENTORY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null,
+      "notes": "PDF created 2025: may be an earlier edition than 2026/2027; re-check MOE site and compare with the physical book before use"
+    },
+    {
+      "id": "CUR-INV-ICT-MISSING",
+      "epic_id": "ICT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "ict",
+      "semester": "",
+      "book_id": "ICT-S1",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تقنية المعلومات: لا يوجد كتاب فعلي (ملف ف1 صفحة بيضاء، ف2 غير مدرج) — مطلوب مصدر رسمي",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "blocked_external",
+      "acceptance_criteria": [
+        "official ICT grade-2 book obtained (school or MOE) or written confirmation that ICT has no textbook this year"
+      ],
+      "artifacts": [
+        "docs/BOOK_SOURCES.json"
+      ],
+      "test_commands": [],
+      "evidence": [
+        "ICT-S1.pdf: 1 page, 13,942 bytes, blank Word document (rendered and inspected 2026-11-14)"
+      ],
+      "attempt_count": 0,
+      "blocker_type": "missing_source",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-INV-LICENSE-CONFIRM",
+      "epic_id": "CUR-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "all",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تأكيد حقوق الاستخدام الشخصي لكتب الوزارة داخل تطبيق منزلي غير منشور",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "owner decision recorded: local/private use only, no public redistribution"
+      ],
+      "artifacts": [
+        "docs/SAFETY.md"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-STU-TOC-EXTRACT",
+      "epic_id": "CUR-002",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "استخراج الوحدات والدروس وأرقام الصفحات لكتاب طالب رياضيات ف1",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "every TOC entry has unit, printed page and PDF page",
+        "printed->PDF offset verified on two pages",
+        "uncertain readings flagged"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [
+        "python3 -c \"import csv;print(len(list(csv.DictReader(open('docs/CURRICULUM_MATRIX.csv')))))\""
+      ],
+      "evidence": [
+        "TOC read from rendered PDF p13-14; unit/core-activity read from footers of PDF p15-54",
+        "offset +11 verified: printed 4 = PDF 15, printed 43 = PDF 54",
+        "40 lessons: U1A 14, U1B 4, U1C 9, U2A 13; 3 entries medium confidence (p9, p28, p42)"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-STU-TOC-REVIEW",
+      "epic_id": "CUR-002",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "مراجعة بشرية لقائمة دروس رياضيات ف1 (40 درسًا) والبنود الثلاثة غير المؤكدة",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "reviewer confirms lesson list matches the child's book",
+        "p9/p28/p42 core-activity numbers checked"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-ACT-MAP",
+      "epic_id": "CUR-002",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-ACT",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "ربط صفحات كتاب النشاط (رياضيات ف1، 78 صفحة) بدروس كتاب الطالب",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "each activity-book page mapped to a lesson_id or marked general",
+        "printed/PDF pages recorded"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX_ACTIVITY.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-GUIDE-CROSSCHECK",
+      "epic_id": "CUR-002",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-GUIDE-PARENT",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "مقارنة أهداف دروس الوحدة 1أ بدليل ولي الأمر (مرجع مساند)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objective drafts for U1A annotated with guide page refs"
+      ],
+      "artifacts": [
+        "content/games/math/s1/"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L01-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «لوحة المائة» (ص4)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L01.json"
+      ],
+      "test_commands": [],
+      "evidence": [
+        "content/games/math/s1/MATH-S1-U1A-L01.json: 3 draft objectives, 3 skills, book tasks summarised from PDF p15"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L01-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «لوحة المائة»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L01-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "needs_review",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L01.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "human_review",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L02-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L02",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «ما بين العقود» (ص5)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L02.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L02-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L02",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «ما بين العقود»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L02-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L02.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L03-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L03",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «كم العدد؟» (ص6)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L03.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L03-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L03",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «كم العدد؟»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L03-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L03.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L04-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L04",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «أكياس» (ص7)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L04.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L04-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L04",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «أكياس»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L04-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L04.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L05-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L05",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «100 غرام» (ص8)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L05.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L05-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L05",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «100 غرام»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L05-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L05.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L06-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L06",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «مثلث عائلة الحقائق» (ص9)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L06.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L06-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L06",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «مثلث عائلة الحقائق»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L06-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L06.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L07-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L07",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «خط الأعداد» (ص10)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L07.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L07-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L07",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «خط الأعداد»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L07-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L07.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L08-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L08",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «تقريب العدد» (ص11)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L08.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L08-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L08",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «تقريب العدد»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L08-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L08.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L09-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L09",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «عشرون» (ص12)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L09.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L09-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L09",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «عشرون»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L09-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L09.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L10-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L10",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «الأزواج العددية في الساعة» (ص13)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L10.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L10-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L10",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «الأزواج العددية في الساعة»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L10-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L10.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L11-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L11",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «كم طريقة؟» (ص14)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L11.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L11-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L11",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «كم طريقة؟»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L11-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L11.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L12-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L12",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «قلوب ونجوم» (ص15)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L12.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L12-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L12",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «قلوب ونجوم»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L12-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L12.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L13-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L13",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «آلة التساوي» (ص16)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L13.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L13-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L13",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «آلة التساوي»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L13-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L13.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L14-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L14",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «المصفوفات» (ص17)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L14.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1A-L14-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L14",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «المصفوفات»",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L14-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L14.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1B-L15-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1B",
+      "lesson_id": "MATH-S1-U1B-L15",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «الأشكال» (ص18)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1B-L15.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1B-L15-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1B",
+      "lesson_id": "MATH-S1-U1B-L15",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «الأشكال»",
+      "depends_on": [
+        "CUR-MATH-S1-U1B-L15-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1B-L15.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1B-L16-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1B",
+      "lesson_id": "MATH-S1-U1B-L16",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «ابحث عن الأوجه» (ص19)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1B-L16.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1B-L16-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1B",
+      "lesson_id": "MATH-S1-U1B-L16",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «ابحث عن الأوجه»",
+      "depends_on": [
+        "CUR-MATH-S1-U1B-L16-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1B-L16.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1B-L17-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1B",
+      "lesson_id": "MATH-S1-U1B-L17",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «الوردات الورقية» (ص20)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1B-L17.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1B-L17-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1B",
+      "lesson_id": "MATH-S1-U1B-L17",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «الوردات الورقية»",
+      "depends_on": [
+        "CUR-MATH-S1-U1B-L17-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1B-L17.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1B-L18-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1B",
+      "lesson_id": "MATH-S1-U1B-L18",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «التماثل» (ص21)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1B-L18.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1B-L18-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1B",
+      "lesson_id": "MATH-S1-U1B-L18",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «التماثل»",
+      "depends_on": [
+        "CUR-MATH-S1-U1B-L18-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1B-L18.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L19-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L19",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «أي علبة أفضل؟» (ص22)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L19.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L19-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L19",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «أي علبة أفضل؟»",
+      "depends_on": [
+        "CUR-MATH-S1-U1C-L19-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L19.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L20-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L20",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «كم الطول؟ كم الارتفاع؟» (ص23)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L20.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L20-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L20",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «كم الطول؟ كم الارتفاع؟»",
+      "depends_on": [
+        "CUR-MATH-S1-U1C-L20-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L20.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L21-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L21",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «الأجسام المتحركة» (ص24)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L21.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L21-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L21",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «الأجسام المتحركة»",
+      "depends_on": [
+        "CUR-MATH-S1-U1C-L21-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L21.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L22-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L22",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «قياس الوقت» (ص25)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L22.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L22-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L22",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «قياس الوقت»",
+      "depends_on": [
+        "CUR-MATH-S1-U1C-L22-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L22.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L23-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L23",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «من الرابح؟» (ص26)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L23.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L23-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L23",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «من الرابح؟»",
+      "depends_on": [
+        "CUR-MATH-S1-U1C-L23-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L23.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L24-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L24",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «لأي ارتفاع يمكنك أن تقفز؟» (ص27)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L24.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L24-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L24",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «لأي ارتفاع يمكنك أن تقفز؟»",
+      "depends_on": [
+        "CUR-MATH-S1-U1C-L24-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L24.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L25-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L25",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «صنع البسكويت» (ص28)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L25.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L25-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L25",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «صنع البسكويت»",
+      "depends_on": [
+        "CUR-MATH-S1-U1C-L25-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L25.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L26-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L26",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «البسكويت» (ص29)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L26.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L26-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L26",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «البسكويت»",
+      "depends_on": [
+        "CUR-MATH-S1-U1C-L26-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L26.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L27-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L27",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «ما الثمن؟» (ص30)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L27.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U1C-L27-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1C",
+      "lesson_id": "MATH-S1-U1C-L27",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «ما الثمن؟»",
+      "depends_on": [
+        "CUR-MATH-S1-U1C-L27-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1C-L27.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L28-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L28",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «عشرات وأكثر» (ص31)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L28.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L28-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L28",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «عشرات وأكثر»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L28-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L28.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L29-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L29",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «أكبر من، أصغر من» (ص32)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L29.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L29-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L29",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «أكبر من، أصغر من»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L29-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L29.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L30-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L30",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «التقدير» (ص33)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L30.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L30-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L30",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «التقدير»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L30-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L30.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L31-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L31",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «أزواج إلى العشرين» (ص34)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L31.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L31-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L31",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «أزواج إلى العشرين»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L31-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L31.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L32-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L32",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «خطوط الضعف» (ص35)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L32.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L32-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L32",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «خطوط الضعف»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L32-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L32.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L33-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L33",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «الدخيل» (ص36)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L33.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L33-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L33",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «الدخيل»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L33-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L33.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L34-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L34",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «قصص الأعداد» (ص37)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L34.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L34-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L34",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «قصص الأعداد»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L34-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L34.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L35-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L35",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «حلقة الجمع» (ص38)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L35.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L35-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L35",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «حلقة الجمع»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L35-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L35.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L36-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L36",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «الفرق» (ص39)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L36.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L36-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L36",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «الفرق»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L36-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L36.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L37-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L37",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «أين المصفوفات؟» (ص40)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L37.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L37-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L37",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «أين المصفوفات؟»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L37-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L37.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L38-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L38",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «علب الأحذية» (ص41)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L38.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L38-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L38",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «علب الأحذية»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L38-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L38.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L39-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L39",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «الأيدي ترفع» (ص42)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L39.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L39-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L39",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «الأيدي ترفع»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L39-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L39.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L40-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L40",
+      "skill_id": "",
+      "title": "استخراج أهداف ومهارات ومفردات وحدود أعداد الدرس «البسكويت» (ص43)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "objectives and skills drafted from the page",
+        "number ranges/vocabulary bounded by the page",
+        "source printed/PDF page recorded"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L40.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S1-U2A-L40-REVIEW",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U2A",
+      "lesson_id": "MATH-S1-U2A-L40",
+      "skill_id": "",
+      "title": "مراجعة بشرية لأهداف الدرس «البسكويت»",
+      "depends_on": [
+        "CUR-MATH-S1-U2A-L40-EXTRACT"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "objective wording and skill split approved or corrected by a human"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U2A-L40.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "TEC-GAMECORE",
+      "epic_id": "GME-001",
+      "phase": "build",
+      "priority": "P0",
+      "subject": "platform",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "نواة الألعاب: RNG بذرة، نموذج لوحة المائة RTL، مولدات ومدققات حتمية",
+      "depends_on": [
+        "PM-002"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "deterministic generators",
+        "validators independent of stored answers",
+        ">=1000 seeds per generator tested",
+        "typecheck clean"
+      ],
+      "artifacts": [
+        "src/games/core/"
+      ],
+      "test_commands": [
+        "npm test --workspace @ghaith/game-core",
+        "npm run typecheck --workspace @ghaith/game-core"
+      ],
+      "evidence": [
+        "vitest 29/29 PASS",
+        "tsc --noEmit exit 0"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "TEC-WEB-SCAFFOLD",
+      "epic_id": "TEC-001",
+      "phase": "build",
+      "priority": "P0",
+      "subject": "platform",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تطبيق الويب React/TS/Vite/Tailwind بالعربية RTL مع حفظ محلي للمحاولات",
+      "depends_on": [
+        "TEC-GAMECORE"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "production build succeeds",
+        "unit tests for digits/adaptation/storage/mastery pass"
+      ],
+      "artifacts": [
+        "src/web/"
+      ],
+      "test_commands": [
+        "npm test --workspace @ghaith/web",
+        "npm run build --workspace @ghaith/web"
+      ],
+      "evidence": [
+        "vitest 13/13 PASS",
+        "vite build OK (~251 kB JS)"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "TEC-API-SCAFFOLD",
+      "epic_id": "TEC-001",
+      "phase": "build",
+      "priority": "P1",
+      "subject": "platform",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "واجهة API: ASP.NET Core 10 + EF Core + SQLite (قابلة للتحويل إلى SQL Server) مع health وmigration أولى",
+      "depends_on": [
+        "TEC-WEB-SCAFFOLD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "dotnet build/test pass",
+        "EF migration applies to SQLite test DB",
+        "GET /health 200",
+        "OpenAPI doc"
+      ],
+      "artifacts": [
+        "src/api/"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "notes": "dotnet SDK not installed in this container; builds.dotnet.microsoft.com is reachable."
+    },
+    {
+      "id": "TEC-ATTEMPT-SYNC",
+      "epic_id": "STU-001",
+      "phase": "build",
+      "priority": "P1",
+      "subject": "platform",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "مزامنة المحاولات المحلية مع API بعد عودة الاتصال",
+      "depends_on": [
+        "TEC-API-SCAFFOLD"
+      ],
+      "owner": "agent:manager",
+      "status": "pending",
+      "acceptance_criteria": [
+        "offline attempts uploaded once (idempotent ids)",
+        "e2e: offline play then sync"
+      ],
+      "artifacts": [
+        "src/web/src/lib/",
+        "src/api/"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "TEC-WEB-PWA",
+      "epic_id": "TEC-001",
+      "phase": "build",
+      "priority": "P2",
+      "subject": "platform",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تشغيل دون اتصال كامل (Service Worker) لإعادة فتح التطبيق بلا إنترنت",
+      "depends_on": [
+        "TEC-WEB-SCAFFOLD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "app reloads offline after first visit (e2e)"
+      ],
+      "artifacts": [
+        "src/web/"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "UI-REVIEW-SCREEN",
+      "epic_id": "STU-001",
+      "phase": "build",
+      "priority": "P0",
+      "subject": "platform",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "شاشة مراجعة لولي الأمر: عرض الدرس والمصدر وعينات الأسئلة وزر اعتماد/إيقاف",
+      "depends_on": [
+        "TEC-WEB-SCAFFOLD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "shows page ref, objectives, 10 sample items per game with answers",
+        "approve/reject recorded with reviewer name and time",
+        "reviewer can pause a game without deleting it"
+      ],
+      "artifacts": [
+        "src/web/src/"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "notes": "Needed so human review is practical; JSON review is not."
+    },
+    {
+      "id": "UI-PARENT-DASHBOARD",
+      "epic_id": "STU-001",
+      "phase": "build",
+      "priority": "P1",
+      "subject": "platform",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "لوحة ولي الأمر: المهارات والأخطاء الشائعة والمراجعة المتباعدة",
+      "depends_on": [
+        "TEC-WEB-SCAFFOLD"
+      ],
+      "owner": "agent:manager",
+      "status": "pending",
+      "acceptance_criteria": [
+        "per-skill status uses documented mastery rule",
+        "error types shown, not raw scores"
+      ],
+      "artifacts": [
+        "src/web/src/"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "GME-MATH-S1-U1A-L01-FRAGMENT-IMPLEMENT",
+      "epic_id": "MAT-001",
+      "phase": "build",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "SK-HSQ-NEIGHBOR",
+      "title": "تنفيذ لعبة «أكمل قطعة اللوحة» (مولد + مدقق + واجهة)",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L01-EXTRACT",
+        "TEC-GAMECORE",
+        "TEC-WEB-SCAFFOLD"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "generator, validator and UI exist",
+        "game definition carries source refs"
+      ],
+      "artifacts": [
+        "src/games/core/src/hundredSquareGames.ts",
+        "src/web/src/games/",
+        "content/games/math/s1/MATH-S1-U1A-L01.json"
+      ],
+      "test_commands": [],
+      "evidence": [
+        "playable in browser (reports/e2e screenshots)"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "GME-MATH-S1-U1A-L01-FRAGMENT-TEST",
+      "epic_id": "MAT-001",
+      "phase": "test",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "SK-HSQ-NEIGHBOR",
+      "title": "اختبار «أكمل قطعة اللوحة»: 1000 بذرة × 3 مستويات + متصفح لمس/لوحة مفاتيح",
+      "depends_on": [
+        "GME-MATH-S1-U1A-L01-FRAGMENT-IMPLEMENT"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "integrity + validator over 1000 seeds x 3 levels",
+        "browser e2e on tablet/phone/desktop"
+      ],
+      "artifacts": [
+        "src/games/core/test/",
+        "src/web/e2e/smoke.mjs",
+        "reports/e2e/smoke-report.json"
+      ],
+      "test_commands": [
+        "npm test --workspace @ghaith/game-core",
+        "npm run build --workspace @ghaith/web && npm run e2e --workspace @ghaith/web"
+      ],
+      "evidence": [
+        "game-core vitest 29/29 PASS",
+        "e2e 42/42 checks PASS (reports/e2e/smoke-report.json)"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "GME-MATH-S1-U1A-L01-FRAGMENT-APPROVE",
+      "epic_id": "MAT-001",
+      "phase": "review",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "SK-HSQ-NEIGHBOR",
+      "title": "اعتماد بشري للعبة «أكمل قطعة اللوحة» (عينات الأسئلة والإجابات والتلميحات)",
+      "depends_on": [
+        "GME-MATH-S1-U1A-L01-FRAGMENT-TEST",
+        "CUR-MATH-S1-U1A-L01-REVIEW"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "human plays/inspects samples and records approval or changes"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L01.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "GME-MATH-S1-U1A-L01-LOCATE-IMPLEMENT",
+      "epic_id": "MAT-001",
+      "phase": "build",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "SK-HSQ-LOCATE",
+      "title": "تنفيذ لعبة «أين يسكن العدد؟» (مولد + مدقق + واجهة)",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L01-EXTRACT",
+        "TEC-GAMECORE",
+        "TEC-WEB-SCAFFOLD"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "generator, validator and UI exist",
+        "game definition carries source refs"
+      ],
+      "artifacts": [
+        "src/games/core/src/hundredSquareGames.ts",
+        "src/web/src/games/",
+        "content/games/math/s1/MATH-S1-U1A-L01.json"
+      ],
+      "test_commands": [],
+      "evidence": [
+        "playable in browser (reports/e2e screenshots)"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "GME-MATH-S1-U1A-L01-LOCATE-TEST",
+      "epic_id": "MAT-001",
+      "phase": "test",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "SK-HSQ-LOCATE",
+      "title": "اختبار «أين يسكن العدد؟»: 1000 بذرة × 3 مستويات + متصفح لمس/لوحة مفاتيح",
+      "depends_on": [
+        "GME-MATH-S1-U1A-L01-LOCATE-IMPLEMENT"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "integrity + validator over 1000 seeds x 3 levels",
+        "browser e2e on tablet/phone/desktop"
+      ],
+      "artifacts": [
+        "src/games/core/test/",
+        "src/web/e2e/smoke.mjs",
+        "reports/e2e/smoke-report.json"
+      ],
+      "test_commands": [
+        "npm test --workspace @ghaith/game-core",
+        "npm run build --workspace @ghaith/web && npm run e2e --workspace @ghaith/web"
+      ],
+      "evidence": [
+        "game-core vitest 29/29 PASS",
+        "e2e 42/42 checks PASS (reports/e2e/smoke-report.json)"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "GME-MATH-S1-U1A-L01-LOCATE-APPROVE",
+      "epic_id": "MAT-001",
+      "phase": "review",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "SK-HSQ-LOCATE",
+      "title": "اعتماد بشري للعبة «أين يسكن العدد؟» (عينات الأسئلة والإجابات والتلميحات)",
+      "depends_on": [
+        "GME-MATH-S1-U1A-L01-LOCATE-TEST",
+        "CUR-MATH-S1-U1A-L01-REVIEW"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "human plays/inspects samples and records approval or changes"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L01.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "GME-MATH-S1-U1A-L01-PATH-IMPLEMENT",
+      "epic_id": "MAT-001",
+      "phase": "build",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "SK-HSQ-NEIGHBOR",
+      "title": "تنفيذ لعبة «اتبع الأسهم» (مولد + مدقق + واجهة)",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L01-EXTRACT",
+        "TEC-GAMECORE",
+        "TEC-WEB-SCAFFOLD"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "generator, validator and UI exist",
+        "game definition carries source refs"
+      ],
+      "artifacts": [
+        "src/games/core/src/hundredSquareGames.ts",
+        "src/web/src/games/",
+        "content/games/math/s1/MATH-S1-U1A-L01.json"
+      ],
+      "test_commands": [],
+      "evidence": [
+        "playable in browser (reports/e2e screenshots)"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "GME-MATH-S1-U1A-L01-PATH-TEST",
+      "epic_id": "MAT-001",
+      "phase": "test",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "SK-HSQ-NEIGHBOR",
+      "title": "اختبار «اتبع الأسهم»: 1000 بذرة × 3 مستويات + متصفح لمس/لوحة مفاتيح",
+      "depends_on": [
+        "GME-MATH-S1-U1A-L01-PATH-IMPLEMENT"
+      ],
+      "owner": "agent:manager",
+      "status": "done",
+      "acceptance_criteria": [
+        "integrity + validator over 1000 seeds x 3 levels",
+        "browser e2e on tablet/phone/desktop"
+      ],
+      "artifacts": [
+        "src/games/core/test/",
+        "src/web/e2e/smoke.mjs",
+        "reports/e2e/smoke-report.json"
+      ],
+      "test_commands": [
+        "npm test --workspace @ghaith/game-core",
+        "npm run build --workspace @ghaith/web && npm run e2e --workspace @ghaith/web"
+      ],
+      "evidence": [
+        "game-core vitest 29/29 PASS",
+        "e2e 42/42 checks PASS (reports/e2e/smoke-report.json)"
+      ],
+      "attempt_count": 1,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "GME-MATH-S1-U1A-L01-PATH-APPROVE",
+      "epic_id": "MAT-001",
+      "phase": "review",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "SK-HSQ-NEIGHBOR",
+      "title": "اعتماد بشري للعبة «اتبع الأسهم» (عينات الأسئلة والإجابات والتلميحات)",
+      "depends_on": [
+        "GME-MATH-S1-U1A-L01-PATH-TEST",
+        "CUR-MATH-S1-U1A-L01-REVIEW"
+      ],
+      "owner": "human:parent",
+      "status": "pending",
+      "acceptance_criteria": [
+        "human plays/inspects samples and records approval or changes"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L01.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00",
+      "human_review_required": true,
+      "approval_actor": null
+    },
+    {
+      "id": "GME-MATH-S1-U1A-L01-SK-HSQ-PATTERN-IMPLEMENT",
+      "epic_id": "MAT-001",
+      "phase": "build",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "SK-HSQ-PATTERN",
+      "title": "لعبة لمهارة وصف النمط (القطر +١١، تظليل نمط والتحدي) — غير منفذة بعد",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L01-EXTRACT",
+        "TEC-GAMECORE"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "pattern mechanic distinct from fragment/locate/path",
+        "1000-seed tests"
+      ],
+      "artifacts": [
+        "src/games/core/src/"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "GME-MATH-S1-U1A-L01-SEQUENCE",
+      "epic_id": "MAT-001",
+      "phase": "build",
+      "priority": "P1",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L01",
+      "skill_id": "",
+      "title": "تسلسل المهارة للدرس: استكشاف، مثال محلول، تدريب موجه، مستقل، تحدٍ، تقييم منفصل، مراجعة متباعدة",
+      "depends_on": [
+        "GME-MATH-S1-U1A-L01-FRAGMENT-TEST"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "10-14 distinct activities/rounds for the lesson bank (policy)",
+        "assessment bank separate from practice",
+        "spaced review scheduled"
+      ],
+      "artifacts": [
+        "content/games/math/s1/MATH-S1-U1A-L01.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "GME-MATH-S1-U1A-L02-IMPLEMENT",
+      "epic_id": "MAT-001",
+      "phase": "build",
+      "priority": "P0",
+      "subject": "math",
+      "semester": "1",
+      "book_id": "MATH-S1-STU",
+      "unit_id": "MATH-S1-U1A",
+      "lesson_id": "MATH-S1-U1A-L02",
+      "skill_id": "",
+      "title": "ألعاب الدرس «ما بين العقود» (العقود، نقطة المنتصف، مضاعفات ١٠ حتى ١٢٠)",
+      "depends_on": [
+        "CUR-MATH-S1-U1A-L02-EXTRACT",
+        "TEC-GAMECORE"
+      ],
+      "owner": "agent:manager",
+      "status": "pending",
+      "acceptance_criteria": [
+        "new mechanics only where the thinking changes",
+        "number bounds from p5 (0-120)",
+        "1000-seed tests"
+      ],
+      "artifacts": [
+        "src/games/core/src/"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-ENG-S1-CB-TOC-EXTRACT",
+      "epic_id": "ENG-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "english",
+      "semester": "1",
+      "book_id": "ENG-S1-CB",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "استخراج الوحدات والدروس وأرقام الصفحات لكتاب ENG-S1-CB",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "TOC read from page images",
+        "printed/PDF offset verified",
+        "lessons appended to docs/CURRICULUM_MATRIX.csv with status extracted"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-ENG-S1-SS-TOC-EXTRACT",
+      "epic_id": "ENG-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "english",
+      "semester": "1",
+      "book_id": "ENG-S1-SS",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "استخراج الوحدات والدروس وأرقام الصفحات لكتاب ENG-S1-SS",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "TOC read from page images",
+        "printed/PDF offset verified",
+        "lessons appended to docs/CURRICULUM_MATRIX.csv with status extracted"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-ENG-S1-AB-TOC-EXTRACT",
+      "epic_id": "ENG-001",
+      "phase": "curriculum",
+      "priority": "P0",
+      "subject": "english",
+      "semester": "1",
+      "book_id": "ENG-S1-AB",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "استخراج الوحدات والدروس وأرقام الصفحات لكتاب ENG-S1-AB",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "TOC read from page images",
+        "printed/PDF offset verified",
+        "lessons appended to docs/CURRICULUM_MATRIX.csv with status extracted"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-ARB-S1-P1-TOC-EXTRACT",
+      "epic_id": "ARB-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "arabic",
+      "semester": "1",
+      "book_id": "ARB-S1-P1",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "استخراج الوحدات والدروس وأرقام الصفحات لكتاب ARB-S1-P1",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "TOC read from page images",
+        "printed/PDF offset verified",
+        "lessons appended to docs/CURRICULUM_MATRIX.csv with status extracted"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-ARB-S1-P2-TOC-EXTRACT",
+      "epic_id": "ARB-001",
+      "phase": "curriculum",
+      "priority": "P1",
+      "subject": "arabic",
+      "semester": "1",
+      "book_id": "ARB-S1-P2",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "استخراج الوحدات والدروس وأرقام الصفحات لكتاب ARB-S1-P2",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "TOC read from page images",
+        "printed/PDF offset verified",
+        "lessons appended to docs/CURRICULUM_MATRIX.csv with status extracted"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-SCI-S1-STU-TOC-EXTRACT",
+      "epic_id": "SCI-001",
+      "phase": "curriculum",
+      "priority": "P2",
+      "subject": "science",
+      "semester": "1",
+      "book_id": "SCI-S1-STU",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "استخراج الوحدات والدروس وأرقام الصفحات لكتاب SCI-S1-STU",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "TOC read from page images",
+        "printed/PDF offset verified",
+        "lessons appended to docs/CURRICULUM_MATRIX.csv with status extracted"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-ISL-S1-P1-TOC-EXTRACT",
+      "epic_id": "ISL-001",
+      "phase": "curriculum",
+      "priority": "P2",
+      "subject": "islamic",
+      "semester": "1",
+      "book_id": "ISL-S1-P1",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "استخراج الوحدات والدروس وأرقام الصفحات لكتاب ISL-S1-P1",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "TOC read from page images",
+        "printed/PDF offset verified",
+        "lessons appended to docs/CURRICULUM_MATRIX.csv with status extracted"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-ISL-S1-P2-TOC-EXTRACT",
+      "epic_id": "ISL-001",
+      "phase": "curriculum",
+      "priority": "P2",
+      "subject": "islamic",
+      "semester": "1",
+      "book_id": "ISL-S1-P2",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "استخراج الوحدات والدروس وأرقام الصفحات لكتاب ISL-S1-P2",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "TOC read from page images",
+        "printed/PDF offset verified",
+        "lessons appended to docs/CURRICULUM_MATRIX.csv with status extracted"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-CIT-S1-TOC-EXTRACT",
+      "epic_id": "CIT-001",
+      "phase": "curriculum",
+      "priority": "P2",
+      "subject": "citizenship",
+      "semester": "1",
+      "book_id": "CIT-S1",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "استخراج الوحدات والدروس وأرقام الصفحات لكتاب CIT-S1",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "TOC read from page images",
+        "printed/PDF offset verified",
+        "lessons appended to docs/CURRICULUM_MATRIX.csv with status extracted"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-MATH-S2-STU-TOC-EXTRACT",
+      "epic_id": "MAT-001",
+      "phase": "curriculum",
+      "priority": "P2",
+      "subject": "math",
+      "semester": "2",
+      "book_id": "MATH-S2-STU",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "استخراج الوحدات والدروس وأرقام الصفحات لكتاب MATH-S2-STU",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "TOC read from page images",
+        "printed/PDF offset verified",
+        "lessons appended to docs/CURRICULUM_MATRIX.csv with status extracted"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "CUR-ENG-S2-CB-TOC-EXTRACT",
+      "epic_id": "ENG-001",
+      "phase": "curriculum",
+      "priority": "P2",
+      "subject": "english",
+      "semester": "2",
+      "book_id": "ENG-S2-CB",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "استخراج الوحدات والدروس وأرقام الصفحات لكتاب ENG-S2-CB",
+      "depends_on": [
+        "CUR-INV-DOWNLOAD"
+      ],
+      "owner": "agent:manager",
+      "status": "ready",
+      "acceptance_criteria": [
+        "TOC read from page images",
+        "printed/PDF offset verified",
+        "lessons appended to docs/CURRICULUM_MATRIX.csv with status extracted"
+      ],
+      "artifacts": [
+        "docs/CURRICULUM_MATRIX.csv"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "ASM-BASELINE-DESIGN",
+      "epic_id": "STU-001",
+      "phase": "build",
+      "priority": "P1",
+      "subject": "math+english",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "تصميم تقييم تأسيسي قصير للرياضيات والإنجليزية من وحدات ف1 المستخرجة",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-EXTRACT",
+        "CUR-ENG-S1-CB-TOC-EXTRACT"
+      ],
+      "owner": "agent:manager",
+      "status": "pending",
+      "acceptance_criteria": [
+        "items traced to lessons",
+        "separates concept vs listening vs input errors",
+        "presented to parent as a starting point, not a diagnosis"
+      ],
+      "artifacts": [
+        "content/assessment/"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
+    },
+    {
+      "id": "REL-BASELINE-DRAFT",
+      "epic_id": "REL-001",
+      "phase": "release",
+      "priority": "P2",
+      "subject": "all",
+      "semester": "",
+      "book_id": "",
+      "unit_id": "",
+      "lesson_id": "",
+      "skill_id": "",
+      "title": "مسودة release/curriculum_baseline.json من الجرد (بانتظار الاعتماد البشري)",
+      "depends_on": [
+        "CUR-MATH-S1-STU-TOC-REVIEW"
+      ],
+      "owner": "agent:manager",
+      "status": "pending",
+      "acceptance_criteria": [
+        "status draft_not_approved",
+        "every lesson has source_file + source_sha256"
+      ],
+      "artifacts": [
+        "release/curriculum_baseline.json"
+      ],
+      "test_commands": [],
+      "evidence": [],
+      "attempt_count": 0,
+      "blocker_type": "",
+      "updated_at": "2026-11-14T10:00:00+04:00"
     }
   ]
 }

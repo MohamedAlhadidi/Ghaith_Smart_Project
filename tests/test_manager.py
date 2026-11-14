@@ -21,10 +21,16 @@ release = load_file("scripts/check_release.py", "ghaith_release")
 
 class ProjectManagerContractTests(unittest.TestCase):
     def test_initial_queue_ready(self):
+        # The queue now holds real atomic tasks: some wait on a human (needs_review with
+        # human_review_required) or on a missing source (blocked_external). Work must still
+        # be available to the agent, so at least one task is ready.
         ready, not_done, blocked = pm.queue_state(ROOT)
         self.assertGreaterEqual(ready, 1)
         self.assertGreater(not_done, 0)
-        self.assertEqual(blocked, 0)
+        tasks = json.loads((ROOT / "tasks" / "queue.json").read_text(encoding="utf-8"))["tasks"]
+        expected_blocked = sum(1 for t in tasks if t["status"] == "blocked_external"
+                               or (t["status"] == "needs_review" and t.get("human_review_required")))
+        self.assertEqual(blocked, expected_blocked)
 
     def test_compose_safe_command(self):
         cfg = pm.load_config(ROOT)

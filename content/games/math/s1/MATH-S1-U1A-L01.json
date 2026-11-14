@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "lesson_id": "MATH-S1-U1A-L01",
+  "lesson_name": "لوحة المائة",
+  "subject": "math",
+  "semester": 1,
+  "unit_id": "MATH-S1-U1A",
+  "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 4,
+    "source_pdf_page": 15,
+    "core_activity": "1.2 إعداد لوحة المائة",
+    "book_tasks_summary": [
+      "لوّن هذه الأعداد في لوحة المائة لديك (أشكال ملونة من اللوحة).",
+      "انظر إلى المربعات الزرقاء: ٤١ ← ٥٢ ← ٦٣.",
+      "كيف تتغير الأعداد كلما اتجهت إلى أعلى أو إلى أسفل كل مجموعة؟",
+      "اختر بعض المربعات وظللها بلون مختلف، وتحدّ زميلك ليصف النمط."
+    ]
+  },
+  "objectives": [
+    {
+      "objective_id": "OBJ-MATH-S1-L01-1",
+      "text_draft": "يحدد موقع عدد من ١ إلى ١٠٠ في لوحة المائة.",
+      "skill_id": "SK-HSQ-LOCATE"
+    },
+    {
+      "objective_id": "OBJ-MATH-S1-L01-2",
+      "text_draft": "يستنتج أن العدد يزيد واحدًا عند الانتقال يسارًا في الصف، ويزيد عشرة عند النزول في العمود.",
+      "skill_id": "SK-HSQ-NEIGHBOR"
+    },
+    {
+      "objective_id": "OBJ-MATH-S1-L01-3",
+      "text_draft": "يصف نمطًا من المربعات الملونة في لوحة المائة (مثل القطر +١١).",
+      "skill_id": "SK-HSQ-PATTERN"
+    }
+  ],
+  "content_review_status": "draft_needs_human_review",
+  "approval_actor": null,
+  "notes": "Objective wording is a draft written from the page; it must be checked against the book and teacher guide by a human before approval.",
+  "games": [
+    {
+      "game_id": "GME-MATH-S1-L01-FRAGMENT",
+      "activity_id": "ACT-MATH-S1-L01-FRAGMENT",
+      "title": "أكمل قطعة اللوحة",
+      "objective_id": "OBJ-MATH-S1-L01-2",
+      "skill_id": "SK-HSQ-NEIGHBOR",
+      "game_mechanic_id": "grid-fragment-fill",
+      "item_generator_id": "GEN-HSQ-FRAGMENT",
+      "generator_version": 1,
+      "validator_id": "validateFragmentFill",
+      "difficulty_bounds": {
+        "1": "قطعة من ٣ مربعات في صف أو عمود، والعدد المعطى في الطرف",
+        "2": "أشكال الكتاب: الزائد، الحرف L، الكوب (٥ مربعات)",
+        "3": "القطر (+١١) أو عدد معطى في أي مربع من القطعة"
+      },
+      "number_range": "1-100 (لوحة المائة كاملة كما في الكتاب)",
+      "distractor_rationale": "لا خيارات؛ يكتب الطفل العدد. تُصنّف الأخطاء: عكس الاتجاه، خطأ صف (±١٠)، خطأ بواحد، قلب الرقمين.",
+      "feedback_correct": "أحسنت! كل مربع في مكانه الصحيح.",
+      "feedback_wrong": "قريب! انظر إلى العدد المعطى وتحرك منه خطوة خطوة.",
+      "hint_levels": [
+        "إلى اليسار يزيد العدد واحدًا، وإلى اليمين ينقص واحدًا.",
+        "إلى الأسفل يزيد العدد عشرة، وإلى الأعلى ينقص عشرة.",
+        "اعرض الصف والعمود في لوحة المائة كاملة."
+      ],
+      "accommodations": ["لوحة أرقام على الشاشة", "قبول الأرقام العربية والهندية", "لا مؤقت", "قراءة التعليمات صوتيًا اختياريًا"],
+      "content_review_status": "draft_needs_human_review",
+      "approval_actor": null,
+      "assets_license_status": "original_ui_no_book_images"
+    },
+    {
+      "game_id": "GME-MATH-S1-L01-LOCATE",
+      "activity_id": "ACT-MATH-S1-L01-LOCATE",
+      "title": "أين يسكن العدد؟",
+      "objective_id": "OBJ-MATH-S1-L01-1",
+      "skill_id": "SK-HSQ-LOCATE",
+      "game_mechanic_id": "grid-locate",
+      "item_generator_id": "GEN-HSQ-LOCATE",
+      "generator_version": 1,
+      "validator_id": "validateLocate",
+      "difficulty_bounds": {
+        "1": "الصف الأول والعمود الأول ظاهران كعلامات",
+        "2": "الزوايا الأربع فقط (١، ١٠، ٩١، ١٠٠)",
+        "3": "لوحة فارغة"
+      },
+      "number_range": "1-100",
+      "distractor_rationale": "يلمس الطفل مربعًا؛ يُكشف خطأ الاتجاه (مربع معكوس)، وخطأ الصف، وقلب الرقمين.",
+      "feedback_correct": "رائع! وجدت بيت العدد.",
+      "feedback_wrong": "ليس هنا. ابدأ من العلامات الظاهرة وعُدّ.",
+      "hint_levels": [
+        "رقم العشرات يخبرك بالصف تقريبًا.",
+        "العدد ١ في الزاوية العليا اليمنى، والأعداد تزيد نحو اليسار.",
+        "يُظلَّل الصف الصحيح."
+      ],
+      "accommodations": ["لمس أو أسهم لوحة المفاتيح ثم Enter", "لا مؤقت"],
+      "content_review_status": "draft_needs_human_review",
+      "approval_actor": null,
+      "assets_license_status": "original_ui_no_book_images"
+    },
+    {
+      "game_id": "GME-MATH-S1-L01-PATH",
+      "activity_id": "ACT-MATH-S1-L01-PATH",
+      "title": "اتبع الأسهم",
+      "objective_id": "OBJ-MATH-S1-L01-2",
+      "skill_id": "SK-HSQ-NEIGHBOR",
+      "game_mechanic_id": "grid-path-move",
+      "item_generator_id": "GEN-HSQ-PATH",
+      "generator_version": 1,
+      "validator_id": "validatePathMove",
+      "difficulty_bounds": {
+        "1": "سهم واحد",
+        "2": "سهمان",
+        "3": "ثلاثة أسهم"
+      },
+      "number_range": "1-100",
+      "distractor_rationale": "كل خيار خاطئ ناتج عن خطأ معروف: عكس اليمين واليسار، عكس الأعلى والأسفل، خطأ بواحد أو بعشرة، قلب الرقمين. يُتحقق آليًا من وجود خيار صحيح واحد فقط.",
+      "feedback_correct": "ممتاز! وصلت إلى العدد الصحيح.",
+      "feedback_wrong": "جرّب مرة أخرى، وتتبّع كل سهم على اللوحة.",
+      "hint_levels": [
+        "كل سهم خطوة واحدة فقط.",
+        "يسارًا +١، يمينًا −١، أسفل +١٠، أعلى −١٠.",
+        "يُعرض المسار على اللوحة."
+      ],
+      "accommodations": ["اختيار باللمس أو بالأرقام ١-٤", "لا مؤقت"],
+      "content_review_status": "draft_needs_human_review",
+      "approval_actor": null,
+      "assets_license_status": "original_ui_no_book_images"
+    }
+  ]
+}
