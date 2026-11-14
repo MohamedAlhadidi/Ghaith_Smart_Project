@@ -9,7 +9,11 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "types": []
+    "types": [],
+    "resolveJsonModule": true
   },
-  "include": ["src", "test"]
+  "include": [
+    "src",
+    "test"
+  ]
 }

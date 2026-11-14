@@ -95,3 +95,44 @@ class ContentLinkTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class MathCatalogTests(unittest.TestCase):
+    """content/curriculum/math/s1/lessons.json must stay aligned with the matrix and inventory."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.doc = json.loads((ROOT / "content/curriculum/math/s1/lessons.json").read_text(encoding="utf-8"))
+
+    def test_every_matrix_lesson_of_the_book_is_in_the_catalog(self):
+        ids = [l["lesson_id"] for l in self.doc["lessons"]]
+        matrix_ids = [r["lesson_id"] for r in MATRIX if r["book_id"] == "MATH-S1-STU"]
+        self.assertEqual(sorted(ids), sorted(matrix_ids))
+
+    def test_sources_match_matrix_and_inventory(self):
+        sha = INVENTORY["MATH-S1-STU"]["sha256"]
+        for l in self.doc["lessons"]:
+            row = LESSONS[l["lesson_id"]]
+            self.assertEqual(l["source"]["source_sha256"], sha, l["lesson_id"])
+            self.assertEqual(str(l["source"]["source_printed_page"]), row["source_page"], l["lesson_id"])
+            self.assertEqual(str(l["source"]["source_pdf_page"]), row["source_pdf_page"], l["lesson_id"])
+            self.assertEqual(l["unit_id"], row["unit_id"], l["lesson_id"])
+            self.assertEqual(l["lesson_name"], row["lesson_name"], l["lesson_id"])
+
+    def test_every_lesson_has_objectives_skills_tasks_and_games(self):
+        for l in self.doc["lessons"]:
+            self.assertTrue(l["objectives"], l["lesson_id"])
+            self.assertTrue(l["skills"], l["lesson_id"])
+            self.assertTrue(l["book_tasks"], l["lesson_id"])
+            self.assertTrue(l["games"], l["lesson_id"])
+            skills = {s["id"] for s in l["skills"]}
+            for g in l["games"]:
+                self.assertIn(g["skill_id"], skills, g["game_id"])
+                self.assertGreaterEqual(len(g["hint_levels"]), 2, g["game_id"])
+
+    def test_no_lesson_is_marked_approved_without_a_human(self):
+        for l in self.doc["lessons"]:
+            if l["content_review_status"] == "approved":
+                self.assertTrue(l.get("approval_actor"), l["lesson_id"])
+            else:
+                self.assertIsNone(l.get("approval_actor"), l["lesson_id"])

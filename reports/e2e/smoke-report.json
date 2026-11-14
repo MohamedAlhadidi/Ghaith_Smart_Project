@@ -1,16 +1,11 @@
 {
-  "at": "2026-11-14T09:44:24.504Z",
-  "passed": 42,
-  "total": 42,
+  "at": "2026-11-14T10:40:46.051Z",
+  "passed": 48,
+  "total": 48,
   "failed": false,
   "results": [
     {
       "name": "tablet: page is RTL Arabic",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "tablet: lesson shows its book source",
       "pass": true,
       "detail": ""
     },
@@ -20,7 +15,22 @@
       "detail": ""
     },
     {
+      "name": "tablet: home lists the 4 units of semester 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "tablet: no horizontal scroll on home",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: unit 1A lists 14 lessons",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet: lesson shows its book source",
       "pass": true,
       "detail": ""
     },
@@ -80,17 +90,27 @@
       "detail": ""
     },
     {
-      "name": "phone: lesson shows its book source",
-      "pass": true,
-      "detail": ""
-    },
-    {
       "name": "phone: unreviewed content is labelled as draft",
       "pass": true,
       "detail": ""
     },
     {
+      "name": "phone: home lists the 4 units of semester 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "phone: no horizontal scroll on home",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: unit 1A lists 14 lessons",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phone: lesson shows its book source",
       "pass": true,
       "detail": ""
     },
@@ -150,17 +170,27 @@
       "detail": ""
     },
     {
-      "name": "desktop: lesson shows its book source",
-      "pass": true,
-      "detail": ""
-    },
-    {
       "name": "desktop: unreviewed content is labelled as draft",
       "pass": true,
       "detail": ""
     },
     {
+      "name": "desktop: home lists the 4 units of semester 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "desktop: no horizontal scroll on home",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: unit 1A lists 14 lessons",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: lesson shows its book source",
       "pass": true,
       "detail": ""
     },

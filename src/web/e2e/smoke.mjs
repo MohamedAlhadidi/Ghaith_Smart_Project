@@ -84,20 +84,24 @@ async function run(label, contextOptions) {
 
   await page.goto(`${BASE}?seeds=11,12,13,14,15`);
   check(`${label}: page is RTL Arabic`, (await page.getAttribute("html", "dir")) === "rtl" && (await page.getAttribute("html", "lang")) === "ar");
-  check(`${label}: lesson shows its book source`, (await page.getByTestId("source-ref").innerText()).includes("ص ٤"));
   check(`${label}: unreviewed content is labelled as draft`, await page.getByTestId("review-banner").isVisible());
+  check(`${label}: home lists the 4 units of semester 1`, (await page.locator("[data-unit]").count()) === 4);
   const noHScroll = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1);
   check(`${label}: no horizontal scroll on home`, noHScroll);
   await page.screenshot({ path: `${outDir}/${label}-1-home.png` });
+  await page.locator('[data-unit="MATH-S1-U1A"]').click();
+  check(`${label}: unit 1A lists 14 lessons`, (await page.locator("[data-lesson]").count()) === 14);
+  await page.locator('[data-lesson="MATH-S1-U1A-L01"]').click();
+  check(`${label}: lesson shows its book source`, (await page.getByTestId("source-ref").innerText()).includes("ص ٤"));
 
   // --- Game 1: fragment fill (touch / number pad) ---
-  await page.locator('[data-game="grid-fragment-fill"]').click();
+  await page.locator('[data-game="GME-MATH-S1-L01-FRAGMENT"]').click();
   check(`${label}: fragment item answered correctly via number pad`, (await playFragmentItem(page)) === "correct");
   await page.screenshot({ path: `${outDir}/${label}-2-fragment.png` });
   await page.getByRole("button", { name: /رجوع/ }).click();
 
   // --- Game 2: locate (keyboard only) ---
-  await page.locator('[data-game="grid-locate"]').click();
+  await page.locator('[data-game="GME-MATH-S1-L01-LOCATE"]').click();
   const topRight = page.locator('button[data-row="0"][data-screen-col="9"]');
   check(`${label}: number 1 is in the top-right corner (RTL like the book)`, (await topRight.innerText()) === "١");
   const target = await targetOfLocate(page);
@@ -113,7 +117,7 @@ async function run(label, contextOptions) {
 
   // --- Game 3: path move, wrong then right, while OFFLINE ---
   await context.setOffline(true);
-  await page.locator('[data-game="grid-path-move"]').click();
+  await page.locator('[data-game="GME-MATH-S1-L01-PATH"]').click();
   const answer = await pathAnswer(page);
   const options = page.locator("section button").filter({ hasText: /^[٠-٩]+$/ });
   const values = await options.evaluateAll((els) => els.map((e) => e.textContent));

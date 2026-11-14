@@ -20,6 +20,21 @@ export interface Attempt {
   correct: boolean;
   errorTypes: ErrorType[];
   hintsUsed: number;
+  /** practice (default), assessment (unit mission, separate bank, no hints) or review (spaced review). */
+  mode?: "practice" | "assessment" | "review";
+  /** Stable hash of the item's problem, used to keep assessment items apart from practised ones. */
+  fingerprint?: string;
+}
+
+/** FNV-1a hash of a value's JSON (stable, short). */
+export function fingerprintOf(value: unknown): string {
+  const text = JSON.stringify(value);
+  let h = 0x811c9dc5;
+  for (let i = 0; i < text.length; i++) {
+    h ^= text.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h.toString(16).padStart(8, "0");
 }
 
 export interface SkillSummary {

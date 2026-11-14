@@ -1,0 +1,2949 @@
+{
+ "schema_version": 1,
+ "subject": "math",
+ "semester": 1,
+ "book_id": "MATH-S1-STU",
+ "units": [
+  {
+   "unit_id": "MATH-S1-U1A",
+   "title": "الوحدة ١أ: الأعداد والعمليات"
+  },
+  {
+   "unit_id": "MATH-S1-U1B",
+   "title": "الوحدة ١ب: الأشكال والتماثل"
+  },
+  {
+   "unit_id": "MATH-S1-U1C",
+   "title": "الوحدة ١ج: القياس"
+  },
+  {
+   "unit_id": "MATH-S1-U2A",
+   "title": "الوحدة ٢أ: الأعداد حتى ١٠٠ والمصفوفات"
+  }
+ ],
+ "notes": "Read from rendered pages of MATH-S1-STU on 2026-11-14. Objectives are drafts written from the pages; every lesson awaits human review.",
+ "lessons": [
+  {
+   "lesson_id": "MATH-S1-U1A-L01",
+   "lesson_name": "لوحة المائة",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 4,
+    "source_pdf_page": 15,
+    "core_activity": "1.2",
+    "core_activity_title": "إعداد لوحة المائة"
+   },
+   "objectives": [
+    "يحدد موقع عدد من ١ إلى ١٠٠ في لوحة المائة.",
+    "يستنتج تغيّر الأعداد يمينًا ويسارًا (±١) وأعلى وأسفل (±١٠).",
+    "يصف نمطًا في لوحة المائة ويكمله (القطر +١١ و+٩)."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-HSQ-LOCATE",
+     "text": "تحديد موقع العدد في لوحة المائة"
+    },
+    {
+     "id": "SK-HSQ-NEIGHBOR",
+     "text": "الأعداد المجاورة ±١ و±١٠"
+    },
+    {
+     "id": "SK-HSQ-PATTERN",
+     "text": "أنماط لوحة المائة"
+    }
+   ],
+   "book_tasks": [
+    "لوّن الأعداد المعطاة في لوحة المائة (أشكال ملونة).",
+    "انظر إلى المربعات الزرقاء ٤١ ← ٥٢ (+١١) ← ٦٣ (+؟) و١٩ ← ٢٨ ← ٣٧.",
+    "كيف تتغير الأعداد كلما اتجهت إلى أعلى أو أسفل؟",
+    "اختر مربعات وظللها وتحدَّ زميلك ليصف النمط."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L01-FRAGMENT",
+     "title": "أكمل قطعة اللوحة",
+     "skill_id": "SK-HSQ-NEIGHBOR",
+     "mechanic": "hsq-fragment",
+     "config": {},
+     "hint_levels": [
+      "إلى اليسار +١ وإلى اليمين −١.",
+      "إلى الأسفل +١٠ وإلى الأعلى −١٠.",
+      "اعرض الصف والعمود في لوحة المائة كاملة."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L01-LOCATE",
+     "title": "أين يسكن العدد؟",
+     "skill_id": "SK-HSQ-LOCATE",
+     "mechanic": "hsq-locate",
+     "config": {},
+     "hint_levels": [
+      "رقم العشرات يخبرك بالصف تقريبًا.",
+      "العدد ١ في الزاوية العليا اليمنى، والأعداد تزيد نحو اليسار.",
+      "يُظلَّل الصف الصحيح."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L01-PATH",
+     "title": "اتبع الأسهم",
+     "skill_id": "SK-HSQ-NEIGHBOR",
+     "mechanic": "hsq-path",
+     "config": {},
+     "hint_levels": [
+      "كل سهم خطوة واحدة فقط.",
+      "إلى اليسار +١ وإلى اليمين −١. إلى الأسفل +١٠ وإلى الأعلى −١٠.",
+      "يُعرض المسار على اللوحة."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L01-PATTERN",
+     "title": "أكمل النمط",
+     "skill_id": "SK-HSQ-PATTERN",
+     "mechanic": "hsq-pattern",
+     "config": {
+      "steps": [
+       1,
+       10,
+       11,
+       9
+      ]
+     },
+     "hint_levels": [
+      "كم يزيد العدد من مربع إلى الذي يليه؟",
+      "أضف الزيادة نفسها إلى آخر عدد."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L02",
+   "lesson_name": "ما بين العقود",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 5,
+    "source_pdf_page": 16,
+    "core_activity": "1.2",
+    "core_activity_title": "إعداد لوحة المائة"
+   },
+   "objectives": [
+    "يكتب الأعداد بين مضاعفين متتاليين للعدد ١٠.",
+    "يحدد العقد الذي ينتمي إليه العدد ومضاعفي ١٠ قبله وبعده.",
+    "يحدد نقطة المنتصف بين مضاعفين متتاليين للعدد ١٠."
+   ],
+   "vocabulary": [
+    {
+     "term": "مضاعفات العدد ١٠",
+     "meaning": "٠، ١٠، ٢٠، ... ١٢٠"
+    },
+    {
+     "term": "العقود",
+     "meaning": "عشرة أعداد تبدأ بالعدد العقدي، مثل ٢٠–٢٩"
+    },
+    {
+     "term": "نقطة المنتصف",
+     "meaning": "العدد الذي يكون وسط الأعداد المرتبة"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-DEC-BOUNDS",
+     "text": "مضاعفا ١٠ اللذان يحدّان العدد"
+    },
+    {
+     "id": "SK-DEC-FILL",
+     "text": "الأعداد بين مضاعفات ١٠"
+    },
+    {
+     "id": "SK-DEC-MID",
+     "text": "نقطة المنتصف"
+    }
+   ],
+   "book_tasks": [
+    "اكتب الأعداد بين كل مضاعفين للعدد ١٠.",
+    "حوّط نقطة المنتصف لكل مجموعة.",
+    "أي العقود لم تكتبها؟",
+    "اكتب مضاعفات ١٠ التي تشكّل حدودًا لكل مجموعة."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L02-BOUNDS",
+     "title": "بين أي عقدين؟",
+     "skill_id": "SK-DEC-BOUNDS",
+     "mechanic": "tens-bounds",
+     "config": {
+      "min": 1,
+      "max": 119
+     },
+     "hint_levels": [
+      "انظر إلى رقم العشرات.",
+      "العدد العقدي الأصغر ينتهي بصفر، والأكبر يزيده ١٠."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L02-FILL",
+     "title": "أكمل العقد",
+     "skill_id": "SK-DEC-FILL",
+     "mechanic": "decade-fill",
+     "config": {
+      "maxTens": 11
+     },
+     "hint_levels": [
+      "عُدّ واحدًا واحدًا من العدد العقدي.",
+      "رقم العشرات لا يتغير داخل العقد."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L02-MID",
+     "title": "نقطة المنتصف",
+     "skill_id": "SK-DEC-MID",
+     "mechanic": "midpoint",
+     "config": {
+      "maxTens": 11
+     },
+     "hint_levels": [
+      "العدد الذي في الوسط له العدد نفسه من الأعداد قبله وبعده.",
+      "في كل عقد، المنتصف ينتهي بالرقم ٥."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L03",
+   "lesson_name": "كم العدد؟",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 6,
+    "source_pdf_page": 17,
+    "core_activity": "2.1",
+    "core_activity_title": "العد بالاثنينات والخمسات والعشرات"
+   },
+   "objectives": [
+    "يعدّ مجموعة من الأشياء حتى ١٠٠ بتجميعها في اثنينات أو خمسات أو عشرات.",
+    "يعدّ بالقفز ٢ و٥ و١٠ على لوحة المائة."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-CNT-GROUP",
+     "text": "العد بالتجميع"
+    },
+    {
+     "id": "SK-CNT-SKIP",
+     "text": "العد بالاثنينات والخمسات والعشرات"
+    }
+   ],
+   "book_tasks": [
+    "عُدّ الصدفات / أقراص العد / الكرات الزجاجية / الخرزات.",
+    "ارسم ٣٤، ٦٢، ٨٧ من شيء ما.",
+    "أعد ترتيب العناصر بطريقة تجعل عدّها أسهل."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L03-COUNT",
+     "title": "كم العدد؟",
+     "skill_id": "SK-CNT-GROUP",
+     "mechanic": "count-objects",
+     "config": {
+      "min": 15,
+      "max": 100,
+      "groupBy": [
+       2,
+       5,
+       10
+      ]
+     },
+     "hint_levels": [
+      "رتّب الأشياء في مجموعات متساوية.",
+      "عُدّ المجموعات ثم الباقي."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L03-SKIP",
+     "title": "مجموعات متساوية",
+     "skill_id": "SK-CNT-SKIP",
+     "mechanic": "skip-count-groups",
+     "config": {
+      "sizes": [
+       2,
+       5,
+       10
+      ],
+      "kMax": 10,
+      "context": "generic"
+     },
+     "hint_levels": [
+      "عُدّ بالقفز بحجم المجموعة.",
+      "١٠، ٢٠، ٣٠... أو ٥، ١٠، ١٥..."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L03-PATTERN",
+     "title": "القفز على لوحة المائة",
+     "skill_id": "SK-CNT-SKIP",
+     "mechanic": "hsq-pattern",
+     "config": {
+      "steps": [
+       2,
+       5,
+       10
+      ]
+     },
+     "hint_levels": [
+      "كم قفزت بين كل مربعين؟",
+      "أضف القفزة نفسها."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L04",
+   "lesson_name": "أكياس",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 7,
+    "source_pdf_page": 18,
+    "core_activity": "2.1",
+    "core_activity_title": "العد بالاثنينات والخمسات والعشرات"
+   },
+   "objectives": [
+    "يحدد ما إذا كان عدد يقع ضمن مدى (بين عددين / أكبر من ... وأصغر من ...).",
+    "يعدّ كمية ويتحقق من وقوعها في المدى."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-RANGE",
+     "text": "الأعداد ضمن مدى"
+    }
+   ],
+   "book_tasks": [
+    "كم عدد الأصناف داخل كل كيس؟ (ما بين ٩٥ و١٠٠، ٦٠ و٧٠، ٨٠ و٩٠، ٧٠ و٨٠، أكثر من ٤٠ وأقل من ٦٠، أقل من ٨٠ وأكثر من ٧٠، ما بين ٥٠ و٧٠)",
+    "ارسم أكياسًا عليها ملصقات واسأل زميلك عن الكمية المتوقعة."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L04-BAG",
+     "title": "في أي كيس؟",
+     "skill_id": "SK-RANGE",
+     "mechanic": "range-fit",
+     "config": {
+      "mode": "which-bag"
+     },
+     "hint_levels": [
+      "قارن العدد بحدّي كل ملصق.",
+      "العدد يجب أن يكون أكبر من الحد الأصغر وأصغر من الحد الأكبر."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L04-SELECT",
+     "title": "ماذا في الكيس؟",
+     "skill_id": "SK-RANGE",
+     "mechanic": "range-fit",
+     "config": {
+      "mode": "select-numbers"
+     },
+     "hint_levels": [
+      "اقرأ الملصق جيدًا.",
+      "استبعد كل عدد خارج الحدين."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L04-COUNT",
+     "title": "عُدّ ثم اختر الكيس",
+     "skill_id": "SK-RANGE",
+     "mechanic": "count-objects",
+     "config": {
+      "min": 41,
+      "max": 99,
+      "groupBy": [
+       10
+      ]
+     },
+     "hint_levels": [
+      "رتّب في عشرات.",
+      "عُدّ العشرات ثم الآحاد."
+     ]
+    }
+   ],
+   "interpretation_notes": "Bag labels use exclusive bounds; generated counts never equal a boundary to avoid the inclusive/exclusive ambiguity of «ما بين».",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L05",
+   "lesson_name": "100 غرام",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 8,
+    "source_pdf_page": 19,
+    "core_activity": "3.1",
+    "core_activity_title": "أزواج الأعداد حتى 100"
+   },
+   "objectives": [
+    "يجد أزواج مضاعفات ١٠ التي مجموعها ١٠٠.",
+    "يربط الكتلة بالغرام في سياق الميزان."
+   ],
+   "vocabulary": [
+    {
+     "term": "الكتلة",
+     "meaning": "ثقل أو خفة الشيء"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-PAIR100",
+     "text": "أزواج مضاعفات ١٠ لمجموع ١٠٠"
+    }
+   ],
+   "book_tasks": [
+    "وضع الطاهي كتلتين في الكفة ليتحقق من ١٠٠ غرام: أي الكتل يمكن أن تكون في الكفة؟ (١٠، ٢٠، ... ١٠٠ غ)",
+    "ما الكتل التي من غير الممكن أن تكون في الكفة؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L05-SCALE",
+     "title": "أكمل ١٠٠ غرام",
+     "skill_id": "SK-PAIR100",
+     "mechanic": "complement",
+     "config": {
+      "targets": [
+       100
+      ],
+      "step": 10,
+      "visual": "scale",
+      "unit": "غ"
+     },
+     "hint_levels": [
+      "استخدم أزواج مضاعفات ١٠.",
+      "كم عشرة تنقص حتى ١٠ عشرات؟"
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L05-PICK",
+     "title": "اختر الكتلتين",
+     "skill_id": "SK-PAIR100",
+     "mechanic": "pair-pick",
+     "config": {
+      "target": 100,
+      "step": 10,
+      "unit": "غ"
+     },
+     "hint_levels": [
+      "ابدأ بكتلة وابحث عن شريكتها.",
+      "الشريكة = ١٠٠ − الكتلة."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L06",
+   "lesson_name": "مثلث عائلة الحقائق",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 9,
+    "source_pdf_page": 20,
+    "core_activity": "3.2",
+    "core_activity_title": "جمع وطرح أزواج عددية حتى 100"
+   },
+   "objectives": [
+    "يكمل مثلث عائلة الحقائق لأزواج مضاعفات ١٠ حتى ١٠٠ ولأزواج حتى ٢٠.",
+    "يكتب حقائق الجمع والطرح الأربع لعائلة واحدة."
+   ],
+   "vocabulary": [
+    {
+     "term": "عائلة الحقائق",
+     "meaning": "مجموعة أعداد مرتبطة بحقائق الجمع والطرح: ٢٠+٨٠=١٠٠، ٨٠+٢٠=١٠٠، ١٠٠−٢٠=٨٠، ١٠٠−٨٠=٢٠"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-FACT-FAMILY",
+     "text": "عائلة الحقائق للجمع والطرح"
+    }
+   ],
+   "book_tasks": [
+    "كل مثلث يظهر عائلة حقائق لأزواج عددية إلى المائة: اكتب العدد الذي لا يظهر.",
+    "ثلاثة مثلثات من عائلة الحقائق للمائة مفقودة؛ ارسمها.",
+    "كوّن مثلثات لأزواج حتى العشرين."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L06-TRI100",
+     "title": "مثلث المائة",
+     "skill_id": "SK-FACT-FAMILY",
+     "mechanic": "fact-triangle",
+     "config": {
+      "family": "tens100"
+     },
+     "hint_levels": [
+      "العدد في الأعلى هو المجموع.",
+      "الجزء المفقود = المجموع − الجزء المعروف."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L06-TRI20",
+     "title": "مثلث العشرين",
+     "skill_id": "SK-FACT-FAMILY",
+     "mechanic": "fact-triangle",
+     "config": {
+      "family": "to20"
+     },
+     "hint_levels": [
+      "العدد في الأعلى هو المجموع.",
+      "استخدم أزواج العشرين."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L06-FACTS",
+     "title": "الحقائق الأربع",
+     "skill_id": "SK-FACT-FAMILY",
+     "mechanic": "fact-family",
+     "config": {
+      "family": "tens100"
+     },
+     "hint_levels": [
+      "في كل حقيقة صحيحة تظهر الأعداد الثلاثة نفسها.",
+      "في الطرح نبدأ بالعدد الأكبر."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L07",
+   "lesson_name": "خط الأعداد",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 10,
+    "source_pdf_page": 21,
+    "core_activity": "4.1",
+    "core_activity_title": "استخدام خط الأعداد"
+   },
+   "objectives": [
+    "يضع أعدادًا حتى ١٠٠ في مواقعها الصحيحة على خط أعداد مدرّج بالعشرات.",
+    "يكتشف الأعداد الموضوعة في مكان خاطئ."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-NL-PLACE",
+     "text": "موضع العدد على خط الأعداد"
+    }
+   ],
+   "book_tasks": [
+    "تم وضع بعض الأعداد في المكان الخطأ على خط الأعداد (٥، ١٨، ٤٥، ٧٩، ٩٥).",
+    "ضع هذه الأعداد في مكانها الصحيح.",
+    "اختر أربعة أعداد وضعها على خط الأعداد.",
+    "يمكنك أن توسع نطاق خط الأعداد إلى ٢٠٠."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L07-PLACE",
+     "title": "ضع العدد",
+     "skill_id": "SK-NL-PLACE",
+     "mechanic": "numberline-place",
+     "config": {
+      "max": 100,
+      "tick": 10,
+      "tolerance": 3
+     },
+     "hint_levels": [
+      "أي عددين عقديين يقع بينهما؟",
+      "هل هو أقرب إلى العقد الأصغر أم الأكبر؟"
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L07-READ",
+     "title": "ما العدد؟",
+     "skill_id": "SK-NL-PLACE",
+     "mechanic": "numberline-read",
+     "config": {
+      "max": 100,
+      "tick": 10
+     },
+     "hint_levels": [
+      "ابدأ من العلامة العقدية قبل السهم.",
+      "خط الأعداد يبدأ بالصفر من اليسار."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L07-SPOT",
+     "title": "العدد في المكان الخطأ",
+     "skill_id": "SK-NL-PLACE",
+     "mechanic": "numberline-spot",
+     "config": {
+      "max": 100,
+      "tick": 10
+     },
+     "hint_levels": [
+      "تحقق من كل عدد: بين أي عقدين يجب أن يكون؟",
+      "قارن موقعه بالعلامات العقدية."
+     ]
+    }
+   ],
+   "interpretation_notes": "Number line drawn left-to-right (0 on the left) exactly as on p.10.",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L08",
+   "lesson_name": "تقريب العدد",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 11,
+    "source_pdf_page": 22,
+    "core_activity": "4.2",
+    "core_activity_title": "تقريب الأعداد باستخدام خط الأعداد"
+   },
+   "objectives": [
+    "يقرّب الأعداد حتى ٩٩ إلى أقرب ١٠.",
+    "يجد أعدادًا تقرَّب إلى مضاعف معين للعدد ١٠."
+   ],
+   "vocabulary": [
+    {
+     "term": "التقريب إلى أقرب ١٠",
+     "meaning": "إذا كان آحاد العدد أقل من ٥ نقرّب للعدد الأدنى، وإذا كان ٥ أو أكثر نقرّب للأعلى: ٥٣ ← ٥٠، ٦٧ ← ٧٠"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-ROUND10",
+     "text": "التقريب إلى أقرب ١٠"
+    }
+   ],
+   "book_tasks": [
+    "قرّب كلًّا من الأعداد إلى أقرب ١٠: ١، ٦٩، ٩٥، ٩، ٤٢، ٤٨، ٣٤، ٩٤، ٦٣.",
+    "ماذا تمثل الأعداد الناتجة من التقريب؟",
+    "لكل مضاعف من مضاعفات ١٠ اكتب عددًا يمكن أن يقرَّب إليه.",
+    "لماذا تقرَّب الأعداد التي آحادها ٥ إلى الأعلى؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L08-ROUND",
+     "title": "قرّب إلى أقرب ١٠",
+     "skill_id": "SK-ROUND10",
+     "mechanic": "round-ten",
+     "config": {
+      "min": 1,
+      "max": 99
+     },
+     "hint_levels": [
+      "انظر إلى رقم الآحاد.",
+      "أقل من ٥ ← للأدنى، ٥ أو أكثر ← للأعلى."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L08-REVERSE",
+     "title": "من يقرَّب إلى هنا؟",
+     "skill_id": "SK-ROUND10",
+     "mechanic": "round-reverse",
+     "config": {
+      "tensMin": 10,
+      "tensMax": 90
+     },
+     "hint_levels": [
+      "الأعداد التي تقرَّب إلى ٤٠ تقع بين ٣٥ و٤٤.",
+      "تحقق من الآحاد لكل عدد."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L09",
+   "lesson_name": "عشرون",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 12,
+    "source_pdf_page": 23,
+    "core_activity": "5.1",
+    "core_activity_title": "الأزواج العددية لـ 20"
+   },
+   "objectives": [
+    "يكوّن أزواج العدد ٢٠ باستخدام إطاري العشرة.",
+    "يكتشف أنماط أزواج العشرين."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-PAIR20",
+     "text": "أزواج العدد ٢٠"
+    }
+   ],
+   "book_tasks": [
+    "استخدم أقراص العد أو مكعبات لتستكشف العدد ٢٠.",
+    "ابدأ بعشرين مكعبًا من نفس اللون ثم استبدل بعضها بلون ثانٍ.",
+    "ألّف لعبة مستخدمًا إطاري العشرة."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L09-FRAMES",
+     "title": "إطارا العشرة",
+     "skill_id": "SK-PAIR20",
+     "mechanic": "complement",
+     "config": {
+      "targets": [
+       20
+      ],
+      "step": 1,
+      "visual": "tenframes"
+     },
+     "hint_levels": [
+      "كم مربعًا فارغًا في الإطارين؟",
+      "الإطاران معًا ٢٠ مربعًا."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L09-PICK",
+     "title": "زوج العشرين",
+     "skill_id": "SK-PAIR20",
+     "mechanic": "pair-pick",
+     "config": {
+      "target": 20,
+      "step": 1
+     },
+     "hint_levels": [
+      "ابحث عن عددين مجموعهما ٢٠.",
+      "١٢ و٨، ١٥ و٥..."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L10",
+   "lesson_name": "الأزواج العددية في الساعة",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 13,
+    "source_pdf_page": 24,
+    "core_activity": "5.2",
+    "core_activity_title": "الأزواج العددية بين 10 و 20"
+   },
+   "objectives": [
+    "يجد أزواج العدد ١٢ على وجه الساعة ويصف نمطها.",
+    "يكوّن أزواج أعداد بين ١٠ و٢٠ ويكتب حقائقها الأربع."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-PAIR12",
+     "text": "أزواج العدد ١٢"
+    },
+    {
+     "id": "SK-PAIR-TEENS",
+     "text": "أزواج الأعداد بين ١٠ و٢٠"
+    }
+   ],
+   "book_tasks": [
+    "ارسم ساعة كبيرة، وبجانب كل عدد عليها اكتب زوجًا عدديًا لـ ١٢ (٢ ← ١٠).",
+    "صف نمط الأعداد التي كتبتها.",
+    "ارسم مثلث عائلة الحقائق لاثنين من أزواج ١٢.",
+    "اكتب أربعًا من الحقائق العددية لكل زوج."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L10-CLOCK",
+     "title": "أزواج الساعة",
+     "skill_id": "SK-PAIR12",
+     "mechanic": "complement",
+     "config": {
+      "targets": [
+       12
+      ],
+      "step": 1,
+      "visual": "clock"
+     },
+     "hint_levels": [
+      "كم ينقص هذا العدد حتى ١٢؟",
+      "١ و١١، ٢ و١٠، ٣ و٩..."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L10-TEENS",
+     "title": "أزواج حتى ٢٠",
+     "skill_id": "SK-PAIR-TEENS",
+     "mechanic": "complement",
+     "config": {
+      "targets": [
+       11,
+       13,
+       14,
+       15,
+       16,
+       17,
+       18,
+       19
+      ],
+      "step": 1,
+      "visual": "cards"
+     },
+     "hint_levels": [
+      "ابدأ من العدد المعروف وعُدّ حتى المجموع.",
+      "استخدم أصابعك أو إطار العشرة."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L10-FACTS",
+     "title": "حقائق العدد ١٢",
+     "skill_id": "SK-PAIR12",
+     "mechanic": "fact-family",
+     "config": {
+      "family": "to12"
+     },
+     "hint_levels": [
+      "الحقائق الصحيحة تستخدم الأعداد الثلاثة نفسها.",
+      "في الطرح نبدأ بالعدد ١٢."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L11",
+   "lesson_name": "كم طريقة؟",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 14,
+    "source_pdf_page": 25,
+    "core_activity": "6.1",
+    "core_activity_title": "الجمع باستخدام الأزواج العددية"
+   },
+   "objectives": [
+    "يجمع أربعة أو خمسة أعداد من رقم واحد باستخدام أزواج العشرة والمضاعفات.",
+    "يدرك أن تغيير ترتيب الجمع لا يغيّر المجموع."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-ADD-MANY",
+     "text": "جمع عدة أعداد بطرق مختلفة"
+    }
+   ],
+   "book_tasks": [
+    "اجمع الأعداد في كل مجموعة: (٨، ٧، ٣، ٤) (٧، ٢، ٨، ٦) (٥، ٢، ٩، ٤) (٤، ٨، ٩، ٥، ١).",
+    "جرّب طريقة أخرى للجمع؛ يجب أن تحصل على نفس المجموع.",
+    "ارمِ حجر النرد لإيجاد رقم جديد تضيفه إلى إحدى المجموعات."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L11-ADD",
+     "title": "اجمع المجموعة",
+     "skill_id": "SK-ADD-MANY",
+     "mechanic": "add-many",
+     "config": {
+      "countMin": 4,
+      "countMax": 5
+     },
+     "hint_levels": [
+      "ابحث عن عددين مجموعهما ١٠.",
+      "اجمع العشرات أولًا ثم الباقي."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L11-TENS",
+     "title": "أزواج العشرة",
+     "skill_id": "SK-ADD-MANY",
+     "mechanic": "pair-pick",
+     "config": {
+      "target": 10,
+      "step": 1
+     },
+     "hint_levels": [
+      "أي عددين يكوّنان ١٠؟",
+      "٣ و٧، ٤ و٦، ٨ و٢..."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L12",
+   "lesson_name": "قلوب ونجوم",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 15,
+    "source_pdf_page": 26,
+    "core_activity": "6.2",
+    "core_activity_title": "التحقق من الحل"
+   },
+   "objectives": [
+    "يجد العدد المكمّل في أزواج ٢٠ و٣٠.",
+    "يتحقق من الحلول ويكتشف البطاقات المفقودة."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-PAIR20-30",
+     "text": "أزواج العددين ٢٠ و٣٠"
+    }
+   ],
+   "book_tasks": [
+    "بطاقات القلوب تحمل أزواجًا للعدد ٢٠ (١٥، ١٣، ٢٠، ١٨، ٢، ١٧): ما العدد على الجانب الآخر؟ ما البطاقات المفقودة؟",
+    "بطاقات النجوم أزواج للعدد ٣٠ (١٤، ٩، ٦، ٢٣، ٨، ٥).",
+    "ما التشابه والاختلاف بين المجموعتين؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L12-CARDS",
+     "title": "الجانب الآخر من البطاقة",
+     "skill_id": "SK-PAIR20-30",
+     "mechanic": "complement",
+     "config": {
+      "targets": [
+       20,
+       30
+      ],
+      "step": 1,
+      "visual": "cards"
+     },
+     "hint_levels": [
+      "اكتب قائمة بالأزواج العددية.",
+      "الجانب الآخر = المجموع − العدد الظاهر."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L12-PICK",
+     "title": "زوج الثلاثين",
+     "skill_id": "SK-PAIR20-30",
+     "mechanic": "pair-pick",
+     "config": {
+      "target": 30,
+      "step": 1
+     },
+     "hint_levels": [
+      "ابحث عن عددين مجموعهما ٣٠.",
+      "٢٣ و٧، ١٤ و١٦..."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L13",
+   "lesson_name": "آلة التساوي",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 16,
+    "source_pdf_page": 27,
+    "core_activity": "6.3",
+    "core_activity_title": "المتساوي والمتكافئ"
+   },
+   "objectives": [
+    "يحدد حسابات متساوية (متكافئة) في القيمة.",
+    "يكوّن سلسلة من حسابات متساوية."
+   ],
+   "vocabulary": [
+    {
+     "term": "تساوي / تكافؤ",
+     "meaning": "لديها القيمة أو الكمية نفسها: ٥+٢ و٩−٢ لهما قيمة العدد ٧"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-EQUIV",
+     "text": "الحسابات المتساوية"
+    }
+   ],
+   "book_tasks": [
+    "آلة التساوي تعطي حسابات متساوية (٢١ − ٥ = ١٢ + ٤).",
+    "اختر بطاقة لتدخل إلى آلة التساوي: (٩+٥، ٣٩+٣، ٢٢+٩، ٣٦−٧، ٢٣+٤، ٥+١١، ١٧−٨، ١٣+٦).",
+    "ما أطول صف من العمليات الحسابية يمكنك صنعه؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L13-MACHINE",
+     "title": "آلة التساوي",
+     "skill_id": "SK-EQUIV",
+     "mechanic": "equivalence",
+     "config": {
+      "maxValue": 45
+     },
+     "hint_levels": [
+      "احسب قيمة البطاقة أولًا.",
+      "ثم احسب قيمة كل خيار وقارن."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L13-BALANCE",
+     "title": "وازن الطرفين",
+     "skill_id": "SK-EQUIV",
+     "mechanic": "balance",
+     "config": {
+      "maxValue": 20
+     },
+     "hint_levels": [
+      "احسب الطرف الكامل أولًا.",
+      "ما العدد الذي يجعل الطرفين متساويين؟"
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1A-L14",
+   "lesson_name": "المصفوفات",
+   "unit_id": "MATH-S1-U1A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 17,
+    "source_pdf_page": 28,
+    "core_activity": "7.1",
+    "core_activity_title": "مقدمة حول المصفوفة"
+   },
+   "objectives": [
+    "يصف المصفوفة بالصفوف والأعمدة ويكتبها جمعًا متكررًا وضربًا.",
+    "يحل مسائل قصصية بالمصفوفات (عجلات الدراجات، الريال العُماني)."
+   ],
+   "vocabulary": [
+    {
+     "term": "المصفوفات",
+     "meaning": "أشياء مرتبة في صفوف وأعمدة ليسهل عدّها: ٣ × ٢ أو ٣ + ٣ أو ٢ + ٢ + ٢"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-ARRAY",
+     "text": "المصفوفات والجمع المتكرر"
+    }
+   ],
+   "book_tasks": [
+    "سمِّ المصفوفات (ضفادع، نجوم، ورود، عجلات، عناكب، صدف).",
+    "ارسم وسمِّ مصفوفاتك.",
+    "كم عدد العجلات في أربع درّاجات بثلاث عجلات؟",
+    "يكسب خلفان ريالًا لكل عجلة يصلحها: كم يكسب إذا أصلح خمس درّاجات ثلاثية العجلات؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L14-NAME",
+     "title": "سمِّ المصفوفة",
+     "skill_id": "SK-ARRAY",
+     "mechanic": "array-sentences",
+     "config": {
+      "maxRows": 5,
+      "maxCols": 10
+     },
+     "hint_levels": [
+      "عُدّ الصفوف ثم عدد الأشياء في كل صف.",
+      "كل صف يُكتب كعدد في الجمع المتكرر."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L14-BUILD",
+     "title": "ابنِ المصفوفة",
+     "skill_id": "SK-ARRAY",
+     "mechanic": "array-build",
+     "config": {
+      "maxRows": 5,
+      "maxCols": 10
+     },
+     "hint_levels": [
+      "المس المربعات لتكوّن صفوفًا متساوية.",
+      "عدد الصفوف × عدد الأعمدة."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L14-WHEELS",
+     "title": "عجلات وريالات",
+     "skill_id": "SK-ARRAY",
+     "mechanic": "skip-count-groups",
+     "config": {
+      "sizes": [
+       3
+      ],
+      "kMax": 6,
+      "context": "tricycles"
+     },
+     "hint_levels": [
+      "كل درّاجة لها ٣ عجلات.",
+      "عُدّ بالقفز: ٣، ٦، ٩..."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1B-L15",
+   "lesson_name": "الأشكال",
+   "unit_id": "MATH-S1-U1B",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 18,
+    "source_pdf_page": 29,
+    "core_activity": "8.1",
+    "core_activity_title": "الأشكال الثنائية الأبعاد"
+   },
+   "objectives": [
+    "يتعرف المثلثات ويكوّن منها أشكالًا.",
+    "يعدّ أضلاع الأشكال (حتى ٨ أضلاع) ويسميها."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-POLY",
+     "text": "الأشكال ثنائية الأبعاد وأضلاعها"
+    }
+   ],
+   "book_tasks": [
+    "اصنع شكل نجمة من بعض المثلثات. كم من الأشكال المختلفة للنجمة يمكنك أن تصنع؟",
+    "ماذا لو استخدمت أنواعًا مختلفة من المثلثات؟",
+    "هل يمكنك أن تصنع شكلًا من ٧ أو ٨ جوانب أو أكثر؟",
+    "هل يمكنك أن تصنع نمطًا أو صورة باستعمال خط التماثل؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L15-SIDES",
+     "title": "كم ضلعًا؟",
+     "skill_id": "SK-POLY",
+     "mechanic": "polygon-sides",
+     "config": {
+      "min": 3,
+      "max": 8
+     },
+     "hint_levels": [
+      "ضع إصبعك على ضلع وعُدّ وأنت تدور حول الشكل.",
+      "عدد الأضلاع يساوي عدد الرؤوس."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L15-SELECT",
+     "title": "اختر الأشكال",
+     "skill_id": "SK-POLY",
+     "mechanic": "shape-select",
+     "config": {
+      "min": 3,
+      "max": 8
+     },
+     "hint_levels": [
+      "عُدّ أضلاع كل شكل.",
+      "قد يكون هناك أكثر من شكل صحيح."
+     ]
+    }
+   ],
+   "interpretation_notes": "Star-making with physical triangles is a hands-on task; the app practises side counting and shape recognition only.",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1B-L16",
+   "lesson_name": "ابحث عن الأوجه",
+   "unit_id": "MATH-S1-U1B",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 19,
+    "source_pdf_page": 30,
+    "core_activity": "8.2",
+    "core_activity_title": "المجسمات"
+   },
+   "objectives": [
+    "يعدّ أوجه المكعب التي يمكن رؤيتها من موضع ثابت.",
+    "يقارن عدد الأوجه المرئية عند ترتيب مكعبين أو ثلاثة."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-CUBE-FACES",
+     "text": "أوجه المكعب"
+    }
+   ],
+   "book_tasks": [
+    "ضع مكعبًا أمامك: كم عدد الأوجه التي يمكنك أن تراها؟ (٣ أوجه)",
+    "أعد التجربة بمكعبين بطرق مختلفة (٣ أوجه، ٣ أوجه، ٦ أوجه).",
+    "بأي طريقة يمكنك أن ترى أكبر عدد من الأوجه بثلاثة مكعبات؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L16-FACES",
+     "title": "كم وجهًا ترى؟",
+     "skill_id": "SK-CUBE-FACES",
+     "mechanic": "cube-faces",
+     "config": {
+      "maxCubes": 3
+     },
+     "hint_levels": [
+      "كل مجسّم منفصل نرى منه ٣ أوجه.",
+      "المكعبات الملتصقة في صف تكوّن مجسّمًا واحدًا."
+     ]
+    }
+   ],
+   "interpretation_notes": "Rule from p.19 labels: each separate cube or straight row of joined cubes shows 3 faces from the fixed view.",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1B-L17",
+   "lesson_name": "الوردات الورقية",
+   "unit_id": "MATH-S1-U1B",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 20,
+    "source_pdf_page": 31,
+    "core_activity": "8.3",
+    "core_activity_title": "التماثل"
+   },
+   "objectives": [
+    "يتعرف خط التماثل في الأشكال ويكتشفه بالطي.",
+    "يحدد عدد خطوط التماثل في الدائرة المطوية."
+   ],
+   "vocabulary": [
+    {
+     "term": "خط التماثل",
+     "meaning": "خط مستقيم يقسم النمط أو الصورة إلى نصفين متطابقين كانعكاس الصورة على المرآة"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-SYM-LINE",
+     "text": "خط التماثل"
+    }
+   ],
+   "book_tasks": [
+    "ارسم دائرة وقصّها واطوِها لينطبق كل نصف على الآخر.",
+    "افتح الدائرة: هل يمكنك أن ترى خط التماثل؟",
+    "كم عدد خطوط التماثل التي يمكنك ملاحظتها؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L17-CHECK",
+     "title": "هل هو خط تماثل؟",
+     "skill_id": "SK-SYM-LINE",
+     "mechanic": "symmetry-check",
+     "config": {},
+     "hint_levels": [
+      "تخيّل أنك تطوي الشكل على الخط.",
+      "هل ينطبق النصفان تمامًا؟"
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L17-COMPLETE",
+     "title": "أكمل النصف الآخر",
+     "skill_id": "SK-SYM-LINE",
+     "mechanic": "symmetry-complete",
+     "config": {
+      "size": 6,
+      "axes": [
+       "vertical",
+       "horizontal"
+      ]
+     },
+     "hint_levels": [
+      "كل مربع ملون له صورة على البعد نفسه من الخط.",
+      "انظر إلى الصورة في المرآة."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1B-L18",
+   "lesson_name": "التماثل",
+   "unit_id": "MATH-S1-U1B",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 21,
+    "source_pdf_page": 32,
+    "core_activity": "8.4",
+    "core_activity_title": "التماثل"
+   },
+   "objectives": [
+    "يكوّن نمطًا متماثلًا حول خط تماثل أفقي أو رأسي أو مائل.",
+    "يكمل صورة متماثلة."
+   ],
+   "vocabulary": [
+    {
+     "term": "خط التماثل",
+     "meaning": "الخط الذي ينعكس عليه النمط"
+    },
+    {
+     "term": "الانعكاس",
+     "meaning": "صورة الشيء في المرآة"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-SYM-MAKE",
+     "text": "تكوين الأنماط المتماثلة"
+    }
+   ],
+   "book_tasks": [
+    "اختر بعض الأشكال واصنع نمطًا أو صورة مستخدمًا خطًا واحدًا للتماثل.",
+    "يمكنك أن تضع خط التماثل أفقيًا أو رأسيًا أو مائلًا.",
+    "ضع صورتك المتماثلة مع صورة زميلك على خط تماثل واحد لتحصل على صورة أكبر."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L18-COMPLETE",
+     "title": "أكمل النمط المتماثل",
+     "skill_id": "SK-SYM-MAKE",
+     "mechanic": "symmetry-complete",
+     "config": {
+      "size": 6,
+      "axes": [
+       "vertical",
+       "horizontal",
+       "diagonal"
+      ]
+     },
+     "hint_levels": [
+      "ابدأ بالمربعات القريبة من الخط.",
+      "المسافة إلى الخط تبقى نفسها في الجهة الأخرى."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L18-CHECK",
+     "title": "أين خط التماثل؟",
+     "skill_id": "SK-SYM-MAKE",
+     "mechanic": "symmetry-check",
+     "config": {},
+     "hint_levels": [
+      "اطوِ الشكل في ذهنك.",
+      "قد يكون الخط أفقيًا أو رأسيًا أو مائلًا."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1C-L19",
+   "lesson_name": "أي علبة أفضل؟",
+   "unit_id": "MATH-S1-U1C",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 22,
+    "source_pdf_page": 33,
+    "core_activity": "9.1",
+    "core_activity_title": "صناعة علبة"
+   },
+   "objectives": [
+    "يعدّ المكعبات المرتبة بانتظام في صفوف وأعمدة.",
+    "يقارن سعة علبتين ويفسّر لماذا يتسع الترتيب المنظم لعدد أكبر."
+   ],
+   "vocabulary": [
+    {
+     "term": "سنتيمتر (سم)",
+     "meaning": "وحدة لقياس الطول"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-PACK",
+     "text": "عدّ المكعبات المرتبة ومقارنة السعة"
+    }
+   ],
+   "book_tasks": [
+    "املأ العلبة (أ) بالمكعبات بشكل عشوائي والعلبة (ب) بشكل منظم.",
+    "أي من العلب تحتوي على أكبر عدد من المكعبات؟ كيف عرفت؟",
+    "ماذا لو استخدمت كرات زجاجية بدلًا من المكعبات؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L19-LAYER",
+     "title": "كم مكعبًا في العلبة؟",
+     "skill_id": "SK-PACK",
+     "mechanic": "array-count",
+     "config": {
+      "maxRows": 6,
+      "maxCols": 6,
+      "context": "box"
+     },
+     "hint_levels": [
+      "عُدّ المكعبات في صف واحد.",
+      "ثم عُدّ بالقفز لكل الصفوف."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L19-COMPARE",
+     "title": "أي علبة فيها أكثر؟",
+     "skill_id": "SK-PACK",
+     "mechanic": "compare-quantity",
+     "config": {
+      "maxRows": 6,
+      "maxCols": 6
+     },
+     "hint_levels": [
+      "احسب عدد المكعبات في كل علبة.",
+      "قارن العددين."
+     ]
+    }
+   ],
+   "interpretation_notes": "Random packing cannot be computed; the app practises counting neatly arranged layers and comparing them.",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1C-L20",
+   "lesson_name": "كم الطول؟ كم الارتفاع؟",
+   "unit_id": "MATH-S1-U1C",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 23,
+    "source_pdf_page": 34,
+    "core_activity": "9.2",
+    "core_activity_title": "قياس المسافة"
+   },
+   "objectives": [
+    "يقدّر المسافة ثم يقيسها ويقارن النتائج.",
+    "يقرأ الطول بالسنتيمتر على المسطرة.",
+    "يستخدم أبعد من / الأبعد."
+   ],
+   "vocabulary": [
+    {
+     "term": "أبعد من، الأبعد",
+     "meaning": "للمقارنة بين المسافات"
+    },
+    {
+     "term": "سنتيمتر",
+     "meaning": "وحدة الطول على المسطرة"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-LENGTH",
+     "text": "قياس الطول ومقارنة المسافات"
+    }
+   ],
+   "book_tasks": [
+    "اختاروا الحركة ثم تناوبوا على تخمين بعد الطول (المسافة) قبل أن تتحركوا.",
+    "كم كان تخمينك تقريبًا؟",
+    "هل يمكنك إيجاد طرق أخرى لقياس الطول؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L20-RULER",
+     "title": "اقرأ المسطرة",
+     "skill_id": "SK-LENGTH",
+     "mechanic": "ruler-read",
+     "config": {
+      "maxCm": 15
+     },
+     "hint_levels": [
+      "ابدأ القراءة من الصفر.",
+      "انظر أين ينتهي الشريط."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L20-FARTHEST",
+     "title": "من الأبعد؟",
+     "skill_id": "SK-LENGTH",
+     "mechanic": "compare-winner",
+     "config": {
+      "context": "distance"
+     },
+     "hint_levels": [
+      "الأبعد هو صاحب العدد الأكبر.",
+      "قارن الأعداد الثلاثة."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1C-L21",
+   "lesson_name": "الأجسام المتحركة",
+   "unit_id": "MATH-S1-U1C",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 24,
+    "source_pdf_page": 35,
+    "core_activity": "9.3",
+    "core_activity_title": "صناعة أجسام متحركة"
+   },
+   "objectives": [
+    "يفهم معنى التوازن في الجسم المتحرك.",
+    "يقيس أطوالًا بالسنتيمتر."
+   ],
+   "vocabulary": [
+    {
+     "term": "متحرّك",
+     "meaning": "جسم معلّق يتحرك"
+    },
+    {
+     "term": "متوازن",
+     "meaning": "الطرفان متساويان"
+    },
+    {
+     "term": "سنتيمتر",
+     "meaning": "وحدة الطول"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-BALANCE",
+     "text": "التوازن والقياس"
+    }
+   ],
+   "book_tasks": [
+    "اصنع جسمًا متحركًا.",
+    "هل يمكنك أن تزيد أجسامًا أخرى للجسم المتحرك؟",
+    "هل يمكنك أن تزيد مستويات أخرى؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L21-BALANCE",
+     "title": "وازن الجسم المتحرك",
+     "skill_id": "SK-BALANCE",
+     "mechanic": "balance",
+     "config": {
+      "maxValue": 20
+     },
+     "hint_levels": [
+      "مجموع الطرفين يجب أن يكون متساويًا.",
+      "احسب الطرف الكامل أولًا."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L21-RULER",
+     "title": "طول الخيط",
+     "skill_id": "SK-BALANCE",
+     "mechanic": "ruler-read",
+     "config": {
+      "maxCm": 20
+     },
+     "hint_levels": [
+      "ابدأ من الصفر.",
+      "اقرأ الرقم عند نهاية الخيط."
+     ]
+    }
+   ],
+   "interpretation_notes": "Making a mobile is a craft; the app practises the lesson vocabulary (balanced, centimetre) with equal-sides and ruler games.",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1C-L22",
+   "lesson_name": "قياس الوقت",
+   "unit_id": "MATH-S1-U1C",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 25,
+    "source_pdf_page": 36,
+    "core_activity": "10.1",
+    "core_activity_title": "قياس الوقت"
+   },
+   "objectives": [
+    "يعرف أن الدقيقة ٦٠ ثانية ونصف الدقيقة ٣٠ ثانية.",
+    "يقرأ الثواني على ساعة التوقيت.",
+    "يسجّل المدة بعلامات العد."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-TIME-SEC",
+     "text": "الدقائق والثواني"
+    }
+   ],
+   "book_tasks": [
+    "يستخدم أحمد ساعة رملية مدتها دقيقة واحدة لتسجيل المدة.",
+    "سجّل أحمد: (أ) دقيقة واحدة (ب) ٣٠ ثانية (ج) دقيقتان (د) ؟؟؟ — كم كانت مدة القياس الأخير؟",
+    "كم عدد الثواني على كل ساعة من ساعات التوقيت؟",
+    "كم من الوقت استغرق سعيد ليدور حول الصف ثلاث مرات؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L22-STOPWATCH",
+     "title": "ساعة التوقيت",
+     "skill_id": "SK-TIME-SEC",
+     "mechanic": "stopwatch-read",
+     "config": {},
+     "hint_levels": [
+      "كل رقم على الساعة يزيد ٥ ثوانٍ.",
+      "انظر أين يشير العقرب."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L22-CONVERT",
+     "title": "دقائق وثوانٍ",
+     "skill_id": "SK-TIME-SEC",
+     "mechanic": "time-convert",
+     "config": {
+      "maxMinutes": 3
+     },
+     "hint_levels": [
+      "الدقيقة = ٦٠ ثانية.",
+      "نصف الدقيقة = ٣٠ ثانية، وكل علامة عدّ = دقيقة."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1C-L23",
+   "lesson_name": "من الرابح؟",
+   "unit_id": "MATH-S1-U1C",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 26,
+    "source_pdf_page": 37,
+    "core_activity": "10.2",
+    "core_activity_title": "قياس المسافة"
+   },
+   "objectives": [
+    "يقارن النتائج: في رمي المسافة يفوز الأبعد، وفي السباق يفوز الأقصر زمنًا.",
+    "يرتب النتائج."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-COMPARE-MEASURE",
+     "text": "مقارنة القياسات لتحديد الفائز"
+    }
+   ],
+   "book_tasks": [
+    "رمت أمل كيس رمل على بعد ٥ خطوات، وأحمد ١٨ خطوة، وعائشة ١١ خطوة: من الرابح؟",
+    "أنهى راشد السباق خلال ١٢ ثانية، وهدى ٢٢ ثانية، وأحمد ١٧ ثانية: من الرابح؟",
+    "هل الرابح دائمًا الذي لديه أقصر مدة زمنية؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L23-WINNER",
+     "title": "من الرابح؟",
+     "skill_id": "SK-COMPARE-MEASURE",
+     "mechanic": "compare-winner",
+     "config": {
+      "context": "mixed"
+     },
+     "hint_levels": [
+      "في الرمي: الأبعد يفوز. في السباق: الأسرع (الأقل ثواني) يفوز.",
+      "قارن الأعداد."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L23-ORDER",
+     "title": "رتّب النتائج",
+     "skill_id": "SK-COMPARE-MEASURE",
+     "mechanic": "order-values",
+     "config": {
+      "count": 4,
+      "min": 3,
+      "max": 30,
+      "direction": "asc"
+     },
+     "hint_levels": [
+      "ابدأ بأصغر عدد.",
+      "تحقق أن كل عدد أكبر من الذي قبله."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1C-L24",
+   "lesson_name": "لأي ارتفاع يمكنك أن تقفز؟",
+   "unit_id": "MATH-S1-U1C",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 27,
+    "source_pdf_page": 38,
+    "core_activity": "10.3",
+    "core_activity_title": "قياس الارتفاع"
+   },
+   "objectives": [
+    "يجمع بيانات عن قياسات الارتفاع ويحدد الأعلى والأدنى.",
+    "يقارن الأطوال بالسنتيمتر."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-DATA-HEIGHT",
+     "text": "مقارنة بيانات الارتفاع"
+    }
+   ],
+   "book_tasks": [
+    "كم الارتفاع الذي يمكنك القفز إليه إذا غيّرت بداية انطلاقك؟",
+    "هل التلميذ الأطول قفز القفزة الأكثر ارتفاعًا؟",
+    "اجمع معلومات عن القفزات التي قام بها أصدقاؤك في صفك. من الذي تمكن من القفز إلى الارتفاع الأعلى؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L24-HIGHEST",
+     "title": "القفزة الأعلى",
+     "skill_id": "SK-DATA-HEIGHT",
+     "mechanic": "compare-winner",
+     "config": {
+      "context": "height"
+     },
+     "hint_levels": [
+      "الأعلى هو صاحب العدد الأكبر.",
+      "قارن الأعداد في الجدول."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L24-ORDER",
+     "title": "رتّب القفزات",
+     "skill_id": "SK-DATA-HEIGHT",
+     "mechanic": "order-values",
+     "config": {
+      "count": 4,
+      "min": 10,
+      "max": 60,
+      "direction": "desc"
+     },
+     "hint_levels": [
+      "ابدأ بأكبر عدد.",
+      "ثم الذي يليه."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1C-L25",
+   "lesson_name": "صنع البسكويت",
+   "unit_id": "MATH-S1-U1C",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 28,
+    "source_pdf_page": 39,
+    "core_activity": "none_printed",
+    "core_activity_title": "قياس المقادير"
+   },
+   "objectives": [
+    "يقرأ الكتلة بالغرام على الميزان بمؤشر والميزان الرقمي.",
+    "يعرف أن الكيلوغرام ١٠٠٠ غرام."
+   ],
+   "vocabulary": [
+    {
+     "term": "الكتلة",
+     "meaning": "ثقل أو خفة جسم ما، وتقاس بالغرام"
+    },
+    {
+     "term": "الغرام (غم)",
+     "meaning": "وحدة قياس الكتلة"
+    },
+    {
+     "term": "١ كيلوغرام (كغم)",
+     "meaning": "١٠٠٠ غرام"
+    },
+    {
+     "term": "ميزان بمؤشر",
+     "meaning": "يقيس الكتلة بإشارة المؤشر إلى أحد الأرقام"
+    },
+    {
+     "term": "ميزان رقمي",
+     "meaning": "يقيس الكتلة بعرض رقم"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-MASS-READ",
+     "text": "قراءة الكتلة بالغرام"
+    }
+   ],
+   "book_tasks": [
+    "٢٠٠ غرام من الطحين (ميزان بمؤشر وميزان رقمي).",
+    "١٠٠ غرام من الزبدة."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L25-DIAL",
+     "title": "اقرأ الميزان",
+     "skill_id": "SK-MASS-READ",
+     "mechanic": "scale-read",
+     "config": {
+      "max": 1000,
+      "tick": 100
+     },
+     "hint_levels": [
+      "كل علامة كبيرة تزيد ١٠٠ غرام.",
+      "انظر أين يشير المؤشر."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L25-HEAVIER",
+     "title": "أيهما أثقل؟",
+     "skill_id": "SK-MASS-READ",
+     "mechanic": "compare-winner",
+     "config": {
+      "context": "mass"
+     },
+     "hint_levels": [
+      "الأثقل كتلته أكبر.",
+      "١ كغم = ١٠٠٠ غرام."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1C-L26",
+   "lesson_name": "البسكويت",
+   "unit_id": "MATH-S1-U1C",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 29,
+    "source_pdf_page": 40,
+    "core_activity": "11.2",
+    "core_activity_title": "وقت الطهي"
+   },
+   "objectives": [
+    "يضاعف كميات الوصفة لصنع ضعف العدد من البسكويت."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-DOUBLE-RECIPE",
+     "text": "مضاعفة الكميات"
+    }
+   ],
+   "book_tasks": [
+    "الوصفة لخمس قطع: ٧٠ غم دقيق، ملعقة زنجبيل صغيرة، ٢٠ غم زبدة، ٣٥ غم سكر بني، بيضة واحدة، ملعقتان كبيرتان من العسل.",
+    "ماذا لو أردت أن تصنع عشر قطع؟ ما الكميات اللازمة؟",
+    "ماذا لو أردت أن تصنع البسكويت لجميع زملائك في الصف؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L26-RECIPE",
+     "title": "ضاعف الوصفة",
+     "skill_id": "SK-DOUBLE-RECIPE",
+     "mechanic": "double",
+     "config": {
+      "context": "recipe",
+      "max": 70
+     },
+     "hint_levels": [
+      "١٠ قطع ضعف ٥ قطع.",
+      "الضعف = العدد + العدد نفسه."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L26-HALF",
+     "title": "كم كانت الكمية؟",
+     "skill_id": "SK-DOUBLE-RECIPE",
+     "mechanic": "double-reverse",
+     "config": {
+      "maxDouble": 140,
+      "context": "recipe"
+     },
+     "hint_levels": [
+      "أي عدد إذا ضاعفته أعطاك هذه الكمية؟",
+      "قسّم الكمية إلى جزأين متساويين."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U1C-L27",
+   "lesson_name": "ما الثمن؟",
+   "unit_id": "MATH-S1-U1C",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 30,
+    "source_pdf_page": 41,
+    "core_activity": "11.3",
+    "core_activity_title": "البسكويت الثمين"
+   },
+   "objectives": [
+    "يعرف قيم الأوراق النقدية العُمانية وأن الريال ١٠٠٠ بيسة.",
+    "يحسب ثمن عدة أغراض والباقي من ورقة نقدية."
+   ],
+   "vocabulary": [
+    {
+     "term": "العملة",
+     "meaning": "النقد المستعمل في البلد"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-MONEY",
+     "text": "النقود: المجموع والباقي"
+    }
+   ],
+   "book_tasks": [
+    "كم ٥٠٠ بيسة في الريال العماني الواحد؟",
+    "إذا كنت تمتلك ١٠ ريالات وتود شراء شيء بقيمة ٧ ريالات، فكم ريالًا يبقى معك؟",
+    "إذا كان ثمن الأغراض ريالين وأرجع لك البائع ثلاثة ريالات، فما العملة الورقية التي دفعتها؟",
+    "شطيرة (١ ريال) وكتاب (٢ ريال) وحذاء (٥ ريالات): كم ستدفع؟",
+    "صف علاقة الورقة النقدية من فئة ٥٠ ريالًا بالفئات ١٠ و٥ و١."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L27-TOTAL",
+     "title": "كم ستدفع؟",
+     "skill_id": "SK-MONEY",
+     "mechanic": "money-total",
+     "config": {
+      "maxPrice": 10
+     },
+     "hint_levels": [
+      "اجمع الأثمان.",
+      "ابدأ بأكبر ثمن."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L27-CHANGE",
+     "title": "كم يبقى معك؟",
+     "skill_id": "SK-MONEY",
+     "mechanic": "money-change",
+     "config": {
+      "notes": [
+       5,
+       10,
+       20
+      ]
+     },
+     "hint_levels": [
+      "الباقي = ما دفعته − الثمن.",
+      "عُدّ من الثمن صعودًا حتى قيمة الورقة."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L27-NOTE",
+     "title": "أي ورقة دفعت؟",
+     "skill_id": "SK-MONEY",
+     "mechanic": "money-note",
+     "config": {
+      "notes": [
+       1,
+       5,
+       10,
+       20,
+       50
+      ]
+     },
+     "hint_levels": [
+      "الورقة = الثمن + الباقي.",
+      "تحقق أن الورقة موجودة فعلًا."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L27-BAISA",
+     "title": "ريال وبيسات",
+     "skill_id": "SK-MONEY",
+     "mechanic": "money-baisa",
+     "config": {
+      "maxRials": 5
+     },
+     "hint_levels": [
+      "الريال = ١٠٠٠ بيسة.",
+      "كل ٥٠٠ بيسة نصف ريال."
+     ]
+    }
+   ],
+   "interpretation_notes": "Banknote images from p.30 are NOT reproduced; plain value cards are used instead.",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L28",
+   "lesson_name": "عشرات وأكثر",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 31,
+    "source_pdf_page": 42,
+    "core_activity": "12.1",
+    "core_activity_title": "العشرات والآحاد حتى 100"
+   },
+   "objectives": [
+    "يكوّن أعدادًا من رقمين أو ثلاثة من بطاقات القيمة المكانية.",
+    "يحدد عدد العشرات في العدد ويرتب الأعداد."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-PV",
+     "text": "العشرات والآحاد حتى ١٠٠"
+    }
+   ],
+   "book_tasks": [
+    "كم عددًا مختلفًا مكونًا من رقمين أو ثلاثة أرقام يمكنك تكوينه مستخدمًا البطاقات ١٠، ٣٠، ٨٠، ١٠٠، ٧، ٥، ٢؟",
+    "ضع الأعداد بالترتيب من الأصغر إلى الأكبر.",
+    "كم يبلغ عدد العشرات في كل من الأعداد التي وضعتها؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L28-BUILD",
+     "title": "ركّب العدد",
+     "skill_id": "SK-PV",
+     "mechanic": "place-value-build",
+     "config": {
+      "tensCards": [
+       10,
+       20,
+       30,
+       40,
+       50,
+       60,
+       70,
+       80,
+       90
+      ],
+      "onesCards": [
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9
+      ]
+     },
+     "hint_levels": [
+      "العدد = بطاقة العشرات + بطاقة الآحاد.",
+      "٣٧ = ٣٠ + ٧."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L28-TENS",
+     "title": "كم عشرة؟",
+     "skill_id": "SK-PV",
+     "mechanic": "tens-count",
+     "config": {
+      "max": 100
+     },
+     "hint_levels": [
+      "انظر إلى الرقم الذي على اليسار.",
+      "٣٧ فيه ٣ عشرات و٧ آحاد."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L28-ORDER",
+     "title": "من الأصغر إلى الأكبر",
+     "skill_id": "SK-PV",
+     "mechanic": "order-values",
+     "config": {
+      "count": 5,
+      "min": 2,
+      "max": 107,
+      "direction": "asc"
+     },
+     "hint_levels": [
+      "قارن العشرات أولًا.",
+      "إذا تساوت العشرات قارن الآحاد."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L29",
+   "lesson_name": "أكبر من، أصغر من",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 32,
+    "source_pdf_page": 43,
+    "core_activity": "12.2",
+    "core_activity_title": "مقارنة وترتيب الأعداد"
+   },
+   "objectives": [
+    "يقارن عددين من رقمين باستخدام < و> و=.",
+    "يكوّن جملًا عددية صحيحة من بطاقات الأرقام."
+   ],
+   "vocabulary": [
+    {
+     "term": "أقل من <",
+     "meaning": "٢٣ < ٤٥"
+    },
+    {
+     "term": "أكبر من >",
+     "meaning": "٤٥ > ٢٣"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-COMPARE",
+     "text": "المقارنة بالرموز < > ="
+    }
+   ],
+   "book_tasks": [
+    "استخدمت خديجة جميع بطاقات الأرقام (٧، ٧، ٩، ٨، ٨، ٧، ٢، ٤، ٣، ٦، ٥) لتصنع جملة عددية: ما الجملة العددية التي قد تكون جملتها؟",
+    "تذكر أن تستخدم كل البطاقات، وبالأخص < و>.",
+    "كم مجموعة من الجمل العددية المختلفة يمكنك أن تكوّنها؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L29-SIGN",
+     "title": "أكبر أم أصغر؟",
+     "skill_id": "SK-COMPARE",
+     "mechanic": "compare-sign",
+     "config": {
+      "min": 10,
+      "max": 99
+     },
+     "hint_levels": [
+      "قارن العشرات أولًا.",
+      "الفتحة الكبيرة للرمز تتجه نحو العدد الأكبر."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L29-DIGITS",
+     "title": "جملة من البطاقات",
+     "skill_id": "SK-COMPARE",
+     "mechanic": "digit-sentence",
+     "config": {
+      "digits": 4
+     },
+     "hint_levels": [
+      "كوّن عددين من رقمين.",
+      "الفتحة الكبيرة للرمز تتجه نحو العدد الأكبر."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L29-ORDER",
+     "title": "رتّب الأعداد",
+     "skill_id": "SK-COMPARE",
+     "mechanic": "order-values",
+     "config": {
+      "count": 4,
+      "min": 10,
+      "max": 99,
+      "direction": "asc"
+     },
+     "hint_levels": [
+      "قارن العشرات أولًا.",
+      "ثم الآحاد."
+     ]
+    }
+   ],
+   "interpretation_notes": "Comparison sentences are written in the book's RTL form; the open side of < or > always faces the larger number.",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L30",
+   "lesson_name": "التقدير",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 33,
+    "source_pdf_page": 44,
+    "core_activity": "13.1",
+    "core_activity_title": "التقدير"
+   },
+   "objectives": [
+    "يقدّر عدد الأشياء تقديرًا منطقيًا ثم يتحقق بالعد.",
+    "يعدّ بالتجميع في اثنينات أو خمسات أو عشرات."
+   ],
+   "vocabulary": [
+    {
+     "term": "التقدير",
+     "meaning": "تخمين منطقي عن الكمية؛ التقدير ١٠، العد ١٢"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-ESTIMATE",
+     "text": "التقدير ثم العد"
+    }
+   ],
+   "book_tasks": [
+    "قدّر عدد النقاط الكبيرة والصغيرة.",
+    "ضع حبوب الأرز على كل نقطة ثم عُدّها.",
+    "هل كان تقديرك قريبًا من العدد الصحيح؟",
+    "اختر مجموعة من الأشياء، قدّر كم يمكن أن يكون عددها ثم عُدّها."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L30-ESTIMATE",
+     "title": "التقدير الأقرب",
+     "skill_id": "SK-ESTIMATE",
+     "mechanic": "estimate-pick",
+     "config": {
+      "min": 10,
+      "max": 90
+     },
+     "hint_levels": [
+      "لا تعدّ واحدًا واحدًا؛ انظر إلى الكمية كلها.",
+      "قارن بمجموعة من ١٠ تعرفها."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L30-COUNT",
+     "title": "تحقق بالعد",
+     "skill_id": "SK-ESTIMATE",
+     "mechanic": "count-objects",
+     "config": {
+      "min": 10,
+      "max": 90,
+      "groupBy": [
+       2,
+       5,
+       10
+      ]
+     },
+     "hint_levels": [
+      "ضعها في مجموعات من ٢ أو ٥ أو ١٠.",
+      "عُدّ المجموعات ثم الباقي."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L31",
+   "lesson_name": "أزواج إلى العشرين",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 34,
+    "source_pdf_page": 45,
+    "core_activity": "14.1",
+    "core_activity_title": "الأزواج العددية لـ 20"
+   },
+   "objectives": [
+    "يتذكر أزواج العدد ٢٠ بسرعة ودقة.",
+    "يجد الأزواج المفقودة."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-PAIR20-RECALL",
+     "text": "تذكّر أزواج العشرين"
+    }
+   ],
+   "book_tasks": [
+    "تحدَّ زميلك لتعدّا الأزواج العددية لـ ٢٠ خلال ثلاثين ثانية (٧، ؟، ٢٠، ٠، ؟، ١٥).",
+    "ما الأزواج المفقودة؟",
+    "عدِّد الأعداد من ١ إلى ٢٠ وعلى زميلك أن يستدعي العدد الآخر للزوج بأقصى سرعة."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L31-PAIRS",
+     "title": "الزوج المكمّل لـ ٢٠",
+     "skill_id": "SK-PAIR20-RECALL",
+     "mechanic": "complement",
+     "config": {
+      "targets": [
+       20
+      ],
+      "step": 1,
+      "visual": "cards"
+     },
+     "hint_levels": [
+      "٢٠ = العدد + شريكه.",
+      "١٥ و٥، ٧ و١٣..."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L31-PICK",
+     "title": "اختر الزوج",
+     "skill_id": "SK-PAIR20-RECALL",
+     "mechanic": "pair-pick",
+     "config": {
+      "target": 20,
+      "step": 1
+     },
+     "hint_levels": [
+      "ابحث عن عددين مجموعهما ٢٠.",
+      "ابدأ بالعدد الأكبر."
+     ]
+    }
+   ],
+   "interpretation_notes": "The book's 30-second challenge is optional in the app; response time never affects scoring (policy).",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L32",
+   "lesson_name": "خطوط الضعف",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 35,
+    "source_pdf_page": 46,
+    "core_activity": "14.2",
+    "core_activity_title": "الضعف"
+   },
+   "objectives": [
+    "يجد ضعف الأعداد على خطوط الأعداد (حتى ٥٠).",
+    "يجد العدد الذي ضعفه معلوم."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-DOUBLE",
+     "text": "الضعف"
+    }
+   ],
+   "book_tasks": [
+    "حدد بعض الأعداد على خط الأعداد واكتب ضعف هذا العدد فوق خط الأعداد (خطوط ٠–٥٠، ٠–١٠٠، ٠–٢٠).",
+    "ما أكبر عدد يمكنك إيجاد ضعفه؟",
+    "هل يمكنك أن تضاعف بعض الأعداد غير الموجودة على خط الأعداد؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L32-DOUBLE",
+     "title": "خطوط الضعف",
+     "skill_id": "SK-DOUBLE",
+     "mechanic": "double",
+     "config": {
+      "context": "line",
+      "max": 50
+     },
+     "hint_levels": [
+      "ابدأ بالأضعاف التي تعرفها.",
+      "ضعف ٣٠ = ٦٠ لأن ٣ + ٣ = ٦."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L32-REVERSE",
+     "title": "ضعف أي عدد؟",
+     "skill_id": "SK-DOUBLE",
+     "mechanic": "double-reverse",
+     "config": {
+      "maxDouble": 100,
+      "context": "line"
+     },
+     "hint_levels": [
+      "أي عدد إذا جمعته مع نفسه أعطاك هذا العدد؟",
+      "نصف العدد."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L33",
+   "lesson_name": "الدخيل",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 36,
+    "source_pdf_page": 47,
+    "core_activity": "14.3",
+    "core_activity_title": "تصنيف الأعداد"
+   },
+   "objectives": [
+    "يصنّف الأعداد (فردي، زوجي، مضاعفات ٢ و٥ و١٠) ويبرر اختيار الدخيل.",
+    "يحدد مضاعفات ٢ و٥ و١٠."
+   ],
+   "vocabulary": [
+    {
+     "term": "الدخيل",
+     "meaning": "المختلف عن الآخرين؛ الذي لا ينتمي إلى المجموعة"
+    },
+    {
+     "term": "مضاعف",
+     "meaning": "عندما تبدأ بالعد من صفر وتعدّ بخطوات متساوية: ٠، ٢، ٤، ٦، ٨ مضاعفات ٢؛ ٠، ٥، ١٠، ... مضاعفات ٥"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-CLASSIFY",
+     "text": "تصنيف الأعداد"
+    }
+   ],
+   "book_tasks": [
+    "أي عدد يمكن أن يكون دخيلًا (٧، ٢٥، ٦٠)؟ لماذا؟",
+    "تأكد من زميلك: هل اخترتما العدد نفسه؟ ما سبب الاختيار؟",
+    "كم سببًا مختلفًا يمكن أن يجعل من العدد دخيلًا؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L33-ODD",
+     "title": "من الدخيل؟",
+     "skill_id": "SK-CLASSIFY",
+     "mechanic": "odd-one-out",
+     "config": {
+      "max": 99
+     },
+     "hint_levels": [
+      "هل هو فردي أم زوجي؟ هل هو من مضاعفات ٥ أو ١٠؟",
+      "قد يكون هناك أكثر من إجابة صحيحة."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L33-MULT",
+     "title": "المضاعفات",
+     "skill_id": "SK-CLASSIFY",
+     "mechanic": "multiples-select",
+     "config": {
+      "ks": [
+       2,
+       5,
+       10
+      ],
+      "max": 60
+     },
+     "hint_levels": [
+      "مضاعفات ١٠ تنتهي بصفر، ومضاعفات ٥ تنتهي بصفر أو ٥.",
+      "مضاعفات ٢ أعداد زوجية."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L34",
+   "lesson_name": "قصص الأعداد",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 37,
+    "source_pdf_page": 48,
+    "core_activity": "15.1",
+    "core_activity_title": "الأعداد المكونة من رقم أو رقمين"
+   },
+   "objectives": [
+    "يجمع ويطرح أعدادًا من رقم واحد مع أعداد من رقمين.",
+    "يربط الجملة العددية بقصة ويكتب الجملة العكسية."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-STORY-INVERSE",
+     "text": "القصص العددية والعمليات العكسية"
+    }
+   ],
+   "book_tasks": [
+    "ألّف قصة تتلاءم مع الجمل العددية: ١٢+٦=١٨، ٢٤−٩=١٥، ١٨−٦=١٢، ٤٦+٧=٥٣، ١٥+٩=٢٤، ٥٣−٧=٤٦.",
+    "على زميلك أن يؤلف عكس قصة جملتك العددية: إذا كانت القصة عن ١٥+٩=٢٤ فعكس القصة يكون عن ٢٤−٩=١٥."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L34-STORY",
+     "title": "أي جملة تناسب القصة؟",
+     "skill_id": "SK-STORY-INVERSE",
+     "mechanic": "story-sentence",
+     "config": {
+      "max": 60
+     },
+     "hint_levels": [
+      "هل زاد العدد أم نقص في القصة؟",
+      "زاد ← جمع، نقص ← طرح."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L34-INVERSE",
+     "title": "الجملة العكسية",
+     "skill_id": "SK-STORY-INVERSE",
+     "mechanic": "inverse-sentence",
+     "config": {
+      "max": 60
+     },
+     "hint_levels": [
+      "العكس يبدأ بالناتج.",
+      "عكس الجمع طرح، وعكس الطرح جمع."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L35",
+   "lesson_name": "حلقة الجمع",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 38,
+    "source_pdf_page": 49,
+    "core_activity": "15.2",
+    "core_activity_title": "الأعداد المكونة من رقمين"
+   },
+   "objectives": [
+    "يجمع عددًا من رقم واحد إلى عدد من رقمين.",
+    "يكمل حلقة بطاقات «أنا لديّ ... من لديه ...؟»."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-ADD-2D1D",
+     "text": "جمع عدد من رقمين وعدد من رقم واحد"
+    }
+   ],
+   "book_tasks": [
+    "بطاقتان من حلقة الجمع: «أنا ٣٤ / من هو ٢٥+٢؟» و«أنا ٢٧ / من هو ١٤+٨؟».",
+    "رتّب البطاقات الثماني كحلقة: أسفل البطاقة يطابق الإجابة أعلى بطاقة أخرى.",
+    "قم بإعداد ست بطاقات أخرى والعب مع زميلك.",
+    "إذا لم تنجح، أي من الأعداد تحتاج لتغييرها؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L35-LOOP",
+     "title": "البطاقة التالية",
+     "skill_id": "SK-ADD-2D1D",
+     "mechanic": "loop-next",
+     "config": {
+      "max": 60
+     },
+     "hint_levels": [
+      "احسب السؤال في أسفل البطاقة.",
+      "ابحث عن البطاقة التي تبدأ بالناتج."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L35-ADD",
+     "title": "من هو؟",
+     "skill_id": "SK-ADD-2D1D",
+     "mechanic": "add-2d1d",
+     "config": {
+      "max": 60
+     },
+     "hint_levels": [
+      "ابدأ بالعدد الأكبر وعُدّ للأمام.",
+      "أكمل إلى العشرة التالية ثم أضف الباقي."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L36",
+   "lesson_name": "الفرق",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 39,
+    "source_pdf_page": 50,
+    "core_activity": "16.1",
+    "core_activity_title": "العثور على الفروقات البسيطة"
+   },
+   "objectives": [
+    "يجد الفرق بين مجموعتين بالمقارنة (حتى ٢٠).",
+    "يكتب جملة الطرح المطابقة."
+   ],
+   "vocabulary": [
+    {
+     "term": "الفرق",
+     "meaning": "كم نحتاج لكي نساوي الكمية الصغيرة بالكمية الكبيرة؛ الفرق بين ٦ و٤ هو ٢"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-DIFF",
+     "text": "الفرق"
+    }
+   ],
+   "book_tasks": [
+    "أوجد الفرق بين كل من مجموعات الأشياء واكتب الجملة العددية المطابقة.",
+    "ارسم صورتين مختلفتين لتظهر أربعة اختلافات."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L36-ROWS",
+     "title": "كم الفرق؟",
+     "skill_id": "SK-DIFF",
+     "mechanic": "difference-rows",
+     "config": {
+      "max": 20
+     },
+     "hint_levels": [
+      "ارسم خطًا عند آخر الصف الأقصر.",
+      "عُدّ الأشياء بعد الخط في الصف الأطول."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L36-SENTENCE",
+     "title": "جملة الفرق",
+     "skill_id": "SK-DIFF",
+     "mechanic": "difference-sentence",
+     "config": {
+      "max": 20
+     },
+     "hint_levels": [
+      "ابدأ بالعدد الأكبر.",
+      "الأكبر − الأصغر = الفرق."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L37",
+   "lesson_name": "أين المصفوفات؟",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 40,
+    "source_pdf_page": 51,
+    "core_activity": "17.1",
+    "core_activity_title": "المصفوفات"
+   },
+   "objectives": [
+    "يكتب جمل الجمع المتكرر والضرب لمصفوفة.",
+    "يرسم مصفوفات لعدد معلوم (مثل ١٥)."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-ARRAY2",
+     "text": "المصفوفات والضرب"
+    }
+   ],
+   "book_tasks": [
+    "٥+٥+٥+٥=٢٠، ٤×٥=٢٠؛ ٢+٢+٢+٢+٢=١٠، ٥×٢=١٠؛ ١٠+١٠+١٠+١٠+١٠=٥٠، ٥×١٠=٥٠.",
+    "ارسم مصفوفة لتلائم كل ملصقة.",
+    "الآن ارسم مصفوفة للعدد ١٥: كم عدد الأعمدة؟ كم عدد الصفوف؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L37-NAME",
+     "title": "جمل المصفوفة",
+     "skill_id": "SK-ARRAY2",
+     "mechanic": "array-sentences",
+     "config": {
+      "maxRows": 5,
+      "maxCols": 10
+     },
+     "hint_levels": [
+      "عُدّ الصفوف والأعمدة.",
+      "كل صف عدد في الجمع المتكرر."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L37-BUILD",
+     "title": "ابنِ مصفوفة الملصقة",
+     "skill_id": "SK-ARRAY2",
+     "mechanic": "array-build",
+     "config": {
+      "maxRows": 5,
+      "maxCols": 10
+     },
+     "hint_levels": [
+      "انظر إلى جملتي الجمع.",
+      "عدد الصفوف × عدد الأعمدة."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L37-FIFTEEN",
+     "title": "مصفوفات العدد",
+     "skill_id": "SK-ARRAY2",
+     "mechanic": "array-factors",
+     "config": {
+      "totals": [
+       6,
+       8,
+       10,
+       12,
+       15,
+       16,
+       18,
+       20
+      ]
+     },
+     "hint_levels": [
+      "أي صفوف متساوية تعطي هذا العدد؟",
+      "جرّب ٢ ثم ٣ ثم ٥ صفوف."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L38",
+   "lesson_name": "علب الأحذية",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 41,
+    "source_pdf_page": 52,
+    "core_activity": "17.2",
+    "core_activity_title": "العد بالاثنينات والخمسات والعشرات"
+   },
+   "objectives": [
+    "يعدّ بالاثنينات لإيجاد عدد الأحذية في العلب.",
+    "يجد عدد العلب اللازمة لعدد معلوم من الأحذية."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-COUNT2",
+     "text": "العد بالاثنينات"
+    }
+   ],
+   "book_tasks": [
+    "يوجد زوج من الأحذية في كل علبة: ما مجموع هذه الأحذية؟",
+    "كم من العلب تحتاج لتضع ٦٨ حذاءً؟",
+    "ارسم بعض علب الأحذية وتحدَّ زميلك."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L38-SHOES",
+     "title": "كم حذاءً؟",
+     "skill_id": "SK-COUNT2",
+     "mechanic": "skip-count-groups",
+     "config": {
+      "sizes": [
+       2
+      ],
+      "kMax": 20,
+      "context": "shoes"
+     },
+     "hint_levels": [
+      "في كل علبة حذاءان.",
+      "عُدّ بالاثنينات: ٢، ٤، ٦..."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L38-BOXES",
+     "title": "كم علبة؟",
+     "skill_id": "SK-COUNT2",
+     "mechanic": "groups-reverse",
+     "config": {
+      "sizes": [
+       2
+      ],
+      "maxTotal": 70,
+      "context": "shoes"
+     },
+     "hint_levels": [
+      "كل علبة فيها حذاءان.",
+      "كم اثنين في هذا العدد؟"
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L39",
+   "lesson_name": "الأيدي ترفع",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 42,
+    "source_pdf_page": 53,
+    "core_activity": "none_printed",
+    "core_activity_title": "العد بالاثنينات والخمسات والعشرات"
+   },
+   "objectives": [
+    "يعدّ بالخمسات لإيجاد عدد الأظافر.",
+    "يجد عدد الأيدي أو الأشخاص لعدد معلوم من الأظافر."
+   ],
+   "vocabulary": [],
+   "skills": [
+    {
+     "id": "SK-COUNT5",
+     "text": "العد بالخمسات"
+    }
+   ],
+   "book_tasks": [
+    "كم عدد أظافر اليدين التي يمكنك رؤيتها؟",
+    "كم من الأيدي ستحتاج لكي تحصل على ٦٠ ظفرًا؟",
+    "إذا كان مجموع أظافر اليدين والرجلين ٦٠ ظفرًا، فكم شخصًا من الممكن أن يكونوا موجودين؟",
+    "كم عدد أظافر اليدين في صفك اليوم؟"
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L39-NAILS",
+     "title": "كم ظفرًا؟",
+     "skill_id": "SK-COUNT5",
+     "mechanic": "skip-count-groups",
+     "config": {
+      "sizes": [
+       5
+      ],
+      "kMax": 12,
+      "context": "hands"
+     },
+     "hint_levels": [
+      "في كل يد ٥ أظافر.",
+      "عُدّ بالخمسات: ٥، ١٠، ١٥..."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L39-HANDS",
+     "title": "كم يدًا؟",
+     "skill_id": "SK-COUNT5",
+     "mechanic": "groups-reverse",
+     "config": {
+      "sizes": [
+       5
+      ],
+      "maxTotal": 60,
+      "context": "hands"
+     },
+     "hint_levels": [
+      "كل يد فيها ٥ أظافر.",
+      "عُدّ بالخمسات حتى تصل إلى العدد."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  },
+  {
+   "lesson_id": "MATH-S1-U2A-L40",
+   "lesson_name": "البسكويت",
+   "unit_id": "MATH-S1-U2A",
+   "source": {
+    "source_book_id": "MATH-S1-STU",
+    "source_sha256": "4b7c9b20169c234f8031aacaa0c5dc495c8a2b90ccb1271041b8722577ad11d2",
+    "source_printed_page": 43,
+    "source_pdf_page": 54,
+    "core_activity": "17.3",
+    "core_activity_title": "القسمة"
+   },
+   "objectives": [
+    "يفهم القسمة توزيعًا في مجموعات متساوية.",
+    "يكتب جملة القسمة المناسبة للصورة."
+   ],
+   "vocabulary": [
+    {
+     "term": "القسمة",
+     "meaning": "توزيع الأشياء بكميات أقل من خلال وضعها في مجموعات متساوية: ١٢ مكعبًا في مجموعات من ٤ = ٣ مجموعات"
+    }
+   ],
+   "skills": [
+    {
+     "id": "SK-DIVIDE",
+     "text": "القسمة توزيعًا"
+    }
+   ],
+   "book_tasks": [
+    "اكتب جملة عددية مستخدمًا القسمة حول ما تراه في الصورة (١٠ بسكويتات في ٥ أطباق).",
+    "ماذا لو كان لديك ١٥ قطعة بسكويت في العلبة؟ ارسم صورة واكتب جملة عددية مناسبة لها."
+   ],
+   "games": [
+    {
+     "game_id": "GME-MATH-S1-L40-SHARE",
+     "title": "وزّع البسكويت",
+     "skill_id": "SK-DIVIDE",
+     "mechanic": "division-share",
+     "config": {
+      "maxTotal": 20,
+      "divisors": [
+       2,
+       5,
+       10
+      ]
+     },
+     "hint_levels": [
+      "وزّع واحدًا واحدًا على كل طبق.",
+      "تحقق أن الأطباق متساوية."
+     ]
+    },
+    {
+     "game_id": "GME-MATH-S1-L40-SENTENCE",
+     "title": "جملة القسمة",
+     "skill_id": "SK-DIVIDE",
+     "mechanic": "division-sentence",
+     "config": {
+      "maxTotal": 20,
+      "divisors": [
+       2,
+       5,
+       10
+      ]
+     },
+     "hint_levels": [
+      "الجملة تبدأ بالعدد الكلي.",
+      "الكل ÷ عدد المجموعات = ما في كل مجموعة."
+     ]
+    }
+   ],
+   "interpretation_notes": "",
+   "content_review_status": "draft_needs_human_review",
+   "approval_actor": null
+  }
+ ]
+}

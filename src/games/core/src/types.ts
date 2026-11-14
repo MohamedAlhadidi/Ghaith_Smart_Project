@@ -12,6 +12,15 @@ export type ErrorType =
   | "row_step_error" // off by one row (±10) or up/down swapped
   | "off_by_one" // one cell away along the row (±1)
   | "tens_ones_confusion" // digits reversed (e.g. 34 ↔ 43)
+  | "operation_confusion" // added instead of subtracting (or similar)
+  | "place_value_error" // tens and ones combined wrongly (e.g. 30 + 7 -> 307)
+  | "rounding_error" // rounded in the wrong direction
+  | "counting_error" // miscounted a set by a small amount
+  | "comparison_direction" // relation or sign reversed (< vs >, biggest vs smallest)
+  | "unit_confusion" // minutes vs seconds, grams vs kilograms, rials vs baisa
+  | "reflection_error" // mirror image not reflected correctly
+  | "property_error" // wrong classification (odd/even, multiples, sides)
+  | "partial_answer" // some but not all required parts (multi-select / builds)
   | "other";
 
 export interface ItemMeta {
