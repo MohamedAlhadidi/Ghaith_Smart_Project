@@ -1,0 +1,1214 @@
+{
+ "schema_version": 1,
+ "notes": "picture = emoji shown by the app (null = no suitable picture; such words are used only in text-based games). graphemes = sound chunks as in the book's Let's blend! tasks.",
+ "words": {
+  "one": {
+   "picture": null,
+   "ar": "1"
+  },
+  "two": {
+   "picture": null,
+   "ar": "2"
+  },
+  "three": {
+   "picture": null,
+   "ar": "3"
+  },
+  "four": {
+   "picture": null,
+   "ar": "4"
+  },
+  "five": {
+   "picture": "5️⃣",
+   "ar": "5",
+   "graphemes": [
+    "f",
+    "i",
+    "v",
+    "e"
+   ]
+  },
+  "six": {
+   "picture": null,
+   "ar": "6"
+  },
+  "seven": {
+   "picture": null,
+   "ar": "7"
+  },
+  "eight": {
+   "picture": null,
+   "ar": "8"
+  },
+  "nine": {
+   "picture": "9️⃣",
+   "ar": "9",
+   "graphemes": [
+    "n",
+    "i",
+    "n",
+    "e"
+   ]
+  },
+  "ten": {
+   "picture": null,
+   "ar": "10"
+  },
+  "green": {
+   "picture": null,
+   "ar": "أخضر"
+  },
+  "blue": {
+   "picture": "🔵",
+   "ar": "أزرق",
+   "graphemes": [
+    "bl",
+    "ue"
+   ]
+  },
+  "yellow": {
+   "picture": null,
+   "ar": "أصفر"
+  },
+  "red": {
+   "picture": null,
+   "ar": "أحمر"
+  },
+  "orange": {
+   "picture": null,
+   "ar": "برتقالي"
+  },
+  "purple": {
+   "picture": null,
+   "ar": "بنفسجي"
+  },
+  "white": {
+   "picture": null,
+   "ar": "أبيض"
+  },
+  "brown": {
+   "picture": null,
+   "ar": "بني"
+  },
+  "black": {
+   "picture": null,
+   "ar": "أسود"
+  },
+  "pink": {
+   "picture": null,
+   "ar": "وردي"
+  },
+  "car": {
+   "picture": "🚗",
+   "ar": "سيارة"
+  },
+  "plane": {
+   "picture": "✈️",
+   "ar": "طائرة"
+  },
+  "puzzle": {
+   "picture": "🧩",
+   "ar": "أحجية"
+  },
+  "yo-yo": {
+   "picture": "🪀",
+   "ar": "يويو"
+  },
+  "building set": {
+   "picture": "🧱",
+   "ar": "مكعبات بناء"
+  },
+  "doll": {
+   "picture": "🪆",
+   "ar": "دمية"
+  },
+  "action figure": {
+   "picture": "🦸",
+   "ar": "شخصية بطل"
+  },
+  "robot": {
+   "picture": "🤖",
+   "ar": "روبوت"
+  },
+  "teddy": {
+   "picture": "🧸",
+   "ar": "دبدوب"
+  },
+  "dinosaur": {
+   "picture": "🦕",
+   "ar": "ديناصور"
+  },
+  "kite": {
+   "picture": "🪁",
+   "ar": "طائرة ورقية",
+   "graphemes": [
+    "k",
+    "i",
+    "t",
+    "e"
+   ]
+  },
+  "bike": {
+   "picture": "🚲",
+   "ar": "دراجة",
+   "graphemes": [
+    "b",
+    "i",
+    "k",
+    "e"
+   ]
+  },
+  "slide": {
+   "picture": "🛝",
+   "ar": "زحليقة",
+   "graphemes": [
+    "sl",
+    "i",
+    "d",
+    "e"
+   ]
+  },
+  "scooter": {
+   "picture": "🛴",
+   "ar": "سكوتر"
+  },
+  "ball": {
+   "picture": "⚽",
+   "ar": "كرة"
+  },
+  "swing": {
+   "picture": null,
+   "ar": "أرجوحة",
+   "graphemes": [
+    "sw",
+    "i",
+    "ng"
+   ]
+  },
+  "bag": {
+   "picture": "🎒",
+   "ar": "حقيبة"
+  },
+  "book": {
+   "picture": "📕",
+   "ar": "كتاب",
+   "graphemes": [
+    "b",
+    "oo",
+    "k"
+   ]
+  },
+  "pencil case": {
+   "picture": null,
+   "ar": "مقلمة"
+  },
+  "pen": {
+   "picture": "🖊️",
+   "ar": "قلم حبر"
+  },
+  "pencil": {
+   "picture": "✏️",
+   "ar": "قلم رصاص"
+  },
+  "crayon": {
+   "picture": "🖍️",
+   "ar": "قلم تلوين"
+  },
+  "ruler": {
+   "picture": "📏",
+   "ar": "مسطرة"
+  },
+  "pencil sharpener": {
+   "picture": null,
+   "ar": "مبراة"
+  },
+  "eraser": {
+   "picture": null,
+   "ar": "ممحاة"
+  },
+  "scissors": {
+   "picture": "✂️",
+   "ar": "مقص"
+  },
+  "shelf": {
+   "picture": null,
+   "ar": "رف"
+  },
+  "cupboard": {
+   "picture": null,
+   "ar": "خزانة"
+  },
+  "computer": {
+   "picture": "💻",
+   "ar": "حاسوب"
+  },
+  "desk": {
+   "picture": null,
+   "ar": "مكتب"
+  },
+  "chair": {
+   "picture": "🪑",
+   "ar": "كرسي"
+  },
+  "table": {
+   "picture": null,
+   "ar": "طاولة"
+  },
+  "monster": {
+   "picture": "👾",
+   "ar": "وحش"
+  },
+  "helicopter": {
+   "picture": "🚁",
+   "ar": "مروحية"
+  },
+  "big": {
+   "picture": null,
+   "ar": "كبير"
+  },
+  "small": {
+   "picture": null,
+   "ar": "صغير"
+  },
+  "noisy": {
+   "picture": null,
+   "ar": "مزعج"
+  },
+  "interesting": {
+   "picture": null,
+   "ar": "ممتع"
+  },
+  "scary": {
+   "picture": null,
+   "ar": "مخيف"
+  },
+  "sight": {
+   "picture": "👀",
+   "ar": "البصر"
+  },
+  "hearing": {
+   "picture": "👂",
+   "ar": "السمع"
+  },
+  "smell": {
+   "picture": "👃",
+   "ar": "الشم"
+  },
+  "taste": {
+   "picture": "👅",
+   "ar": "التذوق"
+  },
+  "touch": {
+   "picture": "🖐️",
+   "ar": "اللمس"
+  },
+  "head": {
+   "picture": null,
+   "ar": "رأس"
+  },
+  "face": {
+   "picture": "🙂",
+   "ar": "وجه"
+  },
+  "tummy": {
+   "picture": null,
+   "ar": "بطن"
+  },
+  "arms": {
+   "picture": "💪",
+   "ar": "ذراعان"
+  },
+  "hands": {
+   "picture": "🙌",
+   "ar": "يدان"
+  },
+  "fingers": {
+   "picture": "🖐️",
+   "ar": "أصابع"
+  },
+  "legs": {
+   "picture": "🦵",
+   "ar": "ساقان"
+  },
+  "knees": {
+   "picture": null,
+   "ar": "ركبتان"
+  },
+  "feet": {
+   "picture": "🦶",
+   "ar": "قدمان",
+   "graphemes": [
+    "f",
+    "ee",
+    "t"
+   ]
+  },
+  "toes": {
+   "picture": null,
+   "ar": "أصابع القدم"
+  },
+  "move": {
+   "picture": null,
+   "ar": "حرّك"
+  },
+  "bend": {
+   "picture": null,
+   "ar": "اثنِ"
+  },
+  "stretch": {
+   "picture": null,
+   "ar": "مدّ"
+  },
+  "stamp": {
+   "picture": null,
+   "ar": "اضرب بقدمك"
+  },
+  "clap": {
+   "picture": "👏",
+   "ar": "صفّق"
+  },
+  "grandma": {
+   "picture": "👵",
+   "ar": "جدة"
+  },
+  "grandad": {
+   "picture": "👴",
+   "ar": "جد"
+  },
+  "mum": {
+   "picture": "👩",
+   "ar": "أم"
+  },
+  "dad": {
+   "picture": "👨",
+   "ar": "أب"
+  },
+  "uncle": {
+   "picture": null,
+   "ar": "عم/خال"
+  },
+  "aunt": {
+   "picture": null,
+   "ar": "عمة/خالة"
+  },
+  "brother": {
+   "picture": "👦",
+   "ar": "أخ"
+  },
+  "sister": {
+   "picture": "👧",
+   "ar": "أخت"
+  },
+  "me": {
+   "picture": "🙋",
+   "ar": "أنا"
+  },
+  "cousin": {
+   "picture": null,
+   "ar": "ابن العم"
+  },
+  "hair": {
+   "picture": null,
+   "ar": "شعر"
+  },
+  "mouth": {
+   "picture": "👄",
+   "ar": "فم",
+   "graphemes": [
+    "m",
+    "ou",
+    "th"
+   ]
+  },
+  "nose": {
+   "picture": "👃",
+   "ar": "أنف",
+   "graphemes": [
+    "n",
+    "o",
+    "s",
+    "e"
+   ]
+  },
+  "eyes": {
+   "picture": "👀",
+   "ar": "عينان"
+  },
+  "ears": {
+   "picture": "👂",
+   "ar": "أذنان"
+  },
+  "fair": {
+   "picture": null,
+   "ar": "أشقر"
+  },
+  "leg": {
+   "picture": "🦵",
+   "ar": "ساق"
+  },
+  "arm": {
+   "picture": "💪",
+   "ar": "ذراع"
+  },
+  "hand": {
+   "picture": "✋",
+   "ar": "يد"
+  },
+  "school": {
+   "picture": "🏫",
+   "ar": "مدرسة"
+  },
+  "hospital": {
+   "picture": "🏥",
+   "ar": "مستشفى"
+  },
+  "shops": {
+   "picture": "🏪",
+   "ar": "محلات"
+  },
+  "houses": {
+   "picture": "🏘️",
+   "ar": "بيوت"
+  },
+  "café": {
+   "picture": "☕",
+   "ar": "مقهى"
+  },
+  "rain": {
+   "picture": "🌧️",
+   "ar": "مطر",
+   "graphemes": [
+    "r",
+    "ai",
+    "n"
+   ]
+  },
+  "nail": {
+   "picture": null,
+   "ar": "مسمار",
+   "graphemes": [
+    "n",
+    "ai",
+    "l"
+   ]
+  },
+  "train": {
+   "picture": "🚆",
+   "ar": "قطار",
+   "graphemes": [
+    "tr",
+    "ai",
+    "n"
+   ]
+  },
+  "chain": {
+   "picture": "⛓️",
+   "ar": "سلسلة",
+   "graphemes": [
+    "ch",
+    "ai",
+    "n"
+   ]
+  },
+  "tail": {
+   "picture": null,
+   "ar": "ذيل",
+   "graphemes": [
+    "t",
+    "ai",
+    "l"
+   ]
+  },
+  "paint": {
+   "picture": "🎨",
+   "ar": "طلاء",
+   "graphemes": [
+    "p",
+    "ai",
+    "nt"
+   ]
+  },
+  "coat": {
+   "picture": "🧥",
+   "ar": "معطف",
+   "graphemes": [
+    "c",
+    "oa",
+    "t"
+   ]
+  },
+  "soap": {
+   "picture": "🧼",
+   "ar": "صابون",
+   "graphemes": [
+    "s",
+    "oa",
+    "p"
+   ]
+  },
+  "boat": {
+   "picture": "⛵",
+   "ar": "قارب",
+   "graphemes": [
+    "b",
+    "oa",
+    "t"
+   ]
+  },
+  "road": {
+   "picture": "🛣️",
+   "ar": "طريق",
+   "graphemes": [
+    "r",
+    "oa",
+    "d"
+   ]
+  },
+  "goat": {
+   "picture": "🐐",
+   "ar": "ماعز",
+   "graphemes": [
+    "g",
+    "oa",
+    "t"
+   ]
+  },
+  "lie": {
+   "picture": null,
+   "ar": "يستلقي",
+   "graphemes": [
+    "l",
+    "ie"
+   ]
+  },
+  "pie": {
+   "picture": "🥧",
+   "ar": "فطيرة",
+   "graphemes": [
+    "p",
+    "ie"
+   ]
+  },
+  "tie": {
+   "picture": "👔",
+   "ar": "ربطة عنق",
+   "graphemes": [
+    "t",
+    "ie"
+   ]
+  },
+  "die": {
+   "picture": "🎲",
+   "ar": "حجر نرد",
+   "graphemes": [
+    "d",
+    "ie"
+   ]
+  },
+  "lake": {
+   "picture": "🏞️",
+   "ar": "بحيرة",
+   "graphemes": [
+    "l",
+    "a",
+    "k",
+    "e"
+   ]
+  },
+  "rake": {
+   "picture": null,
+   "ar": "مِشط الحديقة",
+   "graphemes": [
+    "r",
+    "a",
+    "k",
+    "e"
+   ]
+  },
+  "flame": {
+   "picture": "🔥",
+   "ar": "لهب",
+   "graphemes": [
+    "fl",
+    "a",
+    "m",
+    "e"
+   ]
+  },
+  "game": {
+   "picture": "🎮",
+   "ar": "لعبة",
+   "graphemes": [
+    "g",
+    "a",
+    "m",
+    "e"
+   ]
+  },
+  "snake": {
+   "picture": "🐍",
+   "ar": "ثعبان",
+   "graphemes": [
+    "sn",
+    "a",
+    "k",
+    "e"
+   ]
+  },
+  "cake": {
+   "picture": "🎂",
+   "ar": "كعكة",
+   "graphemes": [
+    "c",
+    "a",
+    "k",
+    "e"
+   ]
+  },
+  "sport": {
+   "picture": "🏅",
+   "ar": "رياضة",
+   "graphemes": [
+    "sp",
+    "or",
+    "t"
+   ]
+  },
+  "north": {
+   "picture": "🧭",
+   "ar": "شمال",
+   "graphemes": [
+    "n",
+    "or",
+    "th"
+   ]
+  },
+  "storm": {
+   "picture": "⛈️",
+   "ar": "عاصفة",
+   "graphemes": [
+    "st",
+    "or",
+    "m"
+   ]
+  },
+  "corn": {
+   "picture": "🌽",
+   "ar": "ذرة",
+   "graphemes": [
+    "c",
+    "or",
+    "n"
+   ]
+  },
+  "torch": {
+   "picture": "🔦",
+   "ar": "مصباح يدوي",
+   "graphemes": [
+    "t",
+    "or",
+    "ch"
+   ]
+  },
+  "fork": {
+   "picture": "🍴",
+   "ar": "شوكة",
+   "graphemes": [
+    "f",
+    "or",
+    "k"
+   ]
+  },
+  "sing": {
+   "picture": "🎤",
+   "ar": "يغني",
+   "graphemes": [
+    "s",
+    "i",
+    "ng"
+   ]
+  },
+  "ring": {
+   "picture": "💍",
+   "ar": "خاتم",
+   "graphemes": [
+    "r",
+    "i",
+    "ng"
+   ]
+  },
+  "bang": {
+   "picture": "💥",
+   "ar": "طَرقة",
+   "graphemes": [
+    "b",
+    "a",
+    "ng"
+   ]
+  },
+  "long": {
+   "picture": null,
+   "ar": "طويل",
+   "graphemes": [
+    "l",
+    "o",
+    "ng"
+   ]
+  },
+  "sting": {
+   "picture": null,
+   "ar": "لدغة",
+   "graphemes": [
+    "st",
+    "i",
+    "ng"
+   ]
+  },
+  "hook": {
+   "picture": "🪝",
+   "ar": "خطّاف",
+   "graphemes": [
+    "h",
+    "oo",
+    "k"
+   ]
+  },
+  "look": {
+   "picture": "👀",
+   "ar": "انظر",
+   "graphemes": [
+    "l",
+    "oo",
+    "k"
+   ]
+  },
+  "foot": {
+   "picture": "🦶",
+   "ar": "قدم",
+   "graphemes": [
+    "f",
+    "oo",
+    "t"
+   ]
+  },
+  "wood": {
+   "picture": "🪵",
+   "ar": "خشب",
+   "graphemes": [
+    "w",
+    "oo",
+    "d"
+   ]
+  },
+  "cook": {
+   "picture": "🧑‍🍳",
+   "ar": "يطبخ",
+   "graphemes": [
+    "c",
+    "oo",
+    "k"
+   ]
+  },
+  "roof": {
+   "picture": null,
+   "ar": "سقف",
+   "graphemes": [
+    "r",
+    "oo",
+    "f"
+   ]
+  },
+  "spoon": {
+   "picture": "🥄",
+   "ar": "ملعقة",
+   "graphemes": [
+    "sp",
+    "oo",
+    "n"
+   ]
+  },
+  "moon": {
+   "picture": "🌙",
+   "ar": "قمر",
+   "graphemes": [
+    "m",
+    "oo",
+    "n"
+   ]
+  },
+  "boot": {
+   "picture": "🥾",
+   "ar": "حذاء طويل",
+   "graphemes": [
+    "b",
+    "oo",
+    "t"
+   ]
+  },
+  "broom": {
+   "picture": "🧹",
+   "ar": "مكنسة",
+   "graphemes": [
+    "br",
+    "oo",
+    "m"
+   ]
+  },
+  "room": {
+   "picture": null,
+   "ar": "غرفة",
+   "graphemes": [
+    "r",
+    "oo",
+    "m"
+   ]
+  },
+  "cloud": {
+   "picture": "☁️",
+   "ar": "غيمة",
+   "graphemes": [
+    "cl",
+    "ou",
+    "d"
+   ]
+  },
+  "shout": {
+   "picture": "📢",
+   "ar": "يصرخ",
+   "graphemes": [
+    "sh",
+    "ou",
+    "t"
+   ]
+  },
+  "count": {
+   "picture": "🔢",
+   "ar": "يعدّ",
+   "graphemes": [
+    "c",
+    "ou",
+    "nt"
+   ]
+  },
+  "sound": {
+   "picture": "🔊",
+   "ar": "صوت",
+   "graphemes": [
+    "s",
+    "ou",
+    "nd"
+   ]
+  },
+  "boil": {
+   "picture": "♨️",
+   "ar": "يغلي",
+   "graphemes": [
+    "b",
+    "oi",
+    "l"
+   ]
+  },
+  "point": {
+   "picture": "👉",
+   "ar": "يشير",
+   "graphemes": [
+    "p",
+    "oi",
+    "nt"
+   ]
+  },
+  "coin": {
+   "picture": "🪙",
+   "ar": "قطعة نقدية",
+   "graphemes": [
+    "c",
+    "oi",
+    "n"
+   ]
+  },
+  "soil": {
+   "picture": null,
+   "ar": "تربة",
+   "graphemes": [
+    "s",
+    "oi",
+    "l"
+   ]
+  },
+  "oil": {
+   "picture": "🛢️",
+   "ar": "زيت",
+   "graphemes": [
+    "oi",
+    "l"
+   ]
+  },
+  "tissue": {
+   "picture": "🧻",
+   "ar": "منديل",
+   "graphemes": [
+    "t",
+    "i",
+    "ss",
+    "ue"
+   ]
+  },
+  "glue": {
+   "picture": null,
+   "ar": "صمغ",
+   "graphemes": [
+    "gl",
+    "ue"
+   ]
+  },
+  "clue": {
+   "picture": "🔍",
+   "ar": "دليل",
+   "graphemes": [
+    "cl",
+    "ue"
+   ]
+  },
+  "drive": {
+   "picture": "🚗",
+   "ar": "يقود",
+   "graphemes": [
+    "dr",
+    "i",
+    "v",
+    "e"
+   ]
+  },
+  "dive": {
+   "picture": "🤿",
+   "ar": "يغطس",
+   "graphemes": [
+    "d",
+    "i",
+    "v",
+    "e"
+   ]
+  },
+  "cheese": {
+   "picture": "🧀",
+   "ar": "جبن",
+   "graphemes": [
+    "ch",
+    "ee",
+    "s",
+    "e"
+   ]
+  },
+  "sheep": {
+   "picture": "🐑",
+   "ar": "خروف",
+   "graphemes": [
+    "sh",
+    "ee",
+    "p"
+   ]
+  },
+  "bee": {
+   "picture": "🐝",
+   "ar": "نحلة",
+   "graphemes": [
+    "b",
+    "ee"
+   ]
+  },
+  "sleep": {
+   "picture": "😴",
+   "ar": "ينام",
+   "graphemes": [
+    "sl",
+    "ee",
+    "p"
+   ]
+  },
+  "herb": {
+   "picture": "🌿",
+   "ar": "عشبة",
+   "graphemes": [
+    "h",
+    "er",
+    "b"
+   ]
+  },
+  "fern": {
+   "picture": null,
+   "ar": "سرخس",
+   "graphemes": [
+    "f",
+    "er",
+    "n"
+   ]
+  },
+  "person": {
+   "picture": "🧍",
+   "ar": "شخص",
+   "graphemes": [
+    "p",
+    "er",
+    "s",
+    "o",
+    "n"
+   ]
+  },
+  "iceberg": {
+   "picture": "🧊",
+   "ar": "جبل جليدي",
+   "graphemes": [
+    "i",
+    "c",
+    "e",
+    "b",
+    "er",
+    "g"
+   ]
+  },
+  "perfume": {
+   "picture": null,
+   "ar": "عطر",
+   "graphemes": [
+    "p",
+    "er",
+    "f",
+    "u",
+    "m",
+    "e"
+   ]
+  },
+  "herd": {
+   "picture": "🐄",
+   "ar": "قطيع",
+   "graphemes": [
+    "h",
+    "er",
+    "d"
+   ]
+  },
+  "star": {
+   "picture": "⭐",
+   "ar": "نجمة",
+   "graphemes": [
+    "st",
+    "ar"
+   ]
+  },
+  "scarf": {
+   "picture": "🧣",
+   "ar": "وشاح",
+   "graphemes": [
+    "sc",
+    "ar",
+    "f"
+   ]
+  },
+  "dark": {
+   "picture": "🌑",
+   "ar": "مظلم",
+   "graphemes": [
+    "d",
+    "ar",
+    "k"
+   ]
+  },
+  "park": {
+   "picture": "🏞️",
+   "ar": "حديقة",
+   "graphemes": [
+    "p",
+    "ar",
+    "k"
+   ]
+  },
+  "shark": {
+   "picture": "🦈",
+   "ar": "قرش",
+   "graphemes": [
+    "sh",
+    "ar",
+    "k"
+   ]
+  },
+  "farm": {
+   "picture": "🚜",
+   "ar": "مزرعة",
+   "graphemes": [
+    "f",
+    "ar",
+    "m"
+   ]
+  },
+  "note": {
+   "picture": "📝",
+   "ar": "ورقة ملاحظة",
+   "graphemes": [
+    "n",
+    "o",
+    "t",
+    "e"
+   ]
+  },
+  "home": {
+   "picture": "🏠",
+   "ar": "بيت",
+   "graphemes": [
+    "h",
+    "o",
+    "m",
+    "e"
+   ]
+  },
+  "rose": {
+   "picture": "🌹",
+   "ar": "وردة",
+   "graphemes": [
+    "r",
+    "o",
+    "s",
+    "e"
+   ]
+  },
+  "cone": {
+   "picture": "🍦",
+   "ar": "مخروط",
+   "graphemes": [
+    "c",
+    "o",
+    "n",
+    "e"
+   ]
+  },
+  "rope": {
+   "picture": "🪢",
+   "ar": "حبل",
+   "graphemes": [
+    "r",
+    "o",
+    "p",
+    "e"
+   ]
+  },
+  "bone": {
+   "picture": "🦴",
+   "ar": "عظمة",
+   "graphemes": [
+    "b",
+    "o",
+    "n",
+    "e"
+   ]
+  },
+  "stone": {
+   "picture": "🪨",
+   "ar": "حجر",
+   "graphemes": [
+    "st",
+    "o",
+    "n",
+    "e"
+   ]
+  }
+ }
+}

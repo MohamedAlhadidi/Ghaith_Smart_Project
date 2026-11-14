@@ -6,3 +6,5 @@ export * from "./quiz";
 export * from "./math/pairs";
 export * from "./math/registry";
 export * from "./math/M_compose";
+export * from "./english/common";
+export * from "./english/listenAndSounds";

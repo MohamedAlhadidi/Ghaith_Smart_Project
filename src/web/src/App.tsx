@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import { QUIZ_MECHANICS } from "@ghaith/game-core";
 import { LESSON_L01 } from "./content";
-import { MATH_S1, findLesson, isLegacyGame, isPlayable, lessonsOfUnit, quizGamesForSkill, skillName, type CatalogGame, type CatalogLesson } from "./catalog";
+import { SUBJECTS, bookName, findLesson, findUnit, isLegacyGame, isPlayable, lessonsOfUnit, pagesLabel, quizGamesForSkill, skillName, type CatalogGame, type CatalogLesson, type SubjectId } from "./catalog";
 import type { AdaptState } from "./lib/adapt";
 import { toArabicDigits } from "./lib/digits";
 import { loadAttempts, masteryStatus, newId, summariseBySkill } from "./lib/progress";
@@ -64,6 +64,21 @@ function screenFromUrl(): Screen {
 export default function App() {
   const [screen, setScreen] = useState<Screen>(screenFromUrl);
   const [sessionMinutes, setSessionMinutes] = useState(10);
+  const [subject, setSubject] = useState<SubjectId>(() => {
+    try {
+      return (localStorage.getItem("ghaith.subject") as SubjectId) || "math";
+    } catch {
+      return "math";
+    }
+  });
+  const chooseSubject = (s: SubjectId) => {
+    setSubject(s);
+    try {
+      localStorage.setItem("ghaith.subject", s);
+    } catch {
+      // remembered choice is only a convenience
+    }
+  };
   const sessionId = useRef(newId()).current;
   const sessionStart = useRef(Date.now()).current;
   const levels = useRef(new Map<string, AdaptState>()).current;
@@ -83,6 +98,8 @@ export default function App() {
           onProgress={() => setScreen({ name: "progress" })}
           onReview={(plan) => setScreen({ name: "review", plan })}
           onContentReview={() => setScreen({ name: "content-review" })}
+          subject={subject}
+          setSubject={chooseSubject}
         />
       )}
 
@@ -176,6 +193,8 @@ function Home(props: {
   onProgress: () => void;
   onReview: (plan: PlanSlot[]) => void;
   onContentReview: () => void;
+  subject: SubjectId;
+  setSubject: (s: SubjectId) => void;
 }) {
   const due = dueForReview(loadAttempts(), Date.now());
   const reviewPlan: PlanSlot[] = due.flatMap((d) => {
@@ -198,22 +217,47 @@ function Home(props: {
         </button>
       )}
 
+      <div className="flex gap-2" role="tablist" aria-label="المادة">
+        {SUBJECTS.map((s) => (
+          <button
+            key={s.id}
+            type="button"
+            role="tab"
+            aria-selected={props.subject === s.id}
+            data-subject={s.id}
+            onClick={() => props.setSubject(s.id)}
+            className={`rounded-2xl px-5 py-3 text-lg font-extrabold shadow ${props.subject === s.id ? "bg-sky-700 text-white" : "bg-white text-sky-900"}`}
+          >
+            {s.id === "math" ? "🔢 " : "🔤 "}
+            {s.title}
+          </button>
+        ))}
+      </div>
+
       <article className="rounded-3xl bg-white p-5 shadow">
-        <p className="text-sm text-slate-500">الرياضيات · الصف الثاني · الفصل الأول</p>
-        <h2 className="mt-1 text-2xl font-extrabold">الوحدات</h2>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          {MATH_S1.units.map((u) => {
-            const lessons = lessonsOfUnit(u.unit_id);
-            return (
-              <button key={u.unit_id} type="button" data-unit={u.unit_id} onClick={() => props.onUnit(u.unit_id)} className="rounded-2xl bg-sky-600 px-4 py-5 text-start text-white shadow-lg active:scale-95">
-                <span className="block text-xl font-bold">{u.title}</span>
-                <span className="text-sm opacity-90">
-                  {toArabicDigits(lessons.length)} دروس · ص {toArabicDigits(lessons[0]!.source.source_printed_page)}–{toArabicDigits(lessons[lessons.length - 1]!.source.source_printed_page)}
-                </span>
-              </button>
-            );
-          })}
-        </div>
+        {(() => {
+          const subj = SUBJECTS.find((s) => s.id === props.subject)!;
+          return (
+            <>
+              <p className="text-sm text-slate-500">{subj.title} · {subj.subtitle}</p>
+              <h2 className="mt-1 text-2xl font-extrabold">الوحدات</h2>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {subj.units.map((u) => {
+                  const lessons = lessonsOfUnit(u.unit_id);
+                  return (
+                    <button key={u.unit_id} type="button" data-unit={u.unit_id} onClick={() => props.onUnit(u.unit_id)} className="rounded-2xl bg-sky-600 px-4 py-5 text-start text-white shadow-lg active:scale-95">
+                      {u.title_ar && <span className="block text-sm opacity-90">{u.title_ar}</span>}
+                      <span className="block text-xl font-bold" dir={u.subject === "english" ? "ltr" : undefined}>{u.subject === "english" ? u.title : toArabicDigits(u.title)}</span>
+                      <span className="text-sm opacity-90">
+                        {toArabicDigits(lessons.length)} دروس · {lessons[0] ? bookName(lessons[0].source.source_book_id) : ""}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </>
+          );
+        })()}
         <p className="mt-3 rounded-xl bg-amber-50 p-2 text-sm text-amber-900" data-testid="review-banner">
           نسخة تجريبية: محتوى الدروس مستخرج من كتاب الطالب وبانتظار مراجعة ولي الأمر قبل اعتماده.
         </p>
@@ -241,13 +285,17 @@ function Home(props: {
 }
 
 function UnitView({ unitId, onBack, onLesson, onMission }: { unitId: string; onBack: () => void; onLesson: (id: string) => void; onMission: () => void }) {
-  const unit = MATH_S1.units.find((u) => u.unit_id === unitId)!;
+  const unit = findUnit(unitId)!;
+  const en = unit.subject === "english";
   const lessons = lessonsOfUnit(unitId);
   const mechanics = new Set(lessons.flatMap((l) => l.games.map((g) => g.mechanic)));
   return (
     <section className="mx-auto flex max-w-3xl flex-col gap-4 px-4 py-6" data-testid="unit">
       <header className="flex items-center justify-between">
-        <h2 className="text-2xl font-extrabold text-sky-900">{unit.title}</h2>
+        <h2 className="text-2xl font-extrabold text-sky-900" dir={en ? "ltr" : undefined}>
+          {en ? unit.title : toArabicDigits(unit.title)}
+          {unit.title_ar && <span className="block text-base font-bold text-slate-500" dir="rtl">{unit.title_ar}</span>}
+        </h2>
         <button type="button" onClick={onBack} className="rounded-xl bg-white px-4 py-2 font-bold shadow">
           → رجوع
         </button>
@@ -261,9 +309,10 @@ function UnitView({ unitId, onBack, onLesson, onMission }: { unitId: string; onB
             <button type="button" data-lesson={l.lesson_id} onClick={() => onLesson(l.lesson_id)} className="flex w-full items-center gap-3 rounded-2xl bg-white p-4 text-start shadow active:scale-95">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-100 font-bold">{toArabicDigits(i + 1)}</span>
               <span>
-                <span className="block text-lg font-bold">{toArabicDigits(l.lesson_name)}</span>
+                <span className="block text-lg font-bold" dir={en ? "ltr" : undefined}>{en ? l.lesson_name : toArabicDigits(l.lesson_name)}</span>
+                {l.lesson_name_ar && <span className="block text-sm font-bold text-slate-600">{l.lesson_name_ar}</span>}
                 <span className="text-sm text-slate-500">
-                  ص {toArabicDigits(l.source.source_printed_page)} · {toArabicDigits(l.games.length)} ألعاب
+                  {bookName(l.source.source_book_id)} ص {toArabicDigits(pagesLabel(l))} · {toArabicDigits(l.games.length)} ألعاب
                 </span>
               </span>
             </button>
@@ -282,13 +331,16 @@ function LessonView({ lesson, onBack, onPlay, onExample }: { lesson: CatalogLess
   return (
     <section className="mx-auto flex max-w-3xl flex-col gap-4 px-4 py-6" data-testid="lesson" data-lesson={lesson.lesson_id}>
       <header className="flex items-center justify-between">
-        <h2 className="text-2xl font-extrabold text-sky-900">{toArabicDigits(lesson.lesson_name)}</h2>
+        <h2 className="text-2xl font-extrabold text-sky-900">
+          <span dir={lesson.subject === "english" ? "ltr" : undefined}>{lesson.subject === "english" ? lesson.lesson_name : toArabicDigits(lesson.lesson_name)}</span>
+          {lesson.lesson_name_ar && <span className="block text-base text-slate-500">{lesson.lesson_name_ar}</span>}
+        </h2>
         <button type="button" onClick={onBack} className="rounded-xl bg-white px-4 py-2 font-bold shadow">
           → رجوع
         </button>
       </header>
       <p className="text-sm text-slate-500" data-testid="source-ref">
-        المصدر: كتاب الطالب ص {toArabicDigits(lesson.source.source_printed_page)}
+        المصدر: {bookName(lesson.source.source_book_id)} ص {toArabicDigits(pagesLabel(lesson))}
         {lesson.source.core_activity && lesson.source.core_activity !== "none_printed" ? ` — النشاط ${toArabicDigits(lesson.source.core_activity)}` : ""}
       </p>
       <article className="rounded-2xl bg-white p-4 shadow">
@@ -304,7 +356,7 @@ function LessonView({ lesson, onBack, onPlay, onExample }: { lesson: CatalogLess
             <dl className="mt-1 space-y-1">
               {lesson.vocabulary.map((v) => (
                 <div key={v.term}>
-                  <dt className="inline font-bold text-rose-700">{v.term}: </dt>
+                  <dt className="inline font-bold text-rose-700" dir={lesson.subject === "english" ? "ltr" : undefined}>{v.term}:</dt>{" "}
                   <dd className="inline">{toArabicDigits(v.meaning)}</dd>
                 </div>
               ))}
@@ -328,7 +380,8 @@ function LessonView({ lesson, onBack, onPlay, onExample }: { lesson: CatalogLess
             onClick={() => onPlay(g.game_id)}
             className="rounded-2xl bg-sky-600 px-4 py-5 text-xl font-bold text-white shadow-lg active:scale-95 disabled:bg-slate-300"
           >
-            {g.title}
+            <span dir={lesson.subject === "english" ? "ltr" : undefined}>{g.title}</span>
+            {g.title_ar && <span className="block text-sm font-semibold opacity-90">{g.title_ar}</span>}
             {!isPlayable(g) && <span className="block text-sm">قيد البناء</span>}
           </button>
         ))}

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { QUIZ_MECHANICS, type Difficulty } from "@ghaith/game-core";
-import { MATH_S1, isLegacyGame, lessonsOfUnit, type CatalogGame, type CatalogLesson } from "../catalog";
+import { SUBJECTS, bookName, findLesson, isLegacyGame, lessonsOfUnit, pagesLabel, type CatalogGame, type CatalogLesson } from "../catalog";
 import { toArabicDigits } from "../lib/digits";
 import { exportReviews, lessonReviewStatus, loadReviews, saveDecision, type ReviewBook, type ReviewStatus } from "../lib/reviews";
 import { visualFor } from "../quiz/visuals";
@@ -57,15 +57,16 @@ function SampleItems({ game }: { game: CatalogGame }) {
         return (
           <article key={i} className="rounded-xl border border-slate-200 bg-white p-3">
             <p className="text-xs text-slate-500">المستوى {toArabicDigits(item.difficulty)}</p>
-            <p className="font-bold">{toArabicDigits(item.prompt)}</p>
+            <p className="font-bold" dir={item.lang === "en" ? "ltr" : undefined}>{item.lang === "en" ? item.prompt : toArabicDigits(item.prompt)}</p>
+            {item.promptAr && <p className="text-sm text-slate-600">{item.promptAr}</p>}
             <div className="my-2 flex justify-center overflow-hidden">{Visual && <Visual visual={item.visual} item={item} reveal solution={solution} locked hintLevel={0} />}</div>
             {item.input.type !== "visual" && (item.input.type === "choice" || item.input.type === "multi") && (
-              <p className="text-sm text-slate-600">الخيارات: {item.input.options.map((o) => toArabicDigits(o.label)).join(" | ")}</p>
+              <p className="text-sm text-slate-600">الخيارات: <span dir={item.lang === "en" ? "ltr" : undefined}>{item.input.options.map((o) => (item.lang === "en" ? o.label : toArabicDigits(o.label))).join(" | ")}</span></p>
             )}
-            <p className="mt-1 rounded bg-emerald-50 px-2 py-1 font-bold text-emerald-900">الإجابة: {toArabicDigits(answerText ?? "")}</p>
+            <p className="mt-1 rounded bg-emerald-50 px-2 py-1 font-bold text-emerald-900">الإجابة: <span dir={item.lang === "en" ? "ltr" : undefined}>{item.lang === "en" ? answerText : toArabicDigits(answerText ?? "")}</span></p>
             <ol className="mt-1 list-inside list-decimal text-sm">
               {mech.explain(item).map((s, j) => (
-                <li key={j}>{toArabicDigits(s)}</li>
+                <li key={j}>{item.lang === "en" ? s : toArabicDigits(s)}</li>
               ))}
             </ol>
           </article>
@@ -112,18 +113,21 @@ function LessonReview({ lesson, book, reviewer, onSaved, onBack }: { lesson: Cat
   return (
     <section className="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-6" data-testid="lesson-review">
       <header className="flex items-center justify-between">
-        <h2 className="text-2xl font-extrabold">مراجعة: {toArabicDigits(lesson.lesson_name)}</h2>
+        <h2 className="text-2xl font-extrabold">مراجعة: <span dir={lesson.subject === "english" ? "ltr" : undefined}>{lesson.subject === "english" ? lesson.lesson_name : toArabicDigits(lesson.lesson_name)}</span></h2>
         <button type="button" onClick={onBack} className="rounded-xl bg-white px-4 py-2 font-bold shadow">
           → رجوع
         </button>
       </header>
       <article className="rounded-2xl bg-white p-4 shadow">
         <p className="text-sm text-slate-600">
-          كتاب الطالب ص {toArabicDigits(lesson.source.source_printed_page)} (صفحة PDF {toArabicDigits(lesson.source.source_pdf_page)}) — النشاط{" "}
-          {toArabicDigits(lesson.source.core_activity)} {lesson.source.core_activity_title}
+          {bookName(lesson.source.source_book_id)} ص {toArabicDigits(pagesLabel(lesson))} (أول صفحة PDF {toArabicDigits(lesson.source.source_pdf_page)})
+          {lesson.source.core_activity !== "none_printed" ? ` — النشاط ${toArabicDigits(lesson.source.core_activity)} ${lesson.source.core_activity_title}` : ""}
         </p>
-        <h3 className="mt-2 font-bold">مهام الكتاب كما قُرئت من الصفحة</h3>
-        <ul className="list-inside list-disc">{lesson.book_tasks.map((t) => <li key={t}>{toArabicDigits(t)}</li>)}</ul>
+        <h3 className="mt-2 font-bold">{lesson.subject === "english" ? "جمل الكتاب المستخدمة" : "مهام الكتاب كما قُرئت من الصفحة"}</h3>
+        <ul className="list-inside list-disc">{lesson.book_tasks.map((t) => <li key={t} dir={lesson.subject === "english" ? "ltr" : undefined}>{lesson.subject === "english" ? t : toArabicDigits(t)}</li>)}</ul>
+        {lesson.subject === "english" && lesson.vocabulary.length > 0 && (
+          <p className="mt-2" dir="ltr">Words: {lesson.vocabulary.map((v) => v.term).join(", ")}</p>
+        )}
         <h3 className="mt-2 font-bold">الأهداف (مسودة)</h3>
         <ul className="list-inside list-disc">{lesson.objectives.map((t) => <li key={t}>{toArabicDigits(t)}</li>)}</ul>
         {lesson.interpretation_notes && <p className="mt-2 rounded bg-amber-50 p-2 text-sm">ملاحظة التفسير: {lesson.interpretation_notes}</p>}
@@ -150,7 +154,7 @@ export function ReviewScreen({ onBack }: { onBack: () => void }) {
   const [reviewer, setReviewer] = useState("");
   const [lessonId, setLessonId] = useState<string | null>(null);
   if (!passed) return <ParentGate onPass={() => setPassed(true)} onBack={onBack} />;
-  const lesson = lessonId ? MATH_S1.lessons.find((l) => l.lesson_id === lessonId) : undefined;
+  const lesson = lessonId ? findLesson(lessonId) : undefined;
   if (lesson) return <LessonReview lesson={lesson} book={book} reviewer={reviewer} onSaved={setBook} onBack={() => setLessonId(null)} />;
 
   const download = () => {
@@ -178,15 +182,18 @@ export function ReviewScreen({ onBack }: { onBack: () => void }) {
         اسم المراجع:
         <input value={reviewer} onChange={(e) => setReviewer(e.target.value)} className="rounded-lg border px-2 py-1" data-testid="reviewer-name" />
       </label>
-      {MATH_S1.units.map((u) => (
+      {SUBJECTS.flatMap((s) => s.units).map((u) => (
         <article key={u.unit_id} className="rounded-2xl bg-white p-4 shadow">
-          <h3 className="mb-2 font-bold">{u.title}</h3>
+          <h3 className="mb-2 font-bold">
+            {u.subject === "english" ? "الإنجليزية · " : "الرياضيات · "}
+            <span dir={u.subject === "english" ? "ltr" : undefined}>{u.subject === "english" ? u.title : toArabicDigits(u.title)}</span>
+          </h3>
           <div className="grid gap-2 sm:grid-cols-2">
             {lessonsOfUnit(u.unit_id).map((l) => {
               const st = lessonReviewStatus(book, l.lesson_id, l.games.map((g) => g.game_id));
               return (
                 <button key={l.lesson_id} type="button" data-review-lesson={l.lesson_id} onClick={() => setLessonId(l.lesson_id)} className={`rounded-xl p-3 text-start ${STATUS_CLASS[st]}`}>
-                  <span className="font-bold">{toArabicDigits(l.lesson_name)}</span> <span className="text-sm">— {STATUS_LABEL[st]}</span>
+                  <span className="font-bold" dir={l.subject === "english" ? "ltr" : undefined}>{l.subject === "english" ? l.lesson_name : toArabicDigits(l.lesson_name)}</span> <span className="text-sm">— {STATUS_LABEL[st]}</span>
                 </button>
               );
             })}

@@ -129,7 +129,7 @@ export function QuizPlayer({ title, mode, plan, sessionId, initialState, avoid, 
   const locked = feedback !== null && feedback.kind !== "wrong";
   const reveal = feedback?.kind === "reveal" && mode !== "assessment";
   const Visual = visualFor(item.visual.type);
-  const common = { locked, reveal, solution, onSubmit };
+  const common = { locked, reveal, solution, onSubmit, lang: item.lang ?? "ar" };
 
   return (
     <section className="mx-auto flex w-full max-w-3xl flex-col items-center gap-4 px-4 py-4" aria-live="polite" data-testid="quiz" data-mechanic={item.mechanicId}>
@@ -145,11 +145,20 @@ export function QuizPlayer({ title, mode, plan, sessionId, initialState, avoid, 
       {mode === "assessment" && <p className="rounded-xl bg-violet-100 px-3 py-1 text-sm text-violet-900">مهمة الوحدة: أسئلة جديدة، محاولة واحدة، بلا تلميحات ولا وقت.</p>}
 
       <div className="flex w-full items-center justify-center gap-3">
-        <p className="text-center text-2xl font-bold leading-relaxed" data-testid="instruction">
-          {toArabicDigits(item.prompt)}
-        </p>
+        {item.lang === "en" ? (
+          <div className="flex flex-col items-center gap-1">
+            <p dir="ltr" lang="en" className="text-center text-3xl font-bold leading-relaxed" data-testid="instruction">
+              {item.prompt}
+            </p>
+            {item.promptAr && <p className="text-center text-lg text-slate-600">{item.promptAr}</p>}
+          </div>
+        ) : (
+          <p className="text-center text-2xl font-bold leading-relaxed" data-testid="instruction">
+            {toArabicDigits(item.prompt)}
+          </p>
+        )}
         {canSpeak() && (
-          <button type="button" aria-label="استمع للتعليمات" onClick={() => speak(item.prompt)} className="rounded-full bg-white p-2 text-2xl shadow">
+          <button type="button" aria-label="استمع للتعليمات" onClick={() => (item.lang === "en" ? speak(item.prompt, "en-GB") : speak(item.prompt))} className="rounded-full bg-white p-2 text-2xl shadow">
             🔊
           </button>
         )}
@@ -197,7 +206,7 @@ export function QuizPlayer({ title, mode, plan, sessionId, initialState, avoid, 
           {reveal && (
             <ol className="mt-2 list-inside list-decimal space-y-1 text-start text-lg font-semibold" data-testid="worked-steps">
               {mech.explain(item).map((s, i) => (
-                <li key={i}>{toArabicDigits(s)}</li>
+                <li key={i}>{item.lang === "en" ? s : toArabicDigits(s)}</li>
               ))}
             </ol>
           )}
@@ -246,12 +255,17 @@ export function WorkedExample({ game, onClose }: { game: CatalogGame; onClose: (
         <h2 className="text-xl font-extrabold text-sky-900">مثال محلول: {game.title}</h2>
         <span />
       </header>
-      <p className="text-center text-2xl font-bold">{toArabicDigits(item.prompt)}</p>
+      <p className="text-center text-2xl font-bold" dir={item.lang === "en" ? "ltr" : undefined}>{item.lang === "en" ? item.prompt : toArabicDigits(item.prompt)}</p>
+      {item.promptAr && <p className="text-center text-lg text-slate-600">{item.promptAr}</p>}
       {Visual && <Visual visual={item.visual} item={item} reveal solution={solution} locked hintLevel={3} />}
-      {solutionText && <p className="rounded-2xl bg-emerald-100 px-4 py-2 text-2xl font-extrabold">الإجابة: {toArabicDigits(solutionText)}</p>}
+      {solutionText && (
+        <p className="rounded-2xl bg-emerald-100 px-4 py-2 text-2xl font-extrabold">
+          الإجابة: <span dir={item.lang === "en" ? "ltr" : undefined}>{item.lang === "en" ? solutionText : toArabicDigits(solutionText)}</span>
+        </p>
+      )}
       <ol className="w-full max-w-md list-inside list-decimal space-y-2 rounded-2xl bg-white p-4 text-xl shadow">
         {mech.explain(item).map((s, i) => (
-          <li key={i}>{toArabicDigits(s)}</li>
+          <li key={i}>{item.lang === "en" ? s : toArabicDigits(s)}</li>
         ))}
       </ol>
       <button type="button" onClick={() => setSeed((s) => s + 1)} className="rounded-2xl bg-sky-100 px-5 py-3 text-lg font-bold shadow">

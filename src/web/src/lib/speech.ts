@@ -7,13 +7,13 @@ export function canSpeak(): boolean {
   return typeof window !== "undefined" && "speechSynthesis" in window;
 }
 
-export function speak(text: string, lang = "ar"): void {
+export function speak(text: string, lang = "ar", rate = 0.85): void {
   if (!canSpeak()) return;
   try {
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = lang;
-    u.rate = 0.85; // slower for a young listener
+    u.rate = rate; // slower than normal for a young listener; 0.55 for the slow button
     window.speechSynthesis.speak(u);
   } catch {
     // ignore: read-aloud is an optional aid

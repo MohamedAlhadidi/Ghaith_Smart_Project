@@ -16,7 +16,13 @@ const webDir = resolve(here, "..");
 const root = resolve(webDir, "../..");
 const outDir = resolve(root, "reports/e2e");
 mkdirSync(outDir, { recursive: true });
-const catalog = JSON.parse(readFileSync(resolve(root, "content/curriculum/math/s1/lessons.json"), "utf8"));
+const mathCatalog = JSON.parse(readFileSync(resolve(root, "content/curriculum/math/s1/lessons.json"), "utf8"));
+const englishCatalog = JSON.parse(readFileSync(resolve(root, "content/curriculum/english/s1/lessons.json"), "utf8"));
+const ONLY = process.env.ONLY_SUBJECT; // optional: "math" | "english"
+const allLessons = [
+  ...(ONLY && ONLY !== "math" ? [] : mathCatalog.lessons),
+  ...(ONLY && ONLY !== "english" ? [] : englishCatalog.lessons),
+];
 const LEGACY = new Set(["hsq-fragment", "hsq-locate", "hsq-path"]);
 const PORT = 4174;
 const BASE = `http://127.0.0.1:${PORT}/`;
@@ -40,6 +46,13 @@ const VISUAL_DRIVERS = {
   },
   async "digit-sentence"(page, solution) {
     for (const id of solution) await page.locator(`[data-card-id="${id}"]`).click();
+    await confirmIfPresent(page);
+  },
+  async "match-pairs"(page, solution) {
+    for (const [wi, pi] of solution) {
+      await page.locator(`[data-match-word="${wi}"]`).click();
+      await page.locator(`[data-match-pic="${pi}"]`).click();
+    }
     await confirmIfPresent(page);
   },
   async "numberline-place"(page, solution) {
@@ -95,7 +108,7 @@ try {
   page.on("pageerror", (e) => errors.push(String(e)));
   page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
 
-  for (const lesson of catalog.lessons) {
+  for (const lesson of allLessons) {
     for (const game of lesson.games) {
       if (LEGACY.has(game.mechanic)) continue; // covered by smoke.mjs
       errors = [];
@@ -127,7 +140,9 @@ try {
   const steps = await page.getByTestId("worked-example").locator("li").count();
   results.push({ lesson: "MATH-S1-U1A-L05", game: "worked-example", pass: steps >= 2, items: [`${steps} steps`] });
   await page.goto(`${BASE}?e2e=1`);
-  await page.locator('[data-unit="MATH-S1-U1B"]').click();
+  const missionUnit = ONLY === "english" ? "ENG-S1-SS1" : "MATH-S1-U1B";
+  await page.locator(`[data-subject="${missionUnit.startsWith("ENG") ? "english" : "math"}"]`).click();
+  await page.locator(`[data-unit="${missionUnit}"]`).click();
   await page.getByTestId("mission").click();
   const missionKinds = [];
   for (let i = 0; i < 20; i++) {
@@ -138,7 +153,7 @@ try {
     await nextBtn.click();
   }
   const done = (await page.getByTestId("round-done").count()) === 1;
-  results.push({ lesson: "MATH-S1-U1B", game: "unit-mission", pass: done && missionKinds.length > 0 && missionKinds.every((k) => k === "correct"), items: missionKinds });
+  results.push({ lesson: missionUnit, game: "unit-mission", pass: done && missionKinds.length > 0 && missionKinds.every((k) => k === "correct"), items: missionKinds });
   await page.screenshot({ path: `${outDir}/all-games-mission-done.png` });
 
   // Parent content-review screen: adult gate, sample items with answers, decision needs a reviewer name.

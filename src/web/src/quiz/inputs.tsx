@@ -13,6 +13,17 @@ interface Common {
   reveal: boolean;
   solution: unknown;
   onSubmit: (answer: unknown) => void;
+  /** "en": labels are English (left-to-right, Western digits). */
+  lang?: "ar" | "en";
+}
+
+const EMOJI_ONLY = /^(\p{Extended_Pictographic}|\p{Emoji_Component}|\uFE0F|\u200D|\s)+$/u;
+
+/** Render an option label: Arabic → Arabic-Indic digits; English → as written, LTR; emoji → large. */
+export function OptionLabel({ label, lang }: { label: string; lang?: "ar" | "en" }) {
+  if (EMOJI_ONLY.test(label)) return <span className="text-6xl leading-none" role="img">{label}</span>;
+  if (lang === "en") return <span dir="ltr" lang="en">{label}</span>;
+  return <>{toArabicDigits(label)}</>;
 }
 
 const BTN = "min-h-14 rounded-2xl px-4 py-3 text-2xl font-extrabold shadow active:scale-95 disabled:cursor-default";
@@ -51,7 +62,7 @@ export function NumberAnswer({ locked, reveal, solution, onSubmit, unit }: Commo
   );
 }
 
-export function ChoiceAnswer({ options, locked, reveal, solution, onSubmit }: Common & { options: ChoiceOption[] }) {
+export function ChoiceAnswer({ options, locked, reveal, solution, onSubmit, lang }: Common & { options: ChoiceOption[] }) {
   const [wrongPick, setWrongPick] = useState<string | null>(null);
   return (
     <div className="grid w-full max-w-xl grid-cols-1 gap-3 sm:grid-cols-2" role="group" aria-label="الخيارات">
@@ -69,7 +80,7 @@ export function ChoiceAnswer({ options, locked, reveal, solution, onSubmit }: Co
             }}
             className={`${BTN} ${isSolution ? "bg-emerald-300" : wrongPick === o.id && !locked ? "bg-amber-100" : "bg-white"}`}
           >
-            {toArabicDigits(o.label)}
+            <OptionLabel label={o.label} lang={lang} />
           </button>
         );
       })}
@@ -77,7 +88,7 @@ export function ChoiceAnswer({ options, locked, reveal, solution, onSubmit }: Co
   );
 }
 
-export function MultiAnswer({ options, exactly, locked, reveal, solution, onSubmit }: Common & { options: ChoiceOption[]; exactly?: number }) {
+export function MultiAnswer({ options, exactly, locked, reveal, solution, onSubmit, lang }: Common & { options: ChoiceOption[]; exactly?: number }) {
   const [picked, setPicked] = useState<string[]>([]);
   const sol = Array.isArray(solution) ? (solution as string[]) : [];
   const toggle = (id: string) =>
@@ -99,7 +110,7 @@ export function MultiAnswer({ options, exactly, locked, reveal, solution, onSubm
               className={`${BTN} ${on ? (reveal ? "bg-emerald-300" : "bg-sky-200 ring-4 ring-sky-500") : "bg-white"}`}
             >
               {on ? "✓ " : ""}
-              {toArabicDigits(o.label)}
+              <OptionLabel label={o.label} lang={lang} />
             </button>
           );
         })}
@@ -113,29 +124,30 @@ export function MultiAnswer({ options, exactly, locked, reveal, solution, onSubm
   );
 }
 
-export function OrderAnswer({ items, locked, reveal, solution, onSubmit }: Common & { items: ChoiceOption[] }) {
+export function OrderAnswer({ items, locked, reveal, solution, onSubmit, lang }: Common & { items: ChoiceOption[] }) {
   const [order, setOrder] = useState<string[]>([]);
   const shown = reveal && Array.isArray(solution) ? (solution as string[]) : order;
-  const label = (id: string) => toArabicDigits(items.find((i) => i.id === id)?.label ?? "");
+  const raw = (id: string) => items.find((i) => i.id === id)?.label ?? "";
+  const label = (id: string) => (lang === "en" ? raw(id) : toArabicDigits(raw(id)));
   return (
     <div className="flex w-full flex-col items-center gap-3">
-      <div className="flex min-h-16 w-full max-w-xl flex-wrap items-center justify-center gap-2 rounded-2xl bg-white/70 p-2" aria-label="الترتيب">
+      <div dir={lang === "en" ? "ltr" : undefined} lang={lang === "en" ? "en" : undefined} className="flex min-h-16 w-full max-w-xl flex-wrap items-center justify-center gap-2 rounded-2xl bg-white/70 p-2" aria-label="الترتيب">
         {shown.length === 0 && <span className="text-slate-400">المس الأعداد بالترتيب</span>}
         {shown.map((id, i) => (
           <span key={id} className={`rounded-xl px-3 py-2 text-2xl font-extrabold ${reveal ? "bg-emerald-200" : "bg-sky-200"}`}>
             {label(id)}
-            {i < shown.length - 1 && <span className="mx-1 text-slate-400">،</span>}
+            {i < shown.length - 1 && lang !== "en" && <span className="mx-1 text-slate-400">،</span>}
           </span>
         ))}
       </div>
       {!locked && !reveal && (
         <>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div dir={lang === "en" ? "ltr" : undefined} className="flex flex-wrap justify-center gap-3">
             {items
               .filter((i) => !order.includes(i.id))
               .map((i) => (
                 <button key={i.id} type="button" data-option={i.id} onClick={() => setOrder((o) => [...o, i.id])} className={`${BTN} bg-white`}>
-                  {toArabicDigits(i.label)}
+                  <OptionLabel label={i.label} lang={lang} />
                 </button>
               ))}
           </div>

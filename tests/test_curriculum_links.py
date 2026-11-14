@@ -136,3 +136,49 @@ class MathCatalogTests(unittest.TestCase):
                 self.assertTrue(l.get("approval_actor"), l["lesson_id"])
             else:
                 self.assertIsNone(l.get("approval_actor"), l["lesson_id"])
+
+
+class EnglishCatalogTests(unittest.TestCase):
+    """content/curriculum/english/s1 must stay aligned with the matrix, inventory and word bank."""
+
+    @classmethod
+    def setUpClass(cls):
+        base = ROOT / "content/curriculum/english/s1"
+        cls.doc = json.loads((base / "lessons.json").read_text(encoding="utf-8"))
+        cls.words = json.loads((base / "wordbank.json").read_text(encoding="utf-8"))["words"]
+
+    def test_lessons_match_matrix(self):
+        ids = sorted(l["lesson_id"] for l in self.doc["lessons"])
+        self.assertEqual(ids, sorted(r["lesson_id"] for r in MATRIX if r["subject"] == "english"))
+
+    def test_sources_match_inventory_and_page_offsets(self):
+        offsets = {"ENG-S1-CB": 1, "ENG-S1-SS": 1, "ENG-S1-AB": 2}
+        for l in self.doc["lessons"]:
+            src = l["source"]
+            book = INVENTORY[src["source_book_id"]]
+            self.assertEqual(src["source_sha256"], book["sha256"], l["lesson_id"])
+            off = offsets[src["source_book_id"]]
+            self.assertEqual(src["source_pdf_pages"], [p + off for p in src["source_printed_pages"]], l["lesson_id"])
+            self.assertTrue(all(1 <= p <= int(book["pdf_pages"]) for p in src["source_pdf_pages"]), l["lesson_id"])
+
+    def test_words_and_graphemes(self):
+        for l in self.doc["lessons"]:
+            for w in l["words"]:
+                self.assertIn(w, self.words, f"{l['lesson_id']}: {w}")
+        for w, e in self.words.items():
+            if "graphemes" in e:
+                self.assertEqual("".join(e["graphemes"]), w, w)
+
+    def test_sixteen_sounds_each_with_a_tricky_word(self):
+        ss = [l for l in self.doc["lessons"] if l["source"]["source_book_id"] == "ENG-S1-SS"]
+        self.assertEqual(len(ss), 16)
+        for l in ss:
+            mechs = {g["mechanic"] for g in l["games"]}
+            self.assertTrue({"missing-grapheme", "blend-build", "tricky-cloze"} <= mechs, l["lesson_id"])
+
+    def test_no_self_approval(self):
+        for l in self.doc["lessons"]:
+            if l["content_review_status"] == "approved":
+                self.assertTrue(l.get("approval_actor"), l["lesson_id"])
+            else:
+                self.assertIsNone(l.get("approval_actor"), l["lesson_id"])

@@ -41,6 +41,10 @@ export interface QuizItem<P = unknown> extends ItemMeta {
   prompt: string;
   visual: Visual;
   input: AnswerInput;
+  /** "en" = English content: rendered left-to-right with Western digits; default Arabic. */
+  lang?: "ar" | "en";
+  /** Short Arabic helper line shown under an English prompt (for the child or parent). */
+  promptAr?: string;
 }
 
 export interface QuizMechanic<C = Record<string, unknown>, P = unknown> {
@@ -71,9 +75,11 @@ export function makeItem<P>(
   mech: Pick<QuizMechanic, "id" | "version" | "mechanicId">,
   seed: number,
   difficulty: Difficulty,
-  body: { params: P; prompt: string; visual?: Visual; input: AnswerInput },
+  body: { params: P; prompt: string; visual?: Visual; input: AnswerInput; lang?: "ar" | "en"; promptAr?: string },
 ): QuizItem<P> {
   return {
+    ...(body.lang ? { lang: body.lang } : {}),
+    ...(body.promptAr ? { promptAr: body.promptAr } : {}),
     kind: "quiz",
     generatorId: mech.id,
     generatorVersion: mech.version,

@@ -10,16 +10,22 @@ import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import catalog from "../../../../../content/curriculum/math/s1/lessons.json";
+import mathCatalog from "../../../../../content/curriculum/math/s1/lessons.json";
+import englishCatalog from "../../../../../content/curriculum/english/s1/lessons.json";
 import { LEGACY_MECHANICS, QUIZ_MECHANICS } from "../../src/math/registry";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const out = resolve(here, "../../../../../reports/math_s1_coverage.json");
+const reports = resolve(here, "../../../../../reports");
 const playable = (m: string) => (LEGACY_MECHANICS as readonly string[]).includes(m) || QUIZ_MECHANICS.has(m);
 const levelsOf = (m: string) => ((LEGACY_MECHANICS as readonly string[]).includes(m) ? 3 : QUIZ_MECHANICS.get(m)?.difficulties.length ?? 0);
 
-describe("math S1 coverage report", () => {
-  it("computes and writes metrics", () => {
+interface AnyCatalog {
+  units: Array<{ unit_id: string; title: string }>;
+  lessons: Array<{ lesson_id: string; lesson_name: string; unit_id: string; source: Record<string, unknown>; skills: Array<{ id: string }>; games: Array<{ mechanic: string; skill_id: string }>; content_review_status: string }>;
+}
+
+function report(catalog: AnyCatalog, file: string) {
+  {
     const lessons = catalog.lessons.map((l) => {
       const games = l.games.filter((g) => playable(g.mechanic));
       const skills = l.skills.map((s) => s.id);
@@ -28,7 +34,7 @@ describe("math S1 coverage report", () => {
         lesson_id: l.lesson_id,
         lesson_name: l.lesson_name,
         unit_id: l.unit_id,
-        printed_page: l.source.source_printed_page,
+        printed_page: (l.source.source_printed_page as number | undefined) ?? (l.source.source_printed_pages as number[])[0],
         games_defined: l.games.length,
         games_playable: games.length,
         activity_rounds_count: games.reduce((n, g) => n + levelsOf(g.mechanic), 0),
@@ -57,8 +63,13 @@ describe("math S1 coverage report", () => {
       ),
       lessons_approved: lessons.filter((l) => l.approved).length,
     };
-    mkdirSync(dirname(out), { recursive: true });
-    writeFileSync(out, JSON.stringify({ generated_at: new Date().toISOString(), totals, units, lessons }, null, 2) + "\n");
-    expect(totals.lessons).toBe(40);
-  });
+    mkdirSync(reports, { recursive: true });
+    writeFileSync(resolve(reports, file), JSON.stringify({ generated_at: new Date().toISOString(), totals, units, lessons }, null, 2) + "\n");
+    return totals;
+  }
+}
+
+describe("coverage reports", () => {
+  it("math S1", () => expect(report(mathCatalog as unknown as AnyCatalog, "math_s1_coverage.json").lessons).toBe(40));
+  it("English S1", () => expect(report(englishCatalog as unknown as AnyCatalog, "english_s1_coverage.json").lessons).toBe(52));
 });
