@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Render docs/MATH_S1_COVERAGE.md from reports/math_s1_coverage.json and the lesson catalogue.
+"""Render docs/<SUBJECT>_S1_COVERAGE.md from reports/<subject>_s1_coverage.json and the lesson catalogue.
+
+Usage: python3 scripts/render_math_coverage.py [math|english]
 
 The JSON report is produced by `npx vitest run test/math/coverage-report.test.ts`
 (in src/games/core). This script only formats it for human review.
@@ -7,17 +9,21 @@ The JSON report is produced by `npx vitest run test/math/coverage-report.test.ts
 import json
 from pathlib import Path
 
+import sys
+
 ROOT = Path(__file__).resolve().parents[1]
-report = json.loads((ROOT / "reports/math_s1_coverage.json").read_text(encoding="utf-8"))
-catalog = json.loads((ROOT / "content/curriculum/math/s1/lessons.json").read_text(encoding="utf-8"))
+SUBJECT = sys.argv[1] if len(sys.argv) > 1 else "math"
+report = json.loads((ROOT / f"reports/{SUBJECT}_s1_coverage.json").read_text(encoding="utf-8"))
+catalog = json.loads((ROOT / f"content/curriculum/{SUBJECT}/s1/lessons.json").read_text(encoding="utf-8"))
+TITLE = {"math": "تغطية رياضيات الفصل الأول — كتاب الطالب (MATH-S1-STU)", "english": "تغطية الإنجليزية للفصل الأول — Team Together Oman 2A"}[SUBJECT]
 games_by_lesson = {l["lesson_id"]: l["games"] for l in catalog["lessons"]}
 notes = {l["lesson_id"]: l.get("interpretation_notes", "") for l in catalog["lessons"]}
 
 t = report["totals"]
 lines = [
-    "# تغطية رياضيات الفصل الأول — كتاب الطالب (MATH-S1-STU)",
+    f"# {TITLE}",
     "",
-    f"مولّد آليًا من `reports/math_s1_coverage.json` (وقت التوليد: {report['generated_at']}). "
+    f"مولّد آليًا من `reports/{SUBJECT}_s1_coverage.json` (وقت التوليد: {report['generated_at']}). "
     "المقاييس منفصلة كما تشترط سياسة الألعاب: الجولات ≠ الآليات ≠ تغطية الأهداف. "
     "**لا يوجد أي درس معتمد بشريًا بعد.**",
     "",
@@ -33,7 +39,7 @@ lines = [
     "",
     "## الوحدات",
     "",
-    "| الوحدة | الدروس | آليات مستقلة في الوحدة (الهدف ٦) |",
+    "| الوحدة | الدروس | آليات مستقلة في الوحدة |",
     "|---|---|---|",
 ]
 for u in report["units"]:
@@ -68,5 +74,6 @@ lines += [
     "",
     "النقص المعروف: لا يوجد علاج آلي من مهارة سابقة بعد (المرحلة ٨ في السياسة)، ولا تسجيلات صوتية معتمدة (القراءة الصوتية اختيارية من الجهاز).",
 ]
-(ROOT / "docs/MATH_S1_COVERAGE.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-print("wrote docs/MATH_S1_COVERAGE.md")
+out = ROOT / f"docs/{SUBJECT.upper()}_S1_COVERAGE.md"
+out.write_text("\n".join(lines) + "\n", encoding="utf-8")
+print("wrote", out.relative_to(ROOT))
