@@ -37,7 +37,7 @@ function pagesIn(v: unknown): number[] {
 describe.skipIf(!present)("Arabic S1 catalogue (local content)", () => {
   it("covers the two axes of semester 1 with their listed sections", () => {
     expect(catalog.units.map((u: { unit_id: string }) => u.unit_id)).toEqual(["ARB-S1-A1", "ARB-S1-A2"]);
-    expect(lessons.length).toBeGreaterThanOrEqual(10);
+    expect(lessons.length).toBe(15);
   });
 
   it("game ids are unique, every game names a skill of its lesson and has 2+ hints", () => {

@@ -7,7 +7,7 @@
  * Approval is reported separately and is 0 until a human reviews content.
  */
 import { describe, expect, it } from "vitest";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import mathCatalog from "../../../../../content/curriculum/math/s1/lessons.json";
@@ -69,7 +69,12 @@ function report(catalog: AnyCatalog, file: string) {
   }
 }
 
+// The Arabic catalogue holds book text and stays local until publishing is approved.
+const arabicFile = resolve(here, "../../../../../content/curriculum/arabic/s1/lessons.json");
+
 describe("coverage reports", () => {
   it("math S1", () => expect(report(mathCatalog as unknown as AnyCatalog, "math_s1_coverage.json").lessons).toBe(40));
   it("English S1", () => expect(report(englishCatalog as unknown as AnyCatalog, "english_s1_coverage.json").lessons).toBe(52));
+  it.skipIf(!existsSync(arabicFile))("Arabic S1 (local content)", () =>
+    expect(report(JSON.parse(readFileSync(arabicFile, "utf8")) as AnyCatalog, "arabic_s1_coverage.json").lessons).toBe(15));
 });

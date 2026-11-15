@@ -322,6 +322,8 @@ export interface FillItem extends Paged {
 interface FillConfig {
   bank: string[];
   items: FillItem[];
+  /** Optional book wording, e.g. «أَعِدِ الْكَلِمَةَ إِلى مَكانِها كَما في النَّصِّ». */
+  prompt?: string;
 }
 interface FillParams {
   text: string;
@@ -339,7 +341,7 @@ export const AR_FILL_WORD: M<FillConfig, FillParams> = {
   validateConfig(c) {
     const p: string[] = [];
     if (!Array.isArray(c?.bank) || c.bank.length < 2 || !c.bank.every(isText)) return ["bank: need 2+ words"];
-    if (new Set(c.bank.map(bare)).size !== c.bank.length) p.push("bank: duplicate words");
+    if (new Set(c.bank.map(noTatweel)).size !== c.bank.length) p.push("bank: duplicate words");
     p.push(
       ...listProblems(c.items, "text", 2, (o, i) => {
         const q: string[] = [];
@@ -362,7 +364,7 @@ export const AR_FILL_WORD: M<FillConfig, FillParams> = {
       const options = shuffleAll(rng, [it.answer, ...drawDistinct(rng, others, n - 1)]);
       return makeItem(AR_FILL_WORD, seed, d, {
         params: { text: it.text, answer: it.answer, options, alsoFits: [...(it.alsoFits ?? [])] },
-        prompt: "اخْتَرِ الْكَلِمَةَ الْمُناسِبَةَ لِلْفَراغِ.",
+        prompt: c.prompt ?? "اخْتَرِ الْكَلِمَةَ الْمُناسِبَةَ لِلْفَراغِ.",
         visual: card(it.text, { size: "sentence" }),
         input: { type: "choice", options: labelled(options) },
       });
@@ -374,7 +376,9 @@ export const AR_FILL_WORD: M<FillConfig, FillParams> = {
   checkIntegrity(item) {
     const p = choiceIntegrity(asMech(AR_FILL_WORD), item, item.params.options.length);
     if (item.params.text.split(BLANK).length !== 2) p.push("sentence must have one blank");
-    if (item.params.options.some((o) => item.params.alsoFits.some((f) => sameBare(f, o)))) p.push("a word that also fits is offered as a distractor");
+    if (item.params.options.some((o) => !sameText(o, item.params.answer) && item.params.alsoFits.some((f) => sameText(f, o)))) p.push("a word that also fits is offered as a distractor");
+    // A form that differs from the answer only in its vowels («ثَلاثَةٌ» / «ثَلاثَةُ») is never offered.
+    if (item.params.options.some((o) => !sameText(o, item.params.answer) && sameBare(o, item.params.answer))) p.push("near-identical form offered");
     return p;
   },
 };
@@ -908,12 +912,15 @@ interface SortConfig {
   /** The two column headings exactly as printed. */
   columns: [string, string];
   items: SortEntry[];
+  /** Optional reference shown with every question, e.g. the event for «قبل / بعد». */
+  context?: string;
 }
 interface SortParams {
   columns: [string, string];
   items: SortEntry[];
   ask: "classify" | "pick" | "odd";
   target: 0 | 1;
+  context?: string;
 }
 
 export const AR_SORT: M<SortConfig, SortParams> = {
@@ -936,8 +943,8 @@ export const AR_SORT: M<SortConfig, SortParams> = {
       if (d === 1) {
         const it = pick(rng, c.items);
         return makeItem(AR_SORT, seed, d, {
-          params: { columns: c.columns, items: [it], ask: "classify", target: it.column },
-          prompt: `في أَيِّ عَمودٍ نَضَعُ «${it.text}»؟`,
+          params: { columns: c.columns, items: [it], ask: "classify", target: it.column, ...(c.context ? { context: c.context } : {}) },
+          prompt: `${c.context ? `${c.context}: ` : ""}في أَيِّ عَمودٍ نَضَعُ «${it.text}»؟`,
           visual: card(it.text, { size: "word" }),
           input: { type: "choice", options: c.columns.map((label, i) => ({ id: `c${i}`, label })) },
         });
@@ -947,8 +954,8 @@ export const AR_SORT: M<SortConfig, SortParams> = {
         const k = its.filter((x) => x.column === target).length;
         if (k === 0 || k === its.length) return null;
         return makeItem(AR_SORT, seed, d, {
-          params: { columns: c.columns, items: its, ask: "pick", target },
-          prompt: `اخْتَرْ كُلَّ ما يوضَعُ في عَمودِ «${c.columns[target]}».`,
+          params: { columns: c.columns, items: its, ask: "pick", target, ...(c.context ? { context: c.context } : {}) },
+          prompt: `${c.context ? `${c.context}: ` : ""}اخْتَرْ كُلَّ ما يوضَعُ في عَمودِ «${c.columns[target]}».`,
           input: { type: "multi", options: labelled(its.map((x) => x.text)) },
         });
       }
@@ -957,8 +964,8 @@ export const AR_SORT: M<SortConfig, SortParams> = {
       if (rest.length < 2) return null;
       const its = shuffleAll(rng, [pick(rng, one), ...drawDistinct(rng, rest, 2)]);
       return makeItem(AR_SORT, seed, d, {
-        params: { columns: c.columns, items: its, ask: "odd", target },
-        prompt: `أَيُّها يوضَعُ في عَمودِ «${c.columns[target]}»؟`,
+        params: { columns: c.columns, items: its, ask: "odd", target, ...(c.context ? { context: c.context } : {}) },
+        prompt: `${c.context ? `${c.context}: ` : ""}أَيُّها يوضَعُ في عَمودِ «${c.columns[target]}»؟`,
         input: { type: "choice", options: labelled(its.map((x) => x.text)) },
       });
     });

@@ -94,8 +94,16 @@ def ex(sid: str, page: int, no: str | None = None, section: str | None = None, n
     return hits[nth]
 
 
+LATIN = re.compile(r"[A-Za-z]")
+
+
 def answer(it: dict) -> str | None:
-    return it.get("answer_in_book") or it.get("answer_derived")
+    """The printed answer when it is clean book text, else the answer derived from the text.
+    (Transcribers sometimes annotate a field in English; such text never reaches a game.)"""
+    book = it.get("answer_in_book")
+    if isinstance(book, str) and book and not LATIN.search(book):
+        return book
+    return it.get("answer_derived")
 
 
 def text_lines(sid: str, kind: str = "reading_text") -> list[tuple[int, str]]:
@@ -124,6 +132,31 @@ def dedupe(entries: list[dict], key: str = "text") -> list[dict]:
         if k not in seen:
             seen.add(k)
             out.append(e)
+    return out
+
+
+def clusters(word: str) -> list[str]:
+    """Letters of the shadda-expanded word, each with its diacritics (tatweel dropped)."""
+    out: list[str] = []
+    for ch in expand_shadda(word.replace(TATWEEL, "")):
+        if "\u0621" <= ch <= "\u064A" or not out:
+            out.append(ch)
+        else:
+            out[-1] += ch
+    return out
+
+
+def resplit(word: str, syllables: list[str]) -> list[str]:
+    """A split worked out by a transcriber (not printed): keep its syllable BOUNDARIES but take
+    every letter and diacritic from the word itself, so the cards always spell the printed word."""
+    cl = clusters(word)
+    sizes = [len(re.findall("[\u0621-\u064A]", expand_shadda(x.replace(TATWEEL, "")))) for x in syllables]
+    if sum(sizes) != len(cl):
+        raise ValueError(f"split {syllables} does not cover «{word}»")
+    out, i = [], 0
+    for n in sizes:
+        out.append("".join(cl[i:i + n]))
+        i += n
     return out
 
 
@@ -247,7 +280,7 @@ def a1_rev() -> dict:
     find = ex(sid, 21, "١")
     jhk = [w for it in find["items"] for w in it["answer_derived"]]
     syl = ex(sid, 22, "٤")
-    sylw = [{"word": clean(it["text"]), "syllables": split_slashes(it["answer_derived"]), "page": 22} for it in syl["items"]]
+    sylw = [{"word": clean(it["text"]), "syllables": resplit(clean(it["text"]), split_slashes(it["answer_derived"])), "page": 22} for it in syl["items"]]
     seg = ex(sid, 22, "٣")
     poem = [(p, l) for p, l in text_lines(sid, "poem")]
     count = dedupe([{"text": clean(seg["items"][0]["text"]), "page": 22}] + [
@@ -362,6 +395,235 @@ def a1_l1() -> dict:
     return lesson(sid, "ARB-S1-A1", "الدَّرْسُ الْأَوَّلُ: لُعْبَتي", "reading_lesson", skills, games, not_gamed, "")
 
 
+def a1_l2() -> dict:
+    sid = L = "ARB-S1-A1-L2"
+    skills = {
+        "S1": "يَفْهَمُ نَصَّ «سَيَكْبُرونَ»: الْمَكانُ وَالزَّمانُ وَالْأَحْداثُ وَالتَّعْليلُ",
+        "S2": "يُحَدِّدُ مُرادِفَ الْكَلِمَةِ مِنَ السِّياقِ",
+        "S3": "يُمَيِّزُ الْحُروفَ (ص، ض، ط، ظ) في الْكَلِماتِ",
+        "S4": "يُحَلِّلُ الْجُمْلَةَ إِلى كَلِماتٍ وَالْكَلِمَةَ إِلى مَقاطِعَ",
+        "S5": "يَسْتَعْمِلُ ظَرْفَيِ الزَّمانِ وَالْمَكانِ",
+        "S6": "يُمَيِّزُ التّاءَ الْمَفْتوحَةَ مِنَ الْمَرْبوطَةِ",
+        "S7": "يُرَتِّبُ جُمَلًا لِلْحُصولِ عَلى فِقْرَةٍ",
+    }
+    place = ex(sid, 55, "1")
+    lunch = ex(sid, 57, "1")
+    qs = [
+        {"q": "أَيْنَ وَقَعَتِ الْأَحْداثُ؟", "options": [re.sub(r"\s*\(.*\)", "", o) for o in place["items"][0]["options"]], "answer": "الْبَيْتُ", "page": 55},
+        {"q": clean(lunch["instruction"]).split("؟")[0] + "؟", "options": lunch["word_bank"], "answer": answer(lunch["items"][0]), "page": 57},
+        q_from(sid, 59, "1"),
+    ]
+    st = ex(sid, 56, "4")
+    statements = [{"text": clean(it["text"]), "inText": answer(it) == "✔", "page": 56} for it in st["items"]]
+    syn = ex(sid, 58, "2")
+    syns = [
+        {"q": "«نَسْمَعُها تَقولُ هامِسَةً»: ما مَعْنى «هامِسَةً»؟", "options": syn["items"][0]["options"], "answer": answer(syn["items"][0]), "page": 58},
+        {"q": "«كُتُبُنا وَأَقْلامُنا تَحْتَ الْمِنْضَدَةِ»: ما مَعْنى «الْمِنْضَدَةِ»؟", "options": syn["items"][1]["options"], "answer": answer(syn["items"][1]), "page": 58},
+    ]
+    miss = ex(sid, 60, "1")
+    mitems = []
+    for it in miss["items"]:
+        m = re.search(r"\((.+?)\)", it["answer_derived"])
+        if not m or "،" in m.group(1):
+            continue  # the last line has four blanks
+        word = m.group(1)
+        sentence = re.sub(r"\S*\.{3,}\S*", word, clean(it["text"]).replace("___", "....."), count=1)
+        composed[sentence] = sid
+        mitems.append({"word": word, "sentence": sentence, "page": 60})
+    hw = T[sid]["handwriting"]
+    hw_words = hw["words"] + [w for w in re.split(r"[\s،.]+", hw["sentences"][0]) if bare(w)]
+    cnt = ex(sid, 61, "3")
+    count = [{"text": clean(it["text"]), "page": 61} for it in cnt["items"]]
+    sy = ex(sid, 61, "4")
+    sylw = []
+    for it in sy["items"]:
+        parts = [x.strip(" .") for x in split_slashes(answer(it).split("—")[0]) if x.strip(" .")]
+        printed = bool(it.get("answer_in_book")) and not LATIN.search(it["answer_in_book"])
+        sylw.append({"word": clean(it["text"]), "syllables": parts if printed else resplit(clean(it["text"]), parts), "page": 61})
+    adv = ex(sid, 62, "1")
+    pick_adv = {1: ("بَعْدَ", ["قَبْلَ", "عِنْدَ"]), 2: ("عِنْدَ", ["قَبْلَ", "بَعْدَ"]), 5: ("قَبْلَ", [])}
+    fills = [{"text": clean(adv["items"][i]["text"]), "answer": a, **({"alsoFits": f} if f else {}), "page": 62} for i, (a, f) in pick_adv.items()]
+    taa = ex(sid, 64, "6")
+    para = ex(sid, 66, "6", nth=0)
+    games = [
+        game(L, 1, "أَسْئِلَةُ النَّصِّ", "S1", "ar-question", {"questions": qs}, H_TEXT, "الإجابات من النص ص51–54؛ خيارات المكان ص55 صور في الكتاب وكُتبت أسماؤها هنا."),
+        game(L, 2, "مُوافِقَةٌ لِلنَّصِّ؟", "S1", "ar-text-check", {
+            "statements": statements,
+            "prompts": {"in": "أَيُّ جُمْلَةٍ مُوافِقَةٌ لِلنَّصِّ؟", "notIn": "أَيُّ جُمْلَةٍ غَيْرُ مُوافِقَةٍ لِلنَّصِّ؟", "allIn": "اخْتَرْ كُلَّ جُمْلَةٍ مُوافِقَةٍ لِلنَّصِّ."},
+        }, H_TEXT, "الموافقة مستنتجة من النص."),
+        game(L, 3, "رَتِّبْ أَحْداثَ النَّصِّ", "S1", "ar-event-order", {"events": events_from(sid, 57, "5")}, H_ORDER),
+        game(L, 4, "مَعاني الْكَلِماتِ", "S2", "ar-question", {"questions": syns}, H_VOCAB, "الإجابتان بالمعنى المعجمي؛ الكتاب لا يطبعهما."),
+        game(L, 5, "الْحَرْفُ النّاقِصُ: ص ض ط ظ", "S3", "ar-missing-letter", {"letters": ["ص", "ض", "ط", "ظ"], "items": mitems}, H_LETTER,
+             "جمل ص60 كما طُبعت، والكلمة الكاملة من النص؛ استُبعد السطر الأخير لأن فيه أربعة فراغات."),
+        game(L, 6, "ص ض", "S3", "ar-letter-find", {"letters": ["ص", "ض"], "words": [{"word": w, "page": 65} for w in hw_words]}, H_LETTER, "كلمات صفحة الخط ص65."),
+        game(L, 7, "كَمْ كَلِمَةً؟", "S4", "ar-count-words", {"sentences": count}, H_COUNT, "المثال الأول مطبوع (٦ كلمات)."),
+        game(L, 8, "مَقاطِعُ الْكَلِماتِ", "S4", "ar-syllables", {"words": sylw}, H_SYL, "«الْمَدْرَسَةُ» مقسمة في الكتاب ص61؛ والكلمتان الأخريان على النموذج نفسه."),
+        game(L, 9, "قَبْلَ، بَعْدَ، عِنْدَ…", "S5", "ar-fill-word", {"bank": adv["word_bank"], "items": fills, "prompt": "أَعِدِ الْكَلِمَةَ إِلى مَكانِها كَما في النَّصِّ."}, H_FILL,
+             "جمل ص62 ذات الفراغ الواحد؛ الظروف التي تصح أيضًا لا تُعرض خيارًا خاطئًا."),
+        game(L, 10, "ت أَمْ ـة أَمْ ة؟", "S6", "ar-taa", {"words": [{"word": w, "page": 64} for w in taa["word_bank"]]}, H_TAA),
+        game(L, 11, "رَتِّبِ الْجُمَلَ", "S7", "ar-event-order", {"events": events_from(sid, 66, "6"), "prompt": "رَتِّبِ الْجُمَلَ لِتَحْصُلَ عَلى فِقْرَةٍ."}, H_ORDER,
+             "الترتيب من إطار الفقرة المطبوع ص66 (في الصباح… ثم… فجأة… فرعته أمي… حتى…)."),
+    ]
+    not_gamed = [
+        {"page": 49, "what": "أتحدث", "reason": "شفهي"},
+        {"page": 50, "what": "العنوان والكاتب والتوقع", "reason": "كتابة وتوقع"},
+        {"page": 55, "what": "عبارة لكل صورة", "reason": "صور الكتاب"},
+        {"page": 56, "what": "أفراد أسرة الكاتب", "reason": "كتابة؛ الأخوان بأي ترتيب"},
+        {"page": 59, "what": "أحاكي، وعبارة أعجبتني، وأحدث زملائي", "reason": "إنتاج ورأي"},
+        {"page": 60, "what": "إكمال الكلمات بالمقاطع", "reason": "بطاقتان مطبوعتان بشكل غير واضح («نَْـ» و«ـئـ»)"},
+        {"page": 63, "what": "جمل بالظروف من الصور", "reason": "إنتاج مفتوح"},
+        {"page": 65, "what": "الخط", "reason": "كتابة يدوية؛ غُطّي تمييز الحرفين"},
+        {"page": 66, "what": "إعادة كتابة الفقرة", "reason": "كتابة"},
+    ]
+    return lesson(sid, "ARB-S1-A1", "الدَّرْسُ الثّاني: سَيَكْبُرونَ", "reading_lesson", skills, games, not_gamed, "")
+
+
+def fill_blanks(text: str, words: list[str]) -> str:
+    """Replace each blanked word («صَبا......»، «الـ......ـديقَةِ.») by the full word, in order,
+    keeping punctuation that follows the blank («فَـ......ـأَةً!» → «فَجْأَةً!»)."""
+    it = iter(words)
+
+    def sub(m: re.Match) -> str:
+        after = re.split(r"\.{3,}|…+", m.group(0))[-1]  # what follows the dots, e.g. «ـأَةً!»
+        tail = re.search(r"[!.،؟:]+$", after)
+        return next(it, m.group(0)) + (tail.group(0) if tail else "")
+
+    return re.sub(r"\S*(?:\.{3,}|…+)\S*", sub, text)
+
+
+def a1_l3() -> dict:
+    sid = L = "ARB-S1-A1-L3"
+    skills = {
+        "S1": "يَفْهَمُ نَصَّ «لَيْسَ هَذا ضَعْفًا»: الْعَلاقاتُ وَالْأَحْداثُ وَالْأَسْبابُ وَالْعِبْرَةُ",
+        "S2": "يُحَدِّدُ مُرادِفَ الْكَلِمَةِ مِنَ السِّياقِ",
+        "S3": "يُمَيِّزُ الْحُروفَ (ج، ح، خ) في الْكَلِماتِ",
+        "S4": "يُحَلِّلُ الْجُمْلَةَ إِلى كَلِماتٍ وَالْكَلِمَةَ إِلى مَقاطِعَ",
+        "S5": "يَسْتَعْمِلُ حُروفَ الْجَرِّ وَيُرَكِّبُ جُمْلَةً",
+        "S6": "يَضَعُ عَلاماتِ التَّرْقيمِ (، . ؟) في الْحِوارِ",
+        "S7": "يُكْمِلُ قِصَّةً بِكَلِماتٍ مُناسِبَةٍ",
+    }
+    pred = ex(sid, 68, "b2")
+    qs = [
+        {"q": "«لَيْسَ هَذا ضَعْفًا»: " + clean(pred["items"][0]["text"]), "options": pred["items"][0]["options"], "answer": answer(pred["items"][0]), "page": 68},
+        q_from(sid, 72, "1", q="ما الْعَلاقَةُ الَّتي تَرْبُطُ سَليمًا بِفَهْدٍ؟"),
+        q_from(sid, 72, "2"),
+        q_from(sid, 72, "3"),
+        q_from(sid, 73, "4"),
+        q_from(sid, 76, "1"),
+        q_from(sid, 76, "2"),
+    ]
+    ce = ex(sid, 74, "1")
+    causes = [{"q": f"السَّبَبُ: «{clean(it['text'])}» فَما النَّتيجَةُ؟", "options": ce["word_bank"], "answer": answer(it), "page": 74} for it in ce["items"]]
+    syn = [
+        {"q": "«يُمْكِنُ أَنْ أَنْضَمَّ إِلَيْكُمْ»: ما مُرادِفُ «أَنْضَمَّ»؟", "options": ex(sid, 74, "2")["items"][0]["options"], "answer": answer(ex(sid, 74, "2")["items"][0]), "page": 74},
+        {"q": "«أَكَلَ الشَّطيرَةَ بِشَراهَةٍ شَديدَةٍ»: ما مَعْنى «بِشَراهَةٍ»؟", "options": ex(sid, 75, "3")["items"][0]["options"], "answer": answer(ex(sid, 75, "3")["items"][0]), "page": 75},
+    ]
+    miss = ex(sid, 78, "1")
+    group = ["ج", "ح", "خ"]
+    mitems = []
+    for it in miss["items"]:
+        ws = [w.strip() for w in re.search(r"\((.+)\)", it["answer_derived"]).group(1).split("،")]
+        sentence = clean(fill_blanks(it["text"], ws))
+        composed[sentence] = sid
+        for w in ws:
+            if sum(len(letter_positions(w, g)) for g in group) == 1:
+                mitems.append({"word": w, "sentence": sentence, "page": 78})
+    hw = T[sid]["handwriting"]
+    hw_words = hw["words"] + [w for w in re.split(r"[\s،.]+", hw["sentences"][0]) if bare(w)]
+    cnt = ex(sid, 79, "3")
+    count = [{"text": clean(it["text"]).replace("/", ""), "page": 79} for it in cnt["items"]]
+    count = [dict(c, text=re.sub(r"\s+", " ", c["text"])) for c in count]
+    sy = ex(sid, 79, "4")
+    sylw = []
+    for it in sy["items"]:
+        parts = [x.strip(" .") for x in split_slashes(answer(it).split("—")[0]) if x.strip(" .")]
+        sylw.append({"word": clean(it["text"]), "syllables": resplit(clean(it["text"]), parts), "page": 79})
+    prep = ex(sid, 80, "1")
+    bank = prep["word_bank"]
+    to_bank = lambda a: next(b for b in bank if bare(b).replace("ـ", "") == bare(a).replace("ـ", ""))
+    fits = {1: ["عن"], 2: ["في"], 3: ["في"]}
+    pfills = []
+    for i in range(5):
+        it = prep["items"][i]
+        pfills.append({"text": clean(it["text"]), "answer": to_bank(answer(it)), **({"alsoFits": fits[i]} if i in fits else {}), "page": 80})
+    words2 = ex(sid, 80, "2")
+    sent = answer(words2["items"][0])
+    dlg = ex(sid, 81, "1")
+    dq = []
+    for it in dlg["items"]:
+        marks = answer(it).split()
+        line = clean(it["text"])
+        k = len(marks) - 1  # only the slot that closes the utterance has a single right mark
+        n = [0]
+        def fill(m):
+            j = n[0]
+            n[0] += 1
+            return f"( {marks[j]} )" if j < k else "( ؟ )"
+        shown = re.sub(r"\(\s*\)", fill, line)
+        composed[shown] = sid
+        dq.append({"q": "ما الْعَلامَةُ الْمُناسِبَةُ مَكانَ ( ؟ )؟", "text": shown, "options": dlg["word_bank"], "answer": marks[k], "page": 81})
+    cz = ex(sid, 83, "1")
+    para = " ".join(it["text"] for it in cz["items"])
+    answers = [w.strip() for it in cz["items"] for w in answer(it).split("،")]
+    blanks = list(re.finditer(r"\.{3,}|…+", para))  # only the dots: letters and punctuation around them stay
+    cloze = []
+    for t, m in enumerate(blanks):
+        if para[max(0, m.start() - 2):m.start()].endswith("بـ"):
+            continue  # a blank glued to «بـ» would show a broken word
+        pieces, last = [], 0
+        for j, b in enumerate(blanks):
+            pieces.append(para[last:b.start()])
+            pieces.append("___" if j == t else answers[j])
+            last = b.end()
+        filled = re.sub(r"بـ(?=\S)", "بِ", "".join(pieces) + para[last:])
+        # The book prints this story with few full stops: show the blank's clause (with the clause
+        # before it when it is very short) instead of a 40-word run.
+        clauses = [c for c in re.split(r"(?<=[.!؟،:])\s+", filled) if c.strip()]
+        k = next(i for i, c in enumerate(clauses) if "___" in c)
+        sentence = clauses[k] if len(clauses[k].split()) >= 5 or k == 0 else f"{clauses[k - 1]} {clauses[k]}"
+        sentence = sentence.strip()
+        composed[sentence] = sid
+        item = {"text": sentence, "answer": answers[t], "page": 83}
+        if answers[t] == "الْمَلْعَبِ":
+            item["alsoFits"] = ["الْحَديقَةِ"]
+        cloze.append(item)
+    games = [
+        game(L, 1, "أَسْئِلَةُ النَّصِّ", "S1", "ar-question", {"questions": qs}, H_TEXT, "الإجابات من النص ص69–71؛ «من الواقع» (ص76) استنتاج لأن أحداث القصة ممكنة الوقوع."),
+        game(L, 2, "رَتِّبْ أَحْداثَ النَّصِّ", "S1", "ar-event-order", {"events": events_from(sid, 73, "5")}, H_ORDER),
+        game(L, 3, "السَّبَبُ وَالنَّتيجَةُ", "S1", "ar-question", {"questions": causes}, H_TEXT, "صل السبب بالنتيجة ص74؛ النتائج من النص."),
+        game(L, 4, "الْمُرادِفُ", "S2", "ar-question", {"questions": syn}, H_VOCAB, "بالمعنى المعجمي."),
+        game(L, 5, "الْحَرْفُ النّاقِصُ: ج ح خ", "S3", "ar-missing-letter", {"letters": group, "items": mitems}, H_LETTER,
+             "جمل ص78 بعد إكمالها من النص؛ تُخفى كلمة واحدة فيها حرف واحد من المجموعة («خَرَجَ» لا تُستعمل لأن فيها حرفين)."),
+        game(L, 6, "ج ح خ", "S3", "ar-letter-find", {"letters": group, "words": [{"word": w, "page": 82} for w in hw_words]}, H_LETTER, "كلمات صفحة الخط ص82."),
+        game(L, 7, "كَمْ كَلِمَةً؟", "S4", "ar-count-words", {"sentences": count}, H_COUNT, "المثال الأول مطبوع (٣ كلمات)."),
+        game(L, 8, "مَقاطِعُ الْكَلِماتِ", "S4", "ar-syllables", {"words": sylw}, H_SYL, "«ساخِرًا» مقسمة في الكتاب ص79؛ والبقية على النموذج نفسه."),
+        game(L, 9, "حُروفُ الْجَرِّ", "S5", "ar-fill-word", {"bank": bank, "items": pfills, "prompt": "اخْتَرْ حَرْفَ الْجَرِّ الْمُناسِبَ كَما في النَّصِّ."}, H_FILL,
+             "جمل ص80؛ لا يُعرض خيارًا خاطئًا ما يصح أيضًا («عن أدب»، «في وجهه»، «في عنف»)."),
+        game(L, 10, "مِنَ الْكَلِماتِ جُمْلَةً", "S5", "ar-sentence-build", {"sentences": [{"text": sent, "alt": ["في السَّاعَةِ الثَّانِيَةِ أَعودُ إِلى الْبَيْتِ.", "أَعودُ في السَّاعَةِ الثَّانِيَةِ إِلى الْبَيْتِ."], "page": 80}]}, H_SENT,
+             "بطاقات ص80 (الجملة الأولى)؛ تُقبل ترتيبات صحيحة أخرى. لم تُستعمل الثانية لأن «بِـ» بطاقة منفصلة."),
+        game(L, 11, "عَلاماتُ التَّرْقيمِ في الْحِوارِ", "S6", "ar-question", {"questions": dq}, ["الْجُمْلَةُ الَّتي تَسْأَلُ تَنْتَهي بِـ«؟».", "الْجُمْلَةُ الَّتي تُخْبِرُ تَنْتَهي بِـ«.»."],
+             "حوار ص81؛ يُسأل عن العلامة التي تختم كل كلام فقط، لأن الفاصلة والنقطة قد تصحان في الموضع الأول."),
+        game(L, 12, "أُكْمِلُ الْقِصَّةَ", "S7", "ar-fill-word", {"bank": cz["word_bank"], "items": cloze}, H_FILL,
+             "قصة ص83؛ «الحديقة» تصح أيضًا بعد «خارج» فلا تُعرض خيارًا خاطئًا هناك."),
+    ]
+    not_gamed = [
+        {"page": 67, "what": "أتحدث", "reason": "شفهي"},
+        {"page": 75, "what": "أماكن الأحداث", "reason": "كتابة"},
+        {"page": 76, "what": "هل أخذ أحد منك شيئًا", "reason": "رأي شخصي"},
+        {"page": 77, "what": "تمثيل الأدوار، وعنوان آخر، والرأي", "reason": "شفهي وإنتاج ورأي"},
+        {"page": 78, "what": "المقطع المناسب لإكمال الكلمة", "reason": "لم تُصمم له لعبة بعد"},
+        {"page": 81, "what": "إعادة كتابة الحوار", "reason": "كتابة"},
+        {"page": 82, "what": "الخط", "reason": "كتابة يدوية؛ غُطّي تمييز الحروف"},
+        {"page": 83, "what": "رد ناجية", "reason": "توقع مفتوح"},
+    ]
+    return lesson(sid, "ARB-S1-A1", "الدَّرْسُ الثّالِثُ: لَيْسَ هَذا ضَعْفًا", "reading_lesson", skills, games, not_gamed, "")
+
+
+def letter_positions(word: str, letter: str) -> list[int]:
+    b = bare(word)
+    return [i for i, ch in enumerate(b) if ch == letter]
+
+
 def a1_poem() -> dict:
     sid = L = "ARB-S1-A1-POEM"
     skills = {"S1": "يَحْفَظُ أُنْشودَةَ «صَباحُ الْخَيْرِ» وَيُرَتِّبُ أَبْياتَها", "S2": "يَفْهَمُ مُفْرَداتِ الْأُنْشودَةِ"}
@@ -398,7 +660,7 @@ def a1_arev() -> dict:
     sb = ex(sid, 96, "10ب")
     sent = answer(sb["items"][0])
     syl = ex(sid, 95, "9")
-    sylw = [{"word": clean(it["text"]), "syllables": split_slashes(it["answer_derived"]), "page": 95} for it in syl["items"]]
+    sylw = [{"word": clean(it["text"]), "syllables": resplit(clean(it["text"]), split_slashes(it["answer_derived"])), "page": 95} for it in syl["items"]]
     games = [
         game(L, 1, "أَسْئِلَةُ النَّصِّ", "S1", "ar-question", {"questions": qs}, H_TEXT, "الإجابات من النص ص88–89."),
         game(L, 2, "أَيْنَ؟ ظُروفُ الْمَكانِ", "S2", "ar-fill-word", {"bank": adv["word_bank"], "items": fills}, H_FILL,
@@ -460,7 +722,7 @@ def a2_l2() -> dict:
     seg = ex(sid, 52, "1")
     count = dedupe([{"text": clean(seg["items"][0]["text"]), "page": 52}] + [{"text": s["text"], "page": 54} for s in sents])
     syl = ex(sid, 52, "2")
-    sylw = [{"word": "الْبَيْتُ", "syllables": split_slashes(syl["items"][0]["answer_in_book"]), "page": 52}, {"word": "هُوَ", "syllables": split_slashes(answer(syl["items"][1])), "page": 52}, {"word": "الْوَطَنُ", "syllables": split_slashes(answer(syl["items"][2])), "page": 52}]
+    sylw = [{"word": "الْبَيْتُ", "syllables": split_slashes(syl["items"][0]["answer_in_book"]), "page": 52}, {"word": "هُوَ", "syllables": resplit("هُوَ", split_slashes(answer(syl["items"][1]))), "page": 52}, {"word": "الْوَطَنُ", "syllables": resplit("الْوَطَنُ", split_slashes(answer(syl["items"][2]))), "page": 52}]
     ha = T[sid]["spelling_pattern"]["words"]
     cols = ["تَنْتَهي بِـ(ـه / ه)", "تَنْتَهي بِـ(ـة / ة)"]
     sort_items = [{"text": w, "column": 0 if bare(w).endswith("ه") else 1, "page": 55} for w in dict.fromkeys(ha)]
@@ -495,6 +757,175 @@ def a2_l2() -> dict:
         {"page": 56, "what": "الخط", "reason": "كتابة يدوية"},
     ]
     return lesson(sid, "ARB-S1-A2", "الدَّرْسُ الثّاني: لَيْلى تَرْسُمُ وَطَنًا", "reading_lesson", skills, games, not_gamed, "")
+
+
+def a2_lis() -> dict:
+    sid = "ARB-S1-A2-LIS"
+    not_gamed = [
+        {"page": 18, "what": "أطراف الحوار", "reason": "الإجابة في نص الاستماع غير المطبوع"},
+        {"page": 19, "what": "اسم الشخصية، وكم سنة، وأكمل", "reason": "الإجابة في نص الاستماع غير المطبوع"},
+        {"page": 20, "what": "ماذا تحتاج شمساء، والمقارنة", "reason": "رأي ومقارنة كتابية"},
+        {"page": 21, "what": "أبدي رأيي", "reason": "رأي شخصي"},
+    ]
+    return lesson(sid, "ARB-S1-A2", "الِاسْتِماعُ: الذِّكْرى الْخالِدَةُ", "listening", {"S1": "يُجيبُ عَنْ أَسْئِلَةٍ تَتَعَلَّقُ بِما اسْتَمَعَ إِلَيْهِ"}, [], not_gamed,
+                  "نص الاستماع غير مطبوع في كتاب الطالب، فلا توجد إجابة يمكن التحقق منها آليًا.")
+
+
+def a2_l1() -> dict:
+    sid = L = "ARB-S1-A2-L1"
+    skills = {
+        "S1": "يَفْهَمُ نَصَّ «نورُ تُحِبُّ قَرْيَتَها»: الْمَعْنى الصَّريحُ وَالضِّمْنِيُّ وَالْفِكْرَةُ الرَّئيسَةُ",
+        "S2": "يُرَتِّبُ الْأَحْداثَ: قَبْلَ الْحَدَثِ أَوْ بَعْدَهُ",
+        "S3": "يُحَدِّدُ مُرادِفَ الْكَلِمَةِ مِنَ السِّياقِ",
+        "S4": "يُمَيِّزُ الْحَرْفَيْنِ (س، ش) في كَلِماتِ النَّصِّ",
+        "S5": "يُرَكِّبُ جُمْلَةً مُفيدَةً وَيُكْمِلُ الْجُمْلَةَ الِاسْمِيَّةَ",
+        "S6": "يُمَيِّزُ تَنْوينَ الضَّمِّ وَالْفَتْحِ وَالْكَسْرِ",
+    }
+    yesno = ex(sid, 28, "4")
+    qs = [
+        q_from(sid, 27, "1"),
+        q_from(sid, 27, "2"),
+        q_from(sid, 27, "3"),
+        {"q": clean(yesno["items"][0]["text"]), "options": yesno["items"][0]["options"], "answer": answer(yesno["items"][0]), "page": 28},
+        q_from(sid, 30, "1"),
+        q_from(sid, 32, "1"),
+        q_from(sid, 33, "3"),
+    ]
+    tf = ex(sid, 28, "5")
+    statements = [{"text": clean(re.sub(r"\(\s*[.…]+\s*\)", "", it["text"])), "inText": answer(it) == "صَحيحٌ", "page": 28} for it in tf["items"]]
+    ba = ex(sid, 29, "6")
+    ba_items = [{"text": clean(re.sub(r"\((?:قبل|\s*[.…]+\s*)\)", "", it["text"])), "column": 0 if bare(answer(it)) == "قبل" else 1, "page": 29} for it in ba["items"]]
+    syn = ex(sid, 31, "2")
+    syns = [
+        {"q": "«ماءٌ عَذْبٌ مُنْسابٌ»: ما مُرادِفُ «مُنْسابٌ»؟", "options": syn["items"][0]["options"], "answer": answer(syn["items"][0]), "page": 31},
+        {"q": "«تُدْخِلُ عَلى النّاسِ الْبَهْجَةَ والسُّرورَ»: ما مُرادِفُ «الْبَهْجَةَ»؟", "options": syn["items"][1]["options"], "answer": answer(syn["items"][1]), "page": 31},
+    ]
+    sh = ex(sid, 35, "1")
+    sw = [w.strip() for it in sh["items"] for w in it["answer_derived"].split("/") if w.strip()]
+    hw = T[sid]["handwriting"]["words"]
+    words_ss = [{"word": w, "page": page_of(sid, w, ("reading_text",))} for w in dict.fromkeys(sw)] + [{"word": w, "page": 39} for w in hw if w != "مُنَساب"]
+    cards = ex(sid, 36, "1")
+    sent = answer(cards["items"][0])
+    nom = ex(sid, 37, "2")
+    fills = [{"text": clean(it["text"]), "answer": answer(it), "page": 37} for it in nom["items"] if "السَّماءُ." not in it["text"]]
+    tan = ex(sid, 37, "1")
+    forms = [f.strip() for it in tan["items"] for f in answer(it).split("/")]
+    games = [
+        game(L, 1, "أَسْئِلَةُ النَّصِّ", "S1", "ar-question", {"questions": qs}, H_TEXT, "الإجابات مستنتجة من النص ص24–26، ومنها أسئلة الاستنتاج ص30 و32 و33."),
+        game(L, 2, "صَحيحٌ أَمْ خَطَأٌ؟", "S1", "ar-text-check", {
+            "statements": statements,
+            "prompts": {"in": "أَيُّ جُمْلَةٍ صَحيحَةٌ؟", "notIn": "أَيُّ جُمْلَةٍ خَطَأٌ؟", "allIn": "اخْتَرْ كُلَّ الْجُمَلِ الصَّحيحَةِ."},
+        }, H_TEXT, "صحيح/خطأ ص28 مستنتج من النص."),
+        game(L, 3, "قَبْلُ أَمْ بَعْدُ؟", "S2", "ar-sort", {"columns": ["قَبْلُ", "بَعْدُ"], "context": "«سَمِعَتْ ذاتَ يَوْمٍ جَرَسَ الْبابِ»", "items": ba_items}, H_ORDER,
+             "المثال الأول مطبوع؛ «قرأت بيان بعض قصص نور» قبلُ لأنها تقول عند الزيارة «لقد قرأت بعض قصصك»."),
+        game(L, 4, "الْمُرادِفُ", "S3", "ar-question", {"questions": syns}, H_VOCAB, "استُبعد البند الثالث لأن خياره «اسَتَمَرَّتْ» مطبوع بحركة خاطئة."),
+        game(L, 5, "س ش", "S4", "ar-letter-find", {"letters": ["س", "ش"], "words": words_ss}, H_LETTER,
+             "كلمات من النص كما يطلب تمرين ص35، وكلمات الخط ص39؛ لم تُستعمل جملة الخط لأنها مقتبسة من سورة الناس."),
+        game(L, 6, "بِطاقاتُ الْجُمْلَةِ", "S5", "ar-sentence-build", {"sentences": [{"text": sent, "alt": ["نورُ تُعبِّرُ بِالقِصَصِ وَالأَشْعارِ عَنْ حُبِّهَا لِقَرْيَتِها"], "page": 36}]}, H_SENT, "بطاقات ص36؛ يُقبل تقديم «بالقصص والأشعار»."),
+        game(L, 7, "أُكْمِلُ الْجُمْلَةَ الِاسْمِيَّةَ", "S5", "ar-fill-word", {"bank": nom["word_bank"], "items": fills}, H_FILL, "ص37؛ استُبعد بند «السماءُ.» لنقطة مطبوعة في وسطه."),
+        game(L, 8, "نَوْعُ التَّنْوينِ", "S6", "ar-tanween", {"words": [{"word": f, "page": 37} for f in forms]}, H_TANWEEN,
+             "المثال «سَماءٌ/سَماءً/سَماءٍ» مطبوع؛ بقية الصيغ مشتقة بالقاعدة نفسها من كلمات التمرين."),
+    ]
+    not_gamed = [
+        {"page": 22, "what": "أتحدث", "reason": "شفهي"},
+        {"page": 23, "what": "بطاقة الكاتبة والتوقع", "reason": "كتابة"},
+        {"page": 32, "what": "لو قبلت نور العرض", "reason": "رأي"},
+        {"page": 33, "what": "عنوان آخر، وصفات جديدة", "reason": "إنتاج مفتوح"},
+        {"page": 34, "what": "تقييم القصة وسؤال لنور", "reason": "رأي"},
+        {"page": 35, "what": "إكمال بـ(سو) أو (شو)", "reason": "بعض الكلمات تحتمل الحرفين دون صورة"},
+        {"page": 36, "what": "عدد المقاطع", "reason": "لم يُعتمد بعد طريقة عدّ المقاطع"},
+        {"page": 38, "what": "شبكة الحروف", "reason": "نشاط شبكة؛ لم تُصمم له لعبة"},
+        {"page": 39, "what": "الخط", "reason": "كتابة يدوية؛ وجملته من سورة الناس"},
+        {"page": 40, "what": "الجملة والرسم، والنص القصير", "reason": "صور الكتاب وكتابة"},
+    ]
+    return lesson(sid, "ARB-S1-A2", "الدَّرْسُ الْأَوَّلُ: نورُ تُحِبُّ قَرْيَتَها", "reading_lesson", skills, games, not_gamed, "")
+
+
+def a2_l3() -> dict:
+    sid = L = "ARB-S1-A2-L3"
+    skills = {
+        "S1": "يَفْهَمُ نَصَّ «الْبَحْرُ يَتَّسِعُ لِلْجَميعِ»: الْأَحْداثُ وَالْقَراراتُ وَالْفِكْرَةُ وَالدَّرْسُ الْمُسْتَفادُ",
+        "S2": "يُحَدِّدُ مَعانِيَ الْكَلِماتِ مِنَ السِّياقِ",
+        "S3": "يَكْتُبُ الْعَدَدَ (3–10) مُطابِقًا لِلْمَعْدودِ",
+        "S4": "يَضَعُ عَلاماتِ التَّرْقيمِ (. ، :) في مَكانِها",
+        "S5": "يُمَيِّزُ الْحَرْفَيْنِ (ع، غ) في الْكَلِماتِ",
+        "S6": "يُرَتِّبُ الْكَلِماتِ في جُمَلٍ، وَالْجُمَلَ في نَصٍّ",
+    }
+    p63 = ex(sid, 63, "2")
+    qs = [
+        q_from(sid, 63, "1", q="ما الْعَمَلُ الَّذي قامَتْ بِهِ الْأَسْماكُ الصَّغيرَةُ؟"),
+        {"q": clean(p63["items"][0]["text"]), "options": p63["word_bank"], "answer": answer(p63["items"][0]), "page": 63},
+        q_from(sid, 64, "3"),
+        q_from(sid, 64, "4", q="ما الْقَرارُ الَّذي أَخَذَتْهُ الْمَجْموعَةُ الثّالِثَةُ؟"),
+        q_from(sid, 67, "1", q=clean(ex(sid, 67, "1")["instruction"])),
+        q_from(sid, 68, "2", q=clean(ex(sid, 68, "2")["instruction"])),
+        q_from(sid, 68, "3"),
+    ]
+    syn = ex(sid, 66, "2")
+    vocab = [
+        {"q": "«نُفاوِضَها لَعَلَّنا نَصِلُ مَعَها إِلَى اتِّفاقٍ»: ما مُرادِفُ «نُفاوِضَها»؟", "options": syn["items"][0]["options"], "answer": answer(syn["items"][0]), "page": 66},
+        {"q": "«مَنْ تَنازَلَ عَنْ وَطَنِهِ يَعِشْ ذَليلاً»: ما مُرادِفُ «تَنازَلَ»؟", "options": syn["items"][1]["options"], "answer": answer(syn["items"][1]), "page": 66},
+        q_from(sid, 66, "3", q="«بِضْعُ خُطُواتٍ»: ما الْمَسافَةُ الْأَقْرَبُ لِهذِهِ الْعِبارَةِ؟"),
+    ]
+    num = ex(sid, 71, "2")
+    nitems = []
+    for i in (0, 1, 2, 5, 6, 7):
+        it = num["items"][i]
+        text = clean(it["text"].split(":", 1)[1])
+        nitems.append({"text": text, "answer": answer(it), "page": 71})
+    bank = list(dict.fromkeys(x["answer"] for x in nitems))
+    pun = ex(sid, 72, "1")
+    marks = [answer(it) for it in pun["items"]]
+    lines = [it["text"] for it in pun["items"]]
+    pq = []
+    for sent in ((0, 1), (2, 3), (4, 5)):
+        for j in sent:
+            shown = []
+            for k in sent:
+                t = lines[k]
+                t = t.replace("( )", f"( {marks[k]} )" if k < j else "( ؟ )" if k == j else "(   )")
+                shown.append(t)
+            joined = " ".join(shown)
+            composed[joined] = sid  # two printed lines joined: checked word by word
+            pq.append({"q": "ما الْعَلامَةُ الْمُناسِبَةُ مَكانَ ( ؟ )؟", "text": joined, "options": pun["word_bank"], "answer": marks[j], "page": 72})
+    hw = T[sid]["handwriting"]
+    hw_words = hw["words"][0].split() + [w for w in re.split(r"[\s،.]+", hw["sentences"][0]) if bare(w)] if len(hw["words"]) == 1 else hw["words"] + [w for w in re.split(r"[\s،.]+", hw["sentences"][0]) if bare(w)]
+    cards = ex(sid, 75, "أ")
+    alts = [
+        ["الْغُرابُ جاءَ وَسَكَنَ الْعُشَّ."],
+        ["الْغُرابُ خافَ وَفَرَّ هارِبًا."],
+        ["الْعُصْفورُ ذَهَبَ إِلى إِخْوانِهِ لِيَشْكُوَ حالَهُ،", "ذَهَبَ الْعُصْفورُ لِيَشْكُوَ حالَهُ إِلى إِخْوانِهِ،"],
+        ["العُصْفورُ بَنى عُشًّا جَديدًا،"],
+        ["العَصافِيرُ اجْتَمَعَتْ وَذَهَبَتْ مَعَهُ إِلى الْعُشِّ،"],
+    ]
+    sents = [{"text": answer(it), "alt": alts[i], "page": 75} for i, it in enumerate(cards["items"])]
+    text_order = answer(ex(sid, 76, "ب")["items"][0])
+    ordered = [x.strip() for x in re.split(r"(?<=[.،])\s+", text_order) if x.strip()]
+    events = [{"text": t, "page": 76} for t in ordered]
+    games = [
+        game(L, 1, "أَسْئِلَةُ النَّصِّ", "S1", "ar-question", {"questions": qs}, H_TEXT, "الإجابات من النص ص60–62، ومنها أسئلة البطل والدرس المستفاد (ص67–68)."),
+        game(L, 2, "رَتِّبْ أَحْداثَ النَّصِّ", "S1", "ar-event-order", {"events": events_from(sid, 65, "5")}, H_ORDER),
+        game(L, 3, "مَعاني الْكَلِماتِ", "S2", "ar-question", {"questions": vocab}, H_VOCAB, "المرادفات بالمعنى المعجمي، و«بضع» بين ثلاثة وتسعة كما في الصندوق ص66."),
+        game(L, 4, "الْعَدَدُ وَالْمَعْدودُ", "S3", "ar-fill-word", {"bank": bank, "items": nitems, "prompt": "اخْتَرِ الْعَدَدَ الْمَكْتوبَ بِالْكَلِماتِ."}, H_FILL,
+             "جدول ص71؛ الإجابات بقاعدة الأمثلة المطبوعة في الجدول نفسه (ثلاث حمراء، أربعة قروش…). المحرّك لا يعرض صيغة لا تختلف عن الإجابة إلا في الحركة الأخيرة."),
+        game(L, 5, "عَلاماتُ التَّرْقيمِ", "S4", "ar-question", {"questions": pq}, ["تَأْتي النُّقْطَتانِ بَعْدَ «قالَتْ».", "تَأْتي النُّقْطَةُ في آخِرِ الْجُمْلَةِ."], "فقرة ص72 مقسمة إلى جملها الثلاث."),
+        game(L, 6, "ع غ", "S5", "ar-letter-find", {"letters": ["ع", "غ"], "words": [{"word": w, "page": 74} for w in hw_words]}, H_LETTER, "كلمات صفحة الخط ص74."),
+        game(L, 7, "بِطاقاتُ الْجُمَلِ", "S6", "ar-sentence-build", {"sentences": sents}, H_SENT, "بطاقات ص75؛ يُقبل تقديم الفاعل لأن الجملة تبقى صحيحة."),
+        game(L, 8, "مِنَ الْجُمَلِ نَصٌّ", "S6", "ar-event-order", {"events": events, "prompt": "رَتِّبِ الْجُمَلَ لِتَحْصُلَ عَلى نَصٍّ."}, H_ORDER, "ترتيب ص76 مستنتج من تسلسل المعنى."),
+    ]
+    not_gamed = [
+        {"page": 58, "what": "أتحدث", "reason": "شفهي ورأي"},
+        {"page": 59, "what": "العنوان والكاتب والتوقع", "reason": "كتابة وتوقع"},
+        {"page": 65, "what": "السبب والنتيجة", "reason": "كتابة"},
+        {"page": 67, "what": "صفة لكل مجموعة", "reason": "أكثر من صفة تصح، وإحدى المجموعات بلا صفة محسومة"},
+        {"page": 68, "what": "عنوان آخر، ودليل من النص", "reason": "إنتاج مفتوح"},
+        {"page": 69, "what": "أحاكي ورأيي", "reason": "إنتاج ورأي"},
+        {"page": 70, "what": "كلمات فيها مقطع طويل، وجمل بعدد كلمات", "reason": "إجابات مفتوحة"},
+        {"page": 71, "what": "عدد الأسماك في الصورة", "reason": "يعتمد على عدّ رسم الكتاب"},
+        {"page": 73, "what": "نسخ الفقرة", "reason": "كتابة"},
+        {"page": 74, "what": "الخط", "reason": "كتابة يدوية؛ غُطّي تمييز الحرفين"},
+    ]
+    return lesson(sid, "ARB-S1-A2", "الدَّرْسُ الثّالِثُ: الْبَحْرُ يَتَّسِعُ لِلْجَميعِ", "reading_lesson", skills, games, not_gamed, "")
 
 
 def a2_poem() -> dict:
@@ -545,7 +976,7 @@ def a2_arev() -> dict:
     syl8 = ex(sid, 85, "8")
     sylw = [{"word": answer(it), "syllables": order_tiles(it["options"], answer(it)), "page": 85} for it in syl8["items"] if it["options"]]
     syl7 = {"هُنا": ["هُـ", "نا"], "مَرَّ": ["مَرْ", "رَ"], "أَهْلُ": ["أَهْـ", "لُ"], "عُمانَ": ["عُـ", "ما", "نَ"]}
-    sylw += [{"word": w, "syllables": s, "page": 85} for w, s in syl7.items()]
+    sylw += [{"word": w, "syllables": resplit(w, s), "page": 85} for w, s in syl7.items()]
     sent = answer(syl8["items"][-1])
     imit = ex(sid, 84, "5")
     count = [{"text": clean(ex(sid, 85, "7")["items"][0]["text"]), "page": 85}, {"text": clean(imit["items"][0]["text"]), "page": 84}]
@@ -583,9 +1014,19 @@ def strings(v):
             yield from strings(x)
     elif isinstance(v, dict):
         for k, x in v.items():
-            if k in ("prompts", "prompt", "q", "text_composed", "alt", "alsoFits", "columns", "page", "inText", "column"):
+            # syllables are validated by the engine against their word, which is checked here
+            if k in ("prompts", "prompt", "q", "text_composed", "alt", "alsoFits", "columns", "page", "inText", "column", "syllables"):
                 continue
             yield from strings(x)
+
+
+# Sentences completed from a book blank (e.g. «في الـ.....باحِ» → «في الصَّباحِ»): checked word by word.
+composed: dict[str, str] = {}
+
+
+def words_in_text(s: str, sid: str) -> bool:
+    tokens = set(re.findall(r"[\u0621-\u064A]+", bare(json.dumps(T[sid], ensure_ascii=False))))
+    return all(w in tokens for w in re.findall(r"[\u0621-\u064A]+", bare(s)))
 
 
 def corpus(sid: str) -> str:
@@ -600,17 +1041,25 @@ def check(cat: dict) -> list[str]:
             for s in strings(g["config"]):
                 if s in ("😀", "😢", "😠", "😕"):
                     continue
+                if LATIN.search(s):
+                    problems.append(f"{g['game_id']}: «{s}» contains Latin letters (a transcriber's note, not book text)")
+                    continue
                 if norm(s) in c or norm(s).rstrip(".") in c:
                     continue
                 # A book sentence with its blanks shown as ( ؟ ) / filled with marks: compare its words only.
                 loose = lambda t: re.sub(r"[()\s.:،؟«»\"]", "", norm(t))
                 if "(" in s and loose(s) in loose(c):
                     continue
+                if s in composed and composed[s] == l["lesson_id"] and words_in_text(s, l["lesson_id"]):
+                    continue
                 problems.append(f"{g['game_id']}: «{s}» not in the transcription of {l['lesson_id']}")
     return problems
 
 
-SECTIONS = [a1_rev, a1_lis, a1_l1, a1_poem, a1_arev, lambda: story("ARB-S1-A1-STORY", "ARB-S1-A1", "الصفحات 100–102 بيانات الكتاب والغلاف."), a2_l2, a2_poem, a2_arev, lambda: story("ARB-S1-A2-STORY", "ARB-S1-A2", "الصفحتان 92–93 الغلاف.")]
+SECTIONS = [
+    a1_rev, a1_lis, a1_l1, a1_l2, a1_l3, a1_poem, a1_arev, lambda: story("ARB-S1-A1-STORY", "ARB-S1-A1", "الصفحات 100–102 بيانات الكتاب والغلاف."),
+    a2_lis, a2_l1, a2_l2, a2_l3, a2_poem, a2_arev, lambda: story("ARB-S1-A2-STORY", "ARB-S1-A2", "الصفحتان 92–93 الغلاف."),
+]
 
 
 def main() -> None:
@@ -620,6 +1069,11 @@ def main() -> None:
         {"unit_id": "ARB-S1-A2", "title": "الْمِحْوَرُ الثّاني: وَطَني", "outcomes": T.get("ARB-S1-A2-OUT", {}).get("outcomes", []), "outcomes_page": 17},
     ]
     lessons = [f() for f in SECTIONS]
+    for l in lessons:  # a word listed twice would give two identical options
+        for g in l["games"]:
+            if g["mechanic"] == "ar-letter-find":
+                seen: set[str] = set()
+                g["config"]["words"] = [w for w in g["config"]["words"] if not (w["word"] in seen or seen.add(w["word"]))]
     cat = {
         "subject": "arabic",
         "semester": 1,
