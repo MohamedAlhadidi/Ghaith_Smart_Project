@@ -185,7 +185,7 @@ export function ReviewScreen({ onBack }: { onBack: () => void }) {
       {SUBJECTS.flatMap((s) => s.units).map((u) => (
         <article key={u.unit_id} className="rounded-2xl bg-white p-4 shadow">
           <h3 className="mb-2 font-bold">
-            {u.subject === "english" ? "الإنجليزية · " : "الرياضيات · "}
+            {u.subject === "english" ? "الإنجليزية · " : u.subject === "arabic" ? "العربية · " : "الرياضيات · "}
             <span dir={u.subject === "english" ? "ltr" : undefined}>{u.subject === "english" ? u.title : toArabicDigits(u.title)}</span>
           </h3>
           <div className="grid gap-2 sm:grid-cols-2">

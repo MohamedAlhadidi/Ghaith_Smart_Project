@@ -100,3 +100,20 @@ export const sameText = (a: string, b: string): boolean => noTatweel(a).trim() =
 
 /** Equality on the bare skeleton (diacritics ignored). */
 export const sameBare = (a: string, b: string): boolean => bare(a).trim() === bare(b).trim();
+
+export type TaaForm = "open" | "tied-joined" | "tied-alone";
+
+/**
+ * Final taa of a word, as in the book's table (p. 94): «ت» (مفتوحة), «ـة» (مربوطة متصلة:
+ * the letter before it joins it), «ة» (مربوطة منفصلة: the letter before it never joins).
+ * null when the word does not end in a taa.
+ */
+export function taaForm(word: string): TaaForm | null {
+  const b = bare(word);
+  const last = b[b.length - 1];
+  if (last === "ت") return "open";
+  if (last !== "ة") return null;
+  const prev = b[b.length - 2];
+  if (prev === undefined) return null;
+  return NON_JOINING.has(prev) ? "tied-alone" : "tied-joined";
+}

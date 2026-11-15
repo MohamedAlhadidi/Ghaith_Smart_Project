@@ -39,13 +39,19 @@ function unitSkills(unitId: string): string[] {
   return [...new Set(lessonsOfUnit(unitId).flatMap((l) => l.skills.map((s) => s.id)))];
 }
 
+/** A unit mission stays short enough for one sitting (8–15 minutes). */
+export const MISSION_MAX = 12;
+
 function missionPlan(unitId: string): PlanSlot[] {
-  // One fresh assessment item per skill of the unit that has a quiz game.
-  return unitSkills(unitId).flatMap((skillId) => {
+  // One fresh assessment item per skill of the unit that has a quiz game…
+  const all = unitSkills(unitId).flatMap((skillId) => {
     const games = quizGamesForSkill(skillId);
     const pick = games[games.length - 1];
     return pick ? [{ lessonId: pick.lesson.lesson_id, game: pick.game, difficulty: 2 as const }] : [];
   });
+  // …or, for units with many skills (Arabic axes), skills spread evenly across the unit.
+  if (all.length <= MISSION_MAX) return all;
+  return Array.from({ length: MISSION_MAX }, (_, i) => all[Math.floor((i * all.length) / MISSION_MAX)]!);
 }
 
 /** Optional deep link ?lesson=ID[&game=ID] (used by automated tests and for sharing a lesson). */
@@ -386,6 +392,19 @@ function LessonView({ lesson, onBack, onPlay, onExample }: { lesson: CatalogLess
           </button>
         ))}
       </div>
+      {lesson.games.length === 0 && <p className="rounded-2xl bg-white p-4 shadow" data-testid="no-games">لا توجد ألعاب لهذا القسم: {lesson.interpretation_notes}</p>}
+      {lesson.not_gamed && lesson.not_gamed.length > 0 && (
+        <details className="rounded-2xl bg-white/70 p-3 text-sm text-slate-700" data-testid="not-gamed">
+          <summary className="cursor-pointer font-bold">تمارين الكتاب التي لم تتحول إلى لعبة ({toArabicDigits(lesson.not_gamed.length)})</summary>
+          <ul className="mt-2 list-inside list-disc space-y-1">
+            {lesson.not_gamed.map((n) => (
+              <li key={`${n.page}-${n.what}`}>
+                ص{toArabicDigits(n.page)}: {n.what} — {n.reason}
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
       <p className="rounded-xl bg-amber-50 p-2 text-sm text-amber-900">بانتظار مراجعة ولي الأمر قبل الاعتماد.</p>
     </section>
   );

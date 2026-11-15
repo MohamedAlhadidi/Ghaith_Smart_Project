@@ -20,3 +20,7 @@ playwright-report/
 
 # Page transcriptions of the books (copyrighted text): local only, never pushed
 sources/transcriptions/
+
+# Arabic lesson content (full poems and book sentences): local until the owner approves
+# publishing it, because the repository is public. Rebuild with scripts/build_arabic_s1.py.
+content/curriculum/arabic/

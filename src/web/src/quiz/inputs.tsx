@@ -22,6 +22,8 @@ const EMOJI_ONLY = /^(\p{Extended_Pictographic}|\p{Emoji_Component}|\uFE0F|\u200
 /** Render an option label: Arabic → Arabic-Indic digits; English → as written, LTR; emoji → large. */
 export function OptionLabel({ label, lang }: { label: string; lang?: "ar" | "en" }) {
   if (EMOJI_ONLY.test(label)) return <span className="text-6xl leading-none" role="img">{label}</span>;
+  // A lone punctuation mark («.» «:» «،») must be big enough to see and tap.
+  if (/^[.:،؛؟!]$/.test(label.trim())) return <span className="text-6xl leading-none">{label}</span>;
   if (lang === "en") return <span dir="ltr" lang="en">{label}</span>;
   return <>{toArabicDigits(label)}</>;
 }

@@ -16,9 +16,12 @@ import {
   AR_SORT,
   AR_SUN_MOON,
   AR_SYLLABLES,
+  AR_TAA,
+  AR_TANWEEN,
   AR_TEXT_CHECK,
   AR_VERB_PICK,
   AR_WORD_RELATION,
+  tanweenOf,
 } from "../../src/arabic/mechanics";
 import { lamType, words } from "../../src/arabic/text";
 import { exerciseMechanic } from "../math/harness";
@@ -116,7 +119,42 @@ const DESCRIBES = {
   prompts: { in: "أَيُّ عِبارَةٍ تُناسِبُ وَصْفَ الْكِتابِ؟", notIn: "أَيُّ عِبارَةٍ لا تُناسِبُ وَصْفَ الْكِتابِ؟", allIn: "اخْتَرْ كُلَّ ما يُناسِبُ وَصْفَ الْكِتابِ." },
 };
 
+// Axis review p. 94 table words.
+const TAA = { words: ["السّابِعَةُ", "مُعَلِّماتٌ", "قِراءَةٌ", "مَدْرَسَةٌ", "هَتَفَتْ", "سورَة", "صَوْتٌ", "رِسالَةٌ"].map((word) => ({ word, page: 94 })) };
+const FILL_FITS = {
+  bank: ["قَبْلَ", "قُرْبَ", "حَوْلَ", "تَحْتَ", "بَعْدَ", "بَيْنَ", "عِنْدَ"],
+  items: [
+    { text: "رَكَضْتُ دَورَتَيْنِ ___ الْمَلْعَبِ لِإِحْماءِ جِسْمي.", answer: "حَوْلَ", alsoFits: ["قُرْبَ", "عِنْدَ"], page: 93 },
+    { text: "أُجْرِيَتْ مُسابَقَةُ الْقِراءَةِ ___ تَلاميذِ الصَّفِّ الثّاني.", answer: "بَيْنَ", page: 93 },
+  ],
+};
+
+// Axis 2 review p. 87 words (tanween kasr / fath) plus «صَوْتٌ» (p. 81).
+const TANWEEN = { words: ["لِصاروخٍ", "فَضائِيٍّ", "عُمانيٍّ", "كَثيرًا", "مَعًا", "مَثَلاً", "شَغوفًا", "صَوْتٌ"].map((word) => ({ word, page: 87 })) };
+const SENT_ALT = { sentences: [{ text: "أَهْداها عَمُّها دُمْيَةً جَميلَةً.", alt: ["عَمُّها أَهْداها دُمْيَةً جَميلَةً."], page: 44 }] };
+
 describe("Arabic mechanics: 1000 seeds × 3 levels", () => {
+  it("ar-tanween", () => exerciseMechanic(AR_TANWEEN, TANWEEN));
+  it("ar-sentence-build accepts the listed alternative order", () =>
+    exerciseMechanic(AR_SENTENCE_BUILD, SENT_ALT, 300, (item) => {
+      const tiles = item.params.tiles;
+      const alt = item.params.alts[0]!.map((w: string) => `t${tiles.indexOf(w)}`);
+      expect(AR_SENTENCE_BUILD.check(item, alt).correct).toBe(true);
+    }));
+  it("tanween is read from the end of the word", () => {
+    expect(tanweenOf("كَثيرًا")).toBe("fath");
+    expect(tanweenOf("مَثَلاً")).toBe("fath");
+    expect(tanweenOf("عُمانيٍّ")).toBe("kasr");
+    expect(tanweenOf("صَوْتٌ")).toBe("damm");
+    expect(tanweenOf("مَدْرَسَةٌ،")).toBe("damm");
+    expect(tanweenOf("كُنْتُ")).toBeNull();
+  });
+  it("ar-taa", () => exerciseMechanic(AR_TAA, TAA));
+  it("ar-fill-word never offers a word that also fits", () =>
+    exerciseMechanic(AR_FILL_WORD, FILL_FITS, 1000, (item) => {
+      const opts = item.input.type === "choice" ? item.input.options.map((o) => o.label) : [];
+      if (item.params.answer === "حَوْلَ") expect(opts.some((o) => o === "قُرْبَ" || o === "عِنْدَ")).toBe(false);
+    }));
   it("ar-sort", () => exerciseMechanic(AR_SORT, SORT));
   it("ar-text-check with the book's own question", () =>
     exerciseMechanic(AR_TEXT_CHECK, DESCRIBES, 200, (item) => expect(Object.values(DESCRIBES.prompts)).toContain(item.prompt)));

@@ -3,7 +3,7 @@ import englishJson from "../../../content/curriculum/english/s1/lessons.json";
 import wordbankJson from "../../../content/curriculum/english/s1/wordbank.json";
 import { LEGACY_MECHANICS, QUIZ_MECHANICS } from "@ghaith/game-core";
 
-export type SubjectId = "math" | "english";
+export type SubjectId = "math" | "english" | "arabic";
 
 export interface CatalogGame {
   game_id: string;
@@ -37,6 +37,10 @@ export interface CatalogLesson {
   games: CatalogGame[];
   interpretation_notes: string;
   content_review_status: string;
+  /** Arabic: section kind (reading_lesson, poem, axis_review…). */
+  kind?: string;
+  /** Book exercises without a game, with the reason (shown to the parent). */
+  not_gamed?: Array<{ page: number; what: string; reason: string }>;
 }
 
 export interface CatalogUnit {
@@ -66,7 +70,13 @@ type RawEnglish = {
 };
 
 const WORDBANK = (wordbankJson as { words: Record<string, { ar: string }> }).words;
-const BOOK_NAMES: Record<string, string> = { "ENG-S1-CB": "Class Book", "ENG-S1-AB": "Activity Book", "ENG-S1-SS": "Sounds and Spelling" };
+const BOOK_NAMES: Record<string, string> = {
+  "ENG-S1-CB": "Class Book",
+  "ENG-S1-AB": "Activity Book",
+  "ENG-S1-SS": "Sounds and Spelling",
+  "ARB-S1-P1": "أحب لغتي ج١",
+  "ARB-S1-P2": "أحب لغتي ج٢",
+};
 export const bookName = (id: string) => BOOK_NAMES[id] ?? "كتاب الطالب";
 
 const rawMath = mathJson as unknown as RawMath;
@@ -113,7 +123,23 @@ export const ENGLISH_S1: SubjectCatalog = {
   })),
 };
 
-export const SUBJECTS: SubjectCatalog[] = [MATH_S1, ENGLISH_S1];
+type RawArabic = { units: Array<{ unit_id: string; title: string }>; lessons: Array<Omit<CatalogLesson, "subject">> };
+/**
+ * The Arabic catalogue holds book text (full poems) and is kept out of the public repository
+ * until the owner approves; when the file is absent the Arabic subject is simply not shown.
+ */
+const arabicFiles = import.meta.glob("../../../content/curriculum/arabic/s1/lessons.json", { eager: true, import: "default" });
+const rawArabic = (Object.values(arabicFiles)[0] as RawArabic | undefined) ?? { units: [], lessons: [] };
+
+export const ARABIC_S1: SubjectCatalog = {
+  id: "arabic",
+  title: "العربية",
+  subtitle: "أحب لغتي · الفصل الأول",
+  units: rawArabic.units.map((u) => ({ unit_id: u.unit_id, title: u.title, subject: "arabic" as const })),
+  lessons: rawArabic.lessons.map((l) => ({ ...l, subject: "arabic" as const })),
+};
+
+export const SUBJECTS: SubjectCatalog[] = [MATH_S1, ENGLISH_S1, ...(ARABIC_S1.lessons.length ? [ARABIC_S1] : [])];
 const ALL_LESSONS = SUBJECTS.flatMap((s) => s.lessons);
 const ALL_UNITS = SUBJECTS.flatMap((s) => s.units);
 

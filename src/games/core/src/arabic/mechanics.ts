@@ -25,7 +25,7 @@ import {
   tileSolution,
   type Paged,
 } from "./common";
-import { bare, blankLetter, expandShadda, lamType, letterPositions, noTatweel, sameBare, sameText, words, type LetterPosition } from "./text";
+import { bare, blankLetter, expandShadda, lamType, taaForm, type TaaForm, letterPositions, noTatweel, sameBare, sameText, words, type LetterPosition } from "./text";
 
 type M<C, P> = QuizMechanic<C, P>;
 const asMech = <P>(m: unknown) => m as QuizMechanic<never, P>;
@@ -35,8 +35,13 @@ const card = (text: string, extra: Record<string, unknown> = {}): Visual => ({ t
 /* ar-syllables: build a word from the book's syllable cards            */
 /* ------------------------------------------------------------------ */
 
-/** The cards spell the word (tatweel ignored; a shadda equals letter+sukūn+letter as on the cards). */
-const spells = (syllables: readonly string[], word: string) => expandShadda(noTatweel(syllables.join(""))) === expandShadda(noTatweel(word));
+/**
+ * The cards spell the word: tatweel ignored, a shadda equals letter+sukūn+letter as on the cards,
+ * and sukūn marks are ignored (the book's card «ـميْـ» marks the long ي with a sukūn, the text
+ * prints «جَميلَةً» without it).
+ */
+const spellForm = (t: string) => expandShadda(noTatweel(t)).replace(/\u0652/g, "");
+const spells = (syllables: readonly string[], word: string) => spellForm(syllables.join("")) === spellForm(word);
 
 export interface SyllableWord extends Paged {
   word: string;
@@ -92,13 +97,17 @@ export const AR_SYLLABLES: M<SyllablesConfig, SyllablesParams> = {
 /* ------------------------------------------------------------------ */
 
 interface SentencesConfig {
-  sentences: (Paged & { text: string })[];
+  /** `alt`: other complete orders that are also correct Arabic (e.g. «عَمُّها أَهْداها …»). */
+  sentences: (Paged & { text: string; alt?: string[] })[];
 }
 interface SentenceParams {
   sentence: string;
   tokens: string[];
   tiles: string[];
+  /** Accepted alternative orders (same words). */
+  alts: string[][];
 }
+const sameMultiset = (a: readonly string[], b: readonly string[]) => [...a].sort().join("|") === [...b].sort().join("|");
 
 const MAX_TILES = 8;
 
@@ -108,30 +117,44 @@ export const AR_SENTENCE_BUILD: M<SentencesConfig, SentenceParams> = {
   mechanicId: "ar-sentence-build",
   difficulties: [1, 2, 3],
   validateConfig(c) {
-    return listProblems(c?.sentences, "text", 2, (o, i) => {
-      const n = words(String(o.text)).length;
-      return n >= 3 && n <= MAX_TILES ? [] : [`sentence[${i}]: needs 3–${MAX_TILES} words, has ${n}`];
+    return listProblems(c?.sentences, "text", 1, (o, i) => {
+      const t = words(String(o.text));
+      const q = t.length >= 3 && t.length <= MAX_TILES ? [] : [`sentence[${i}]: needs 3–${MAX_TILES} words, has ${t.length}`];
+      const alt = (o.alt as string[] | undefined) ?? [];
+      if (!Array.isArray(alt) || alt.some((a) => !sameMultiset(words(a), t))) q.push(`sentence[${i}]: alt must use exactly the same words`);
+      return q;
     });
   },
   generate(seed, d, c) {
     return sample(seed, (rng) => {
       const s = pick(rng, levelPool(c.sentences, (x) => words(x.text).length, d));
       const tokens = words(s.text);
+      const alts = (s.alt ?? []).map(words);
       const tiles = deal(rng, tokens, " ");
-      if (!tiles) return null;
+      if (!tiles || alts.some((a) => a.join(" ") === tiles.join(" "))) return null;
       return makeItem(AR_SENTENCE_BUILD, seed, d, {
-        params: { sentence: s.text, tokens, tiles },
+        params: { sentence: s.text, tokens, tiles, alts },
         prompt: "رَتِّبِ الْكَلِماتِ لِتُكَوِّنَ جُمْلَةً مِنَ النَّصِّ.",
         input: { type: "order", items: tileItems(tiles), joiner: " " },
       });
     });
   },
-  check: (item, answer) => checkTiles(item.params.tiles, " ", item.params.tokens, answer),
+  check(item, answer) {
+    const { tiles, tokens, alts } = item.params;
+    const main = checkTiles(tiles, " ", tokens, answer);
+    if (main.correct) return main;
+    return alts.some((a) => checkTiles(tiles, " ", a, answer).correct) ? ok() : main;
+  },
   solution: (item) => tileSolution(item.params.tiles, item.params.tokens),
-  explain: (item) => [`تَبْدَأُ الْجُمْلَةُ بِكَلِمَةِ «${item.params.tokens[0]}».`, `الْجُمْلَةُ: ${item.params.sentence}`],
+  explain: (item) => [
+    `تَبْدَأُ الْجُمْلَةُ بِكَلِمَةِ «${item.params.tokens[0]}».`,
+    `الْجُمْلَةُ: ${item.params.sentence}`,
+    ...item.params.alts.map((a) => `وَيَصِحُّ أَيْضًا: ${a.join(" ")}`),
+  ],
   checkIntegrity(item) {
     const p = tileIntegrity(item, item.params.tiles, item.params.tokens, " ");
     if (item.params.tokens.length > MAX_TILES) p.push("too many tiles");
+    if (item.params.alts.some((a) => a.join(" ") === item.params.tiles.join(" "))) p.push("dealt in an accepted order");
     return p;
   },
 };
@@ -144,7 +167,7 @@ interface CountParams {
   sentence: string;
 }
 
-export const AR_COUNT_WORDS: M<SentencesConfig, CountParams> = {
+export const AR_COUNT_WORDS: M<{ sentences: (Paged & { text: string })[] }, CountParams> = {
   id: "GEN-AR-COUNT-WORDS",
   version: 1,
   mechanicId: "ar-count-words",
@@ -293,6 +316,8 @@ export interface FillItem extends Paged {
   /** Sentence with «___» where the word goes. */
   text: string;
   answer: string;
+  /** Other bank words that would ALSO read correctly here: never offered as distractors. */
+  alsoFits?: string[];
 }
 interface FillConfig {
   bank: string[];
@@ -302,6 +327,7 @@ interface FillParams {
   text: string;
   answer: string;
   options: string[];
+  alsoFits: string[];
 }
 export const BLANK = "___";
 
@@ -319,6 +345,9 @@ export const AR_FILL_WORD: M<FillConfig, FillParams> = {
         const q: string[] = [];
         if (String(o.text).split(BLANK).length !== 2) q.push(`item[${i}]: needs exactly one ${BLANK}`);
         if (!c.bank.some((b) => sameText(b, String(o.answer)))) q.push(`item[${i}]: answer not in bank`);
+        const fits = (o.alsoFits as string[] | undefined) ?? [];
+        if (!Array.isArray(fits) || fits.some((f) => !c.bank.some((b) => sameText(b, f)))) q.push(`item[${i}]: alsoFits must be bank words`);
+        if (c.bank.length - 1 - fits.length < 1) q.push(`item[${i}]: no distractor left`);
         return q;
       }),
     );
@@ -327,11 +356,12 @@ export const AR_FILL_WORD: M<FillConfig, FillParams> = {
   generate(seed, d, c) {
     return sample(seed, (rng) => {
       const it = pick(rng, c.items);
-      const others = c.bank.filter((b) => !sameBare(b, it.answer));
+      const others = c.bank.filter((b) => !sameBare(b, it.answer) && !(it.alsoFits ?? []).some((x) => sameBare(x, b)));
       const n = Math.min(byLevel(d, [2, 3, 4] as const), others.length + 1);
+      if (n < 2) return null;
       const options = shuffleAll(rng, [it.answer, ...drawDistinct(rng, others, n - 1)]);
       return makeItem(AR_FILL_WORD, seed, d, {
-        params: { text: it.text, answer: it.answer, options },
+        params: { text: it.text, answer: it.answer, options, alsoFits: [...(it.alsoFits ?? [])] },
         prompt: "اخْتَرِ الْكَلِمَةَ الْمُناسِبَةَ لِلْفَراغِ.",
         visual: card(it.text, { size: "sentence" }),
         input: { type: "choice", options: labelled(options) },
@@ -344,6 +374,7 @@ export const AR_FILL_WORD: M<FillConfig, FillParams> = {
   checkIntegrity(item) {
     const p = choiceIntegrity(asMech(AR_FILL_WORD), item, item.params.options.length);
     if (item.params.text.split(BLANK).length !== 2) p.push("sentence must have one blank");
+    if (item.params.options.some((o) => item.params.alsoFits.some((f) => sameBare(f, o)))) p.push("a word that also fits is offered as a distractor");
     return p;
   },
 };
@@ -443,6 +474,8 @@ export const AR_TEXT_CHECK: M<StatementsConfig, StatementParams> = {
 
 export interface Question extends Paged {
   q: string;
+  /** Optional book sentence shown on a card under the question. */
+  text?: string;
   options: string[];
   answer: string;
 }
@@ -451,6 +484,7 @@ interface QuestionConfig {
 }
 interface QuestionParams {
   q: string;
+  text?: string;
   answer: string;
   options: string[];
   page: number;
@@ -476,8 +510,9 @@ export const AR_QUESTION: M<QuestionConfig, QuestionParams> = {
       const n = Math.min(byLevel(d, [2, 3, 4] as const), q.options.length);
       const options = shuffleAll(rng, [q.answer, ...drawDistinct(rng, others, n - 1)]);
       return makeItem(AR_QUESTION, seed, d, {
-        params: { q: q.q, answer: q.answer, options, page: q.page },
+        params: { q: q.q, ...(q.text ? { text: q.text } : {}), answer: q.answer, options, page: q.page },
         prompt: q.q,
+        ...(q.text ? { visual: card(q.text, { size: "sentence" }) } : {}),
         input: { type: "choice", options: labelled(options) },
       });
     });
@@ -959,6 +994,209 @@ export const AR_SORT: M<SortConfig, SortParams> = {
   },
 };
 
+/* ------------------------------------------------------------------ */
+/* ar-taa: «ت» / «ـة» / «ة» at the end of a word                          */
+/* ------------------------------------------------------------------ */
+
+interface TaaConfig {
+  words: (Paged & { word: string })[];
+}
+interface TaaParams {
+  words: string[];
+  ask: "classify" | "pick" | "odd";
+  target: TaaForm;
+}
+const TAA_LABEL: Record<TaaForm, string> = { open: "ت", "tied-joined": "ـة", "tied-alone": "ة" };
+const TAA_NAME: Record<TaaForm, string> = { open: "تاءٌ مَفْتوحَةٌ", "tied-joined": "تاءٌ مَرْبوطَةٌ مُتَّصِلَةٌ", "tied-alone": "تاءٌ مَرْبوطَةٌ مُنْفَصِلَةٌ" };
+
+export const AR_TAA: M<TaaConfig, TaaParams> = {
+  id: "GEN-AR-TAA",
+  version: 1,
+  mechanicId: "ar-taa",
+  difficulties: [1, 2, 3],
+  validateConfig(c) {
+    const p = listProblems(c?.words, "word", 4, (o, i) => (taaForm(String(o.word)) ? [] : [`word[${i}]: «${String(o.word)}» does not end in a taa`]));
+    if (p.length) return p;
+    const forms = new Set(c.words.map((w) => taaForm(w.word)));
+    if (forms.size < 2) p.push("need at least 2 different taa forms");
+    if (c.words.filter((w) => taaForm(w.word) === "open").length < 1) p.push("need an open taa word");
+    return p;
+  },
+  generate(seed, d, c) {
+    return sample(seed, (rng) => {
+      const all = c.words.map((w) => w.word);
+      const forms = (["open", "tied-joined", "tied-alone"] as const).filter((f) => all.some((w) => taaForm(w) === f));
+      if (d === 1) {
+        const w = pick(rng, all);
+        return makeItem(AR_TAA, seed, d, {
+          params: { words: [w], ask: "classify", target: taaForm(w)! },
+          prompt: `بِأَيِّ شَكْلٍ كُتِبَتِ التّاءُ في آخِرِ «${w}»؟`,
+          visual: card(w, { size: "word" }),
+          input: { type: "choice", options: forms.map((f) => ({ id: f, label: TAA_LABEL[f] })) },
+        });
+      }
+      const target = pick(rng, forms);
+      if (d === 2) {
+        const ws = drawDistinct(rng, all, Math.min(4, all.length));
+        const k = ws.filter((w) => taaForm(w) === target).length;
+        if (k === 0 || k === ws.length) return null;
+        return makeItem(AR_TAA, seed, d, {
+          params: { words: ws, ask: "pick", target },
+          prompt: `اخْتَرْ كُلَّ كَلِمَةٍ تَنْتَهي بِـ«${TAA_LABEL[target]}» (${TAA_NAME[target]}).`,
+          input: { type: "multi", options: labelled(ws) },
+        });
+      }
+      const one = all.filter((w) => taaForm(w) === target);
+      const rest = all.filter((w) => taaForm(w) !== target);
+      if (rest.length < 2) return null;
+      const ws = shuffleAll(rng, [pick(rng, one), ...drawDistinct(rng, rest, 2)]);
+      return makeItem(AR_TAA, seed, d, {
+        params: { words: ws, ask: "odd", target },
+        prompt: `أَيُّ كَلِمَةٍ تَنْتَهي بِـ«${TAA_LABEL[target]}» (${TAA_NAME[target]})؟`,
+        input: { type: "choice", options: labelled(ws) },
+      });
+    });
+  },
+  check(item, answer) {
+    const { words: ws, ask, target } = item.params;
+    if (ask === "classify") {
+      const t = taaForm(ws[0]!)!;
+      if (typeof answer !== "string" || !(answer in TAA_LABEL)) return wrong(t, answer, "input_invalid");
+      return answer === t ? ok() : wrong(t, answer, "property_error");
+    }
+    if (ask === "pick") return checkMulti(ws, answer, (w) => taaForm(w) === target);
+    return checkChoice(ws, answer, (w) => taaForm(w) === target, "property_error");
+  },
+  solution(item) {
+    const { words: ws, ask, target } = item.params;
+    if (ask === "classify") return taaForm(ws[0]!);
+    if (ask === "pick") return multiSolution(ws, (w) => taaForm(w) === target);
+    return solutionOf(ws, (w) => taaForm(w) === target);
+  },
+  explain: (item) =>
+    item.params.words.map((w) => {
+      const f = taaForm(w)!;
+      if (f === "open") return `«${w}»: تاءٌ مَفْتوحَةٌ «ت».`;
+      const prev = bare(w)[bare(w).length - 2];
+      return f === "tied-joined" ? `«${w}»: الْحَرْفُ «${prev}» يَتَّصِلُ بِما بَعْدَهُ، فَنَكْتُبُ «ـة».` : `«${w}»: الْحَرْفُ «${prev}» لا يَتَّصِلُ بِما بَعْدَهُ، فَنَكْتُبُ «ة».`;
+    }),
+  checkIntegrity(item) {
+    const { words: ws, ask, target } = item.params;
+    if (ws.some((w) => taaForm(w) === null)) return ["word without final taa"];
+    if (new Set(ws).size !== ws.length) return ["duplicate words"];
+    if (ask === "classify") return item.input.type === "choice" && item.input.options.some((o) => o.id === taaForm(ws[0]!)) ? optionProblems(item.input.options) : ["answer not among options"];
+    if (ask === "pick") {
+      const p = item.input.type === "multi" ? optionProblems(item.input.options) : ["expects multi input"];
+      const k = ws.filter((w) => taaForm(w) === target).length;
+      if (k === 0 || k === ws.length) p.push("needs both kinds");
+      return p;
+    }
+    return choiceIntegrity(asMech(AR_TAA), item, ws.length);
+  },
+};
+
+/* ------------------------------------------------------------------ */
+/* ar-tanween: تنوين الضم / الفتح / الكسر at the end of a word            */
+/* ------------------------------------------------------------------ */
+
+export type Tanween = "damm" | "fath" | "kasr";
+/**
+ * The tanween written at the end of the word, or null. Tanween fatḥ may sit before a final
+ * alif («كَثيرًا»، «مَعًا») or on it («مَثَلاً»); a shadda may follow («عُمانيٍّ»).
+ */
+export function tanweenOf(word: string): Tanween | null {
+  const m = word.replace(/\u0640/g, "").match(/([\u064B-\u064D])[\u0651\u0652]*[\u0627\u0649]?[\u0651\u0652]*[^\u0621-\u064A\u064B-\u0652]*$/u);
+  if (!m) return null;
+  return m[1] === "\u064C" ? "damm" : m[1] === "\u064B" ? "fath" : "kasr";
+}
+interface TanweenConfig {
+  words: (Paged & { word: string })[];
+}
+interface TanweenParams {
+  words: string[];
+  ask: "classify" | "pick" | "odd";
+  target: Tanween;
+}
+const TANWEEN_LABEL: Record<Tanween, string> = { damm: "تَنْوينُ ضَمٍّ ( ـٌ )", fath: "تَنْوينُ فَتْحٍ ( ـً )", kasr: "تَنْوينُ كَسْرٍ ( ـٍ )" };
+
+export const AR_TANWEEN: M<TanweenConfig, TanweenParams> = {
+  id: "GEN-AR-TANWEEN",
+  version: 1,
+  mechanicId: "ar-tanween",
+  difficulties: [1, 2, 3],
+  validateConfig(c) {
+    const p = listProblems(c?.words, "word", 4, (o, i) => (tanweenOf(String(o.word)) ? [] : [`word[${i}]: «${String(o.word)}» has no tanween`]));
+    if (p.length) return p;
+    if (new Set(c.words.map((w) => tanweenOf(w.word))).size < 2) p.push("need at least 2 kinds of tanween");
+    return p;
+  },
+  generate(seed, d, c) {
+    return sample(seed, (rng) => {
+      const all = c.words.map((w) => w.word);
+      const kinds = (["damm", "fath", "kasr"] as const).filter((k) => all.some((w) => tanweenOf(w) === k));
+      if (d === 1) {
+        const w = pick(rng, all);
+        return makeItem(AR_TANWEEN, seed, d, {
+          params: { words: [w], ask: "classify", target: tanweenOf(w)! },
+          prompt: `ما نَوْعُ التَّنْوينِ في آخِرِ «${w}»؟`,
+          visual: card(w, { size: "word" }),
+          input: { type: "choice", options: kinds.map((k) => ({ id: k, label: TANWEEN_LABEL[k] })) },
+        });
+      }
+      const target = pick(rng, kinds);
+      if (d === 2) {
+        const ws = drawDistinct(rng, all, Math.min(4, all.length));
+        const k = ws.filter((w) => tanweenOf(w) === target).length;
+        if (k === 0 || k === ws.length) return null;
+        return makeItem(AR_TANWEEN, seed, d, {
+          params: { words: ws, ask: "pick", target },
+          prompt: `اخْتَرْ كُلَّ كَلِمَةٍ فيها ${TANWEEN_LABEL[target]}.`,
+          input: { type: "multi", options: labelled(ws) },
+        });
+      }
+      const one = all.filter((w) => tanweenOf(w) === target);
+      const rest = all.filter((w) => tanweenOf(w) !== target);
+      if (rest.length < 2) return null;
+      const ws = shuffleAll(rng, [pick(rng, one), ...drawDistinct(rng, rest, 2)]);
+      return makeItem(AR_TANWEEN, seed, d, {
+        params: { words: ws, ask: "odd", target },
+        prompt: `أَيُّ كَلِمَةٍ فيها ${TANWEEN_LABEL[target]}؟`,
+        input: { type: "choice", options: labelled(ws) },
+      });
+    });
+  },
+  check(item, answer) {
+    const { words: ws, ask, target } = item.params;
+    if (ask === "classify") {
+      const t = tanweenOf(ws[0]!)!;
+      if (answer !== "damm" && answer !== "fath" && answer !== "kasr") return wrong(t, answer, "input_invalid");
+      return answer === t ? ok() : wrong(t, answer, "property_error");
+    }
+    if (ask === "pick") return checkMulti(ws, answer, (w) => tanweenOf(w) === target);
+    return checkChoice(ws, answer, (w) => tanweenOf(w) === target, "property_error");
+  },
+  solution(item) {
+    const { words: ws, ask, target } = item.params;
+    if (ask === "classify") return tanweenOf(ws[0]!);
+    if (ask === "pick") return multiSolution(ws, (w) => tanweenOf(w) === target);
+    return solutionOf(ws, (w) => tanweenOf(w) === target);
+  },
+  explain: (item) => item.params.words.map((w) => `«${w}»: ${TANWEEN_LABEL[tanweenOf(w)!]}`),
+  checkIntegrity(item) {
+    const { words: ws, ask, target } = item.params;
+    if (ws.some((w) => tanweenOf(w) === null)) return ["word without tanween"];
+    if (new Set(ws).size !== ws.length) return ["duplicate words"];
+    if (ask === "classify") return item.input.type === "choice" && item.input.options.some((o) => o.id === tanweenOf(ws[0]!)) ? optionProblems(item.input.options) : ["answer not among options"];
+    if (ask === "pick") {
+      const p = item.input.type === "multi" ? optionProblems(item.input.options) : ["expects multi input"];
+      const k = ws.filter((w) => tanweenOf(w) === target).length;
+      if (k === 0 || k === ws.length) p.push("needs both kinds");
+      return p;
+    }
+    return choiceIntegrity(asMech(AR_TANWEEN), item, ws.length);
+  },
+};
+
 export const ARABIC_MECHANICS = [
   AR_SYLLABLES,
   AR_SENTENCE_BUILD,
@@ -974,4 +1212,6 @@ export const ARABIC_MECHANICS = [
   AR_VERB_PICK,
   AR_POEM_GAP,
   AR_SORT,
+  AR_TAA,
+  AR_TANWEEN,
 ] as unknown as QuizMechanic<never, unknown>[];

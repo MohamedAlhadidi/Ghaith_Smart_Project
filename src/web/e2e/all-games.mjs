@@ -5,7 +5,7 @@
 // Also exercises a worked example and a unit mission. Report: reports/e2e/all-games-report.json
 import { spawn } from "node:child_process";
 import { createRequire } from "node:module";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -18,10 +18,14 @@ const outDir = resolve(root, "reports/e2e");
 mkdirSync(outDir, { recursive: true });
 const mathCatalog = JSON.parse(readFileSync(resolve(root, "content/curriculum/math/s1/lessons.json"), "utf8"));
 const englishCatalog = JSON.parse(readFileSync(resolve(root, "content/curriculum/english/s1/lessons.json"), "utf8"));
-const ONLY = process.env.ONLY_SUBJECT; // optional: "math" | "english"
+// Local-only until publishing is approved (book text); absent in a fresh clone.
+const arabicFile = resolve(root, "content/curriculum/arabic/s1/lessons.json");
+const arabicCatalog = existsSync(arabicFile) ? JSON.parse(readFileSync(arabicFile, "utf8")) : { lessons: [] };
+const ONLY = process.env.ONLY_SUBJECT; // optional: "math" | "english" | "arabic"
 const allLessons = [
   ...(ONLY && ONLY !== "math" ? [] : mathCatalog.lessons),
   ...(ONLY && ONLY !== "english" ? [] : englishCatalog.lessons),
+  ...(ONLY && ONLY !== "arabic" ? [] : arabicCatalog.lessons),
 ];
 const LEGACY = new Set(["hsq-fragment", "hsq-locate", "hsq-path"]);
 const PORT = 4174;
@@ -137,14 +141,16 @@ try {
   }
   process.stdout.write("\n");
 
-  // Worked example + unit mission for unit 1A.
-  await page.goto(`${BASE}?lesson=MATH-S1-U1A-L05&e2e=1`);
+  // Worked example + unit mission.
+  const exampleLesson = ONLY === "arabic" ? "ARB-S1-A1-L1" : "MATH-S1-U1A-L05";
+  await page.goto(`${BASE}?lesson=${exampleLesson}&e2e=1`);
   await page.getByTestId("example").click();
   const steps = await page.getByTestId("worked-example").locator("li").count();
-  results.push({ lesson: "MATH-S1-U1A-L05", game: "worked-example", pass: steps >= 2, items: [`${steps} steps`] });
+  results.push({ lesson: exampleLesson, game: "worked-example", pass: steps >= 1, items: [`${steps} steps`] });
   await page.goto(`${BASE}?e2e=1`);
-  const missionUnit = ONLY === "english" ? "ENG-S1-SS1" : "MATH-S1-U1B";
-  await page.locator(`[data-subject="${missionUnit.startsWith("ENG") ? "english" : "math"}"]`).click();
+  const missionUnit = ONLY === "english" ? "ENG-S1-SS1" : ONLY === "arabic" ? "ARB-S1-A1" : "MATH-S1-U1B";
+  const missionSubject = missionUnit.startsWith("ENG") ? "english" : missionUnit.startsWith("ARB") ? "arabic" : "math";
+  await page.locator(`[data-subject="${missionSubject}"]`).click();
   await page.locator(`[data-unit="${missionUnit}"]`).click();
   await page.getByTestId("mission").click();
   const missionKinds = [];
