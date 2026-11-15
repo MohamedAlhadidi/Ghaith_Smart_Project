@@ -13,6 +13,7 @@ import {
   AR_POEM_GAP,
   AR_QUESTION,
   AR_SENTENCE_BUILD,
+  AR_SORT,
   AR_SUN_MOON,
   AR_SYLLABLES,
   AR_TEXT_CHECK,
@@ -99,7 +100,26 @@ const POEM = {
   ],
 };
 
+// Fixture with labels (opening review p. 31 table headings).
+const SORT = {
+  columns: ["أَطْعِمَةٌ صِحِّيَّةٌ", "أَطْعِمَةٌ غَيْرُ صِحِّيَّةٍ"] as [string, string],
+  items: [
+    { text: "حَليبٌ", column: 0 as const, page: 31 },
+    { text: "أَرُزٌّ", column: 0 as const, page: 31 },
+    { text: "لَحْمٌ", column: 0 as const, page: 31 },
+    { text: "حَلْوى", column: 1 as const, page: 31 },
+    { text: "مَشْروباتٌ غازِيَّةٌ", column: 1 as const, page: 31 },
+  ],
+};
+const DESCRIBES = {
+  ...TEXT,
+  prompts: { in: "أَيُّ عِبارَةٍ تُناسِبُ وَصْفَ الْكِتابِ؟", notIn: "أَيُّ عِبارَةٍ لا تُناسِبُ وَصْفَ الْكِتابِ؟", allIn: "اخْتَرْ كُلَّ ما يُناسِبُ وَصْفَ الْكِتابِ." },
+};
+
 describe("Arabic mechanics: 1000 seeds × 3 levels", () => {
+  it("ar-sort", () => exerciseMechanic(AR_SORT, SORT));
+  it("ar-text-check with the book's own question", () =>
+    exerciseMechanic(AR_TEXT_CHECK, DESCRIBES, 200, (item) => expect(Object.values(DESCRIBES.prompts)).toContain(item.prompt)));
   it("ar-syllables", () => exerciseMechanic(AR_SYLLABLES, SYL));
   it("ar-sentence-build", () => exerciseMechanic(AR_SENTENCE_BUILD, SENT));
   it("ar-count-words", () => exerciseMechanic(AR_COUNT_WORDS, SENT));

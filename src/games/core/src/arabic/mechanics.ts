@@ -358,11 +358,17 @@ export interface Statement extends Paged {
 }
 interface StatementsConfig {
   statements: Statement[];
+  /**
+   * Optional wording when the book's question is not «ورد في النص» (e.g. «تناسب وصف الكتاب»):
+   * `inText` then means "true for this question".
+   */
+  prompts?: { in: string; notIn: string; allIn: string };
 }
 interface StatementParams {
   statements: Statement[];
   ask: "in" | "not-in" | "all-in";
 }
+const TEXT_PROMPTS = { in: "أَيُّ عِبارَةٍ قَرَأْتَها في النَّصِّ؟", notIn: "أَيُّ عِبارَةٍ لَمْ تَرِدْ في النَّصِّ؟", allIn: "اخْتَرْ كُلَّ الْعِباراتِ الَّتي قَرَأْتَها في النَّصِّ." };
 
 export const AR_TEXT_CHECK: M<StatementsConfig, StatementParams> = {
   id: "GEN-AR-TEXT-CHECK",
@@ -375,6 +381,7 @@ export const AR_TEXT_CHECK: M<StatementsConfig, StatementParams> = {
     const t = c.statements.filter((s) => s.inText).length;
     if (t < 1 || c.statements.length - t < 1) p.push("need statements both in and not in the text");
     if (Math.max(t, c.statements.length - t) < 2) p.push("need at least 2 of one kind");
+    if (c.prompts && !(isText(c.prompts.in) && isText(c.prompts.notIn) && isText(c.prompts.allIn))) p.push("prompts: need in, notIn and allIn");
     return p;
   },
   generate(seed, d, c) {
@@ -388,7 +395,7 @@ export const AR_TEXT_CHECK: M<StatementsConfig, StatementParams> = {
         if (k === 0 || k === ss.length) return null;
         return makeItem(AR_TEXT_CHECK, seed, d, {
           params: { statements: ss, ask: "all-in" },
-          prompt: "اخْتَرْ كُلَّ الْعِباراتِ الَّتي قَرَأْتَها في النَّصِّ.",
+          prompt: (c.prompts ?? TEXT_PROMPTS).allIn,
           input: { type: "multi", options: labelled(ss.map((s) => s.text)) },
         });
       }
@@ -402,7 +409,7 @@ export const AR_TEXT_CHECK: M<StatementsConfig, StatementParams> = {
       const ss = shuffleAll(rng, [pick(rng, odd), ...drawDistinct(rng, rest, n)]);
       return makeItem(AR_TEXT_CHECK, seed, d, {
         params: { statements: ss, ask },
-        prompt: ask === "in" ? "أَيُّ عِبارَةٍ قَرَأْتَها في النَّصِّ؟" : "أَيُّ عِبارَةٍ لَمْ تَرِدْ في النَّصِّ؟",
+        prompt: ask === "in" ? (c.prompts ?? TEXT_PROMPTS).in : (c.prompts ?? TEXT_PROMPTS).notIn,
         input: { type: "choice", options: labelled(ss.map((s) => s.text)) },
       });
     });
@@ -417,7 +424,7 @@ export const AR_TEXT_CHECK: M<StatementsConfig, StatementParams> = {
     if (ask === "all-in") return multiSolution(ss, (s) => s.inText);
     return solutionOf(ss, (s) => s.inText === (ask === "in"));
   },
-  explain: (item) => item.params.statements.map((s) => `${s.inText ? "✓ وَرَدَتْ" : "✗ لَمْ تَرِدْ"}: ${s.text} (ص ${s.page})`),
+  explain: (item) => item.params.statements.map((s) => `${s.inText ? "✓" : "✗"} ${s.text} (ص ${s.page})`),
   checkIntegrity(item) {
     const { statements: ss, ask } = item.params;
     if (ask === "all-in") {
@@ -849,6 +856,106 @@ export const AR_POEM_GAP: M<PoemConfig, PoemParams> = {
   },
 };
 
+
+/* ------------------------------------------------------------------ */
+/* ar-sort: put each word in one of the book's two columns              */
+/* ------------------------------------------------------------------ */
+
+export interface SortEntry extends Paged {
+  text: string;
+  /** Index of the column (0 or 1) in `columns`. */
+  column: 0 | 1;
+}
+interface SortConfig {
+  /** The two column headings exactly as printed. */
+  columns: [string, string];
+  items: SortEntry[];
+}
+interface SortParams {
+  columns: [string, string];
+  items: SortEntry[];
+  ask: "classify" | "pick" | "odd";
+  target: 0 | 1;
+}
+
+export const AR_SORT: M<SortConfig, SortParams> = {
+  id: "GEN-AR-SORT",
+  version: 1,
+  mechanicId: "ar-sort",
+  difficulties: [1, 2, 3],
+  validateConfig(c) {
+    if (!Array.isArray(c?.columns) || c.columns.length !== 2 || !c.columns.every(isText)) return ["columns: need 2 headings"];
+    const p = listProblems(c.items, "text", 4, (o, i) => (o.column === 0 || o.column === 1 ? [] : [`item[${i}]: column must be 0 or 1`]));
+    if (p.length) return p;
+    const a = c.items.filter((x) => x.column === 0).length;
+    if (a < 2 || c.items.length - a < 2) p.push("need at least 2 entries per column");
+    if (new Set(c.items.map((x) => bare(x.text))).size !== c.items.length) p.push("duplicate entries");
+    return p;
+  },
+  generate(seed, d, c) {
+    return sample(seed, (rng) => {
+      const target: 0 | 1 = rng() < 0.5 ? 0 : 1;
+      if (d === 1) {
+        const it = pick(rng, c.items);
+        return makeItem(AR_SORT, seed, d, {
+          params: { columns: c.columns, items: [it], ask: "classify", target: it.column },
+          prompt: `في أَيِّ عَمودٍ نَضَعُ «${it.text}»؟`,
+          visual: card(it.text, { size: "word" }),
+          input: { type: "choice", options: c.columns.map((label, i) => ({ id: `c${i}`, label })) },
+        });
+      }
+      if (d === 2) {
+        const its = drawDistinct(rng, c.items, Math.min(4, c.items.length));
+        const k = its.filter((x) => x.column === target).length;
+        if (k === 0 || k === its.length) return null;
+        return makeItem(AR_SORT, seed, d, {
+          params: { columns: c.columns, items: its, ask: "pick", target },
+          prompt: `اخْتَرْ كُلَّ ما يوضَعُ في عَمودِ «${c.columns[target]}».`,
+          input: { type: "multi", options: labelled(its.map((x) => x.text)) },
+        });
+      }
+      const one = c.items.filter((x) => x.column === target);
+      const rest = c.items.filter((x) => x.column !== target);
+      if (rest.length < 2) return null;
+      const its = shuffleAll(rng, [pick(rng, one), ...drawDistinct(rng, rest, 2)]);
+      return makeItem(AR_SORT, seed, d, {
+        params: { columns: c.columns, items: its, ask: "odd", target },
+        prompt: `أَيُّها يوضَعُ في عَمودِ «${c.columns[target]}»؟`,
+        input: { type: "choice", options: labelled(its.map((x) => x.text)) },
+      });
+    });
+  },
+  check(item, answer) {
+    const { items, ask, target } = item.params;
+    if (ask === "classify") {
+      const exp = `c${items[0]!.column}`;
+      if (answer !== "c0" && answer !== "c1") return wrong(exp, answer, "input_invalid");
+      return answer === exp ? ok() : wrong(exp, answer, "property_error");
+    }
+    if (ask === "pick") return checkMulti(items, answer, (x) => x.column === target);
+    return checkChoice(items, answer, (x) => x.column === target, "property_error");
+  },
+  solution(item) {
+    const { items, ask, target } = item.params;
+    if (ask === "classify") return `c${items[0]!.column}`;
+    if (ask === "pick") return multiSolution(items, (x) => x.column === target);
+    return solutionOf(items, (x) => x.column === target);
+  },
+  explain: (item) => item.params.items.map((x) => `«${x.text}» ← ${item.params.columns[x.column]} (ص ${x.page})`),
+  checkIntegrity(item) {
+    const { items, ask, target } = item.params;
+    if (new Set(items.map((x) => bare(x.text))).size !== items.length) return ["duplicate entries"];
+    if (ask === "classify") return item.input.type === "choice" && item.input.options.length === 2 ? [] : ["expects 2 column options"];
+    if (ask === "pick") {
+      const p = item.input.type === "multi" ? optionProblems(item.input.options) : ["expects multi input"];
+      const k = items.filter((x) => x.column === target).length;
+      if (k === 0 || k === items.length) p.push("needs both columns");
+      return p;
+    }
+    return choiceIntegrity(asMech(AR_SORT), item, items.length);
+  },
+};
+
 export const ARABIC_MECHANICS = [
   AR_SYLLABLES,
   AR_SENTENCE_BUILD,
@@ -863,4 +970,5 @@ export const ARABIC_MECHANICS = [
   AR_WORD_RELATION,
   AR_VERB_PICK,
   AR_POEM_GAP,
+  AR_SORT,
 ] as unknown as QuizMechanic<never, unknown>[];
