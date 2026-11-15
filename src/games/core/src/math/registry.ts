@@ -1,5 +1,6 @@
 /** All quiz mechanics, keyed by mechanic id used in content/curriculum lesson catalogues. */
 import type { QuizMechanic } from "../quiz";
+import { ARABIC_MECHANICS } from "../arabic/mechanics";
 import { ENGLISH_REFERENCE } from "../english/listenAndSounds";
 import { MECHANICS_C } from "../english/registryC";
 import { COMPOSE_MECHANICS } from "./M_compose";
@@ -15,7 +16,7 @@ export const LEGACY_MECHANICS = ["hsq-fragment", "hsq-locate", "hsq-path"] as co
 
 export const QUIZ_MECHANICS: ReadonlyMap<string, AnyQuizMechanic> = (() => {
   const map = new Map<string, AnyQuizMechanic>();
-  for (const m of [...PAIRS_MECHANICS, ...COMPOSE_MECHANICS, ...MECHANICS_A, ...MECHANICS_B, ...ENGLISH_REFERENCE, ...MECHANICS_C] as AnyQuizMechanic[]) {
+  for (const m of [...PAIRS_MECHANICS, ...COMPOSE_MECHANICS, ...MECHANICS_A, ...MECHANICS_B, ...ENGLISH_REFERENCE, ...MECHANICS_C, ...ARABIC_MECHANICS] as AnyQuizMechanic[]) {
     if (map.has(m.mechanicId)) throw new Error(`duplicate mechanic id ${m.mechanicId}`);
     map.set(m.mechanicId, m);
   }

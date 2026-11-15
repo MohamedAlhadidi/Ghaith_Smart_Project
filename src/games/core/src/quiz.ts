@@ -23,7 +23,8 @@ export type AnswerInput =
   | { type: "number"; unit?: string; maxDigits?: number }
   | { type: "choice"; options: ChoiceOption[] }
   | { type: "multi"; options: ChoiceOption[]; exactly?: number }
-  | { type: "order"; items: ChoiceOption[] }
+  /** `joiner` (when set): the UI shows the chosen tiles joined into one text, e.g. "" for syllables → word. */
+  | { type: "order"; items: ChoiceOption[]; joiner?: string }
   /** The answer is produced by interacting with the visual (tap cells, place on a line...). */
   | { type: "visual" };
 

@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "@fontsource/noto-naskh-arabic/arabic-400.css";
+@import "@fontsource/noto-naskh-arabic/arabic-700.css";
 
 :root {
   font-family: "Noto Kufi Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
@@ -24,4 +26,9 @@ input {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* Vowelled Arabic book text («أحب لغتي»): Naskh keeps every ḥaraka readable. */
+.font-naskh {
+  font-family: "Noto Naskh Arabic", "Noto Kufi Arabic", serif;
 }

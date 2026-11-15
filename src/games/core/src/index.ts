@@ -8,3 +8,5 @@ export * from "./math/registry";
 export * from "./math/M_compose";
 export * from "./english/common";
 export * from "./english/listenAndSounds";
+export * from "./arabic/text";
+export * from "./arabic/mechanics";

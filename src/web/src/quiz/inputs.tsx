@@ -26,6 +26,9 @@ export function OptionLabel({ label, lang }: { label: string; lang?: "ar" | "en"
   return <>{toArabicDigits(label)}</>;
 }
 
+/** Text built from cards: tatweel removed, and «عَمْـ»+«ـمُـ» shown as the printed «عَمُّ» (shadda). */
+export const builtText = (s: string) => s.replace(/\u0640/g, "").replace(/([\u0621-\u064A])\u0652\1/g, "$1\u0651");
+
 const BTN = "min-h-14 rounded-2xl px-4 py-3 text-2xl font-extrabold shadow active:scale-95 disabled:cursor-default";
 
 export function NumberAnswer({ locked, reveal, solution, onSubmit, unit }: Common & { unit?: string }) {
@@ -124,13 +127,30 @@ export function MultiAnswer({ options, exactly, locked, reveal, solution, onSubm
   );
 }
 
-export function OrderAnswer({ items, locked, reveal, solution, onSubmit, lang }: Common & { items: ChoiceOption[] }) {
+export function OrderAnswer({ items, locked, reveal, solution, onSubmit, lang, joiner }: Common & { items: ChoiceOption[]; joiner?: string }) {
   const [order, setOrder] = useState<string[]>([]);
   const shown = reveal && Array.isArray(solution) ? (solution as string[]) : order;
   const raw = (id: string) => items.find((i) => i.id === id)?.label ?? "";
   const label = (id: string) => (lang === "en" ? raw(id) : toArabicDigits(raw(id)));
+  /** Long cards (events of a story) are listed one per line, numbered. */
+  const long = joiner === undefined && items.some((i) => i.label.length > 24);
   return (
     <div className="flex w-full flex-col items-center gap-3">
+      {joiner !== undefined ? (
+        // Syllables → word, words → sentence: show the text being built (tatweel of the cards removed).
+        <p data-testid="order-built" className={`min-h-20 w-full max-w-xl rounded-2xl bg-white/70 p-2 text-center text-4xl font-bold leading-[2] ${reveal ? "text-emerald-700" : "text-sky-900"}`} aria-label="الترتيب">
+          {shown.length === 0 ? <span className="text-xl text-slate-400">المس البطاقات بالترتيب</span> : builtText(shown.map(label).join(joiner))}
+        </p>
+      ) : long ? (
+        <ol className="flex min-h-16 w-full max-w-xl flex-col gap-2 rounded-2xl bg-white/70 p-2" aria-label="الترتيب">
+          {shown.length === 0 && <li className="text-center text-slate-400">المس البطاقات بالترتيب</li>}
+          {shown.map((id, i) => (
+            <li key={id} className={`rounded-xl px-3 py-2 text-xl font-bold leading-loose ${reveal ? "bg-emerald-200" : "bg-sky-200"}`}>
+              {toArabicDigits(i + 1)}. {label(id)}
+            </li>
+          ))}
+        </ol>
+      ) : (
       <div dir={lang === "en" ? "ltr" : undefined} lang={lang === "en" ? "en" : undefined} className="flex min-h-16 w-full max-w-xl flex-wrap items-center justify-center gap-2 rounded-2xl bg-white/70 p-2" aria-label="الترتيب">
         {shown.length === 0 && <span className="text-slate-400">المس البطاقات بالترتيب</span>}
         {shown.map((id, i) => (
@@ -140,9 +160,10 @@ export function OrderAnswer({ items, locked, reveal, solution, onSubmit, lang }:
           </span>
         ))}
       </div>
+      )}
       {!locked && !reveal && (
         <>
-          <div dir={lang === "en" ? "ltr" : undefined} className="flex flex-wrap justify-center gap-3">
+          <div dir={lang === "en" ? "ltr" : undefined} className={long ? "flex w-full max-w-xl flex-col gap-2" : "flex flex-wrap justify-center gap-3"}>
             {items
               .filter((i) => !order.includes(i.id))
               .map((i) => (

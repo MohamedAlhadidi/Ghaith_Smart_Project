@@ -130,6 +130,8 @@ export function QuizPlayer({ title, mode, plan, sessionId, initialState, avoid, 
   const reveal = feedback?.kind === "reveal" && mode !== "assessment";
   const Visual = visualFor(item.visual.type);
   const common = { locked, reveal, solution, onSubmit, lang: item.lang ?? "ar" };
+  /** Arabic-subject items: vowelled book text in Naskh. */
+  const naskh = item.mechanicId.startsWith("ar-");
 
   return (
     <section className="mx-auto flex w-full max-w-3xl flex-col items-center gap-4 px-4 py-4" aria-live="polite" data-testid="quiz" data-mechanic={item.mechanicId}>
@@ -155,7 +157,7 @@ export function QuizPlayer({ title, mode, plan, sessionId, initialState, avoid, 
             {item.promptAr && <p className="text-center text-lg text-slate-600">{item.promptAr}</p>}
           </div>
         ) : (
-          <p className="text-center text-2xl font-bold leading-relaxed" data-testid="instruction">
+          <p className={`text-center text-2xl font-bold leading-relaxed ${naskh ? "font-naskh text-3xl leading-[1.9]" : ""}`} data-testid="instruction">
             {toArabicDigits(item.prompt)}
           </p>
         )}
@@ -182,11 +184,11 @@ export function QuizPlayer({ title, mode, plan, sessionId, initialState, avoid, 
         <p className="text-rose-700">رسم غير متوفر: {item.visual.type}</p>
       )}
 
-      <div key={`i-${index}-${inputKey}`} className="flex w-full justify-center">
+      <div key={`i-${index}-${inputKey}`} className={`flex w-full justify-center ${naskh ? "font-naskh" : ""}`}>
         {item.input.type === "number" && <NumberAnswer {...common} unit={item.input.unit} />}
         {item.input.type === "choice" && <ChoiceAnswer {...common} options={item.input.options} />}
         {item.input.type === "multi" && <MultiAnswer {...common} options={item.input.options} exactly={item.input.exactly} />}
-        {item.input.type === "order" && <OrderAnswer {...common} items={item.input.items} />}
+        {item.input.type === "order" && <OrderAnswer {...common} items={item.input.items} joiner={item.input.joiner} />}
       </div>
 
       {hints > 0 && !locked && (
