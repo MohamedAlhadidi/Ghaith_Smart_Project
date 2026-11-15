@@ -495,6 +495,8 @@ export const AR_QUESTION: M<QuestionConfig, QuestionParams> = {
 interface EventsConfig {
   /** Events in the order of the text. */
   events: (Paged & { text: string })[];
+  /** Optional book wording, e.g. «رتب كلام القصة المصورة» (default: order the events of the text). */
+  prompt?: string;
 }
 interface EventParams {
   /** Chosen events, in text order. */
@@ -510,6 +512,7 @@ export const AR_EVENT_ORDER: M<EventsConfig, EventParams> = {
   validateConfig(c) {
     const p = listProblems(c?.events, "text", 3);
     if (!p.length && new Set(c.events.map((e) => bare(e.text))).size !== c.events.length) p.push("duplicate events");
+    if (c?.prompt !== undefined && !isText(c.prompt)) p.push("prompt must be text");
     return p;
   },
   generate(seed, d, c) {
@@ -521,7 +524,7 @@ export const AR_EVENT_ORDER: M<EventsConfig, EventParams> = {
       if (!tiles) return null;
       return makeItem(AR_EVENT_ORDER, seed, d, {
         params: { events, tiles },
-        prompt: "رَتِّبِ الْأَحْداثَ كَما وَرَدَتْ في النَّصِّ.",
+        prompt: c.prompt ?? "رَتِّبِ الْأَحْداثَ كَما وَرَدَتْ في النَّصِّ.",
         input: { type: "order", items: tileItems(tiles) },
       });
     });
